@@ -63,7 +63,8 @@ h2 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 52px); 
 .feature-card p { font-size: 14px; color: var(--gray); }
 
 .regions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 48px; }
-.region-chip { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; transition: border-color 0.2s; }
+.region-chip { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; transition: border-color 0.2s; }
+.region-flag { font-size: 22px; line-height: 1; }
 .region-chip:hover { border-color: rgba(61,220,132,0.3); }
 
 .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 60px; }
@@ -219,21 +220,36 @@ footer { padding: 48px 40px; border-top: 1px solid rgba(255,255,255,0.06); displ
     <div class="section-label">Покрытие</div>
     <h2>Где мы работаем</h2>
     <div class="regions-grid">
-      <div class="region-chip">🌍 Весь мир</div>
-      <div class="region-chip">🇪🇺 Европа</div>
-      <div class="region-chip">🇺🇸 США</div>
-      <div class="region-chip">🇹🇷 Турция</div>
-      <div class="region-chip">🇦🇪 ОАЭ</div>
-      <div class="region-chip">🇹🇭 Таиланд</div>
-      <div class="region-chip">🇯🇵 Япония</div>
-      <div class="region-chip">🇸🇬 Сингапур</div>
-      <div class="region-chip">🇮🇩 Индонезия</div>
-      <div class="region-chip">🇮🇳 Индия</div>
-      <div class="region-chip">🇨🇦 Канада</div>
-      <div class="region-chip">🇿🇦 ЮАР</div>
-      <div class="region-chip">🇪🇬 Египет</div>
-      <div class="region-chip">🇸🇦 Саудовская Аравия</div>
-      <div class="region-chip">🌏 +186 стран</div>
+      <div class="region-chip"><span class="region-flag">🌍</span> Весь мир</div>
+      <div class="region-chip"><span class="region-flag">🇪🇺</span> Европа</div>
+      <div class="region-chip"><span class="region-flag">🇺🇸</span> США</div>
+      <div class="region-chip"><span class="region-flag">🇹🇷</span> Турция</div>
+      <div class="region-chip"><span class="region-flag">🇦🇪</span> ОАЭ</div>
+      <div class="region-chip"><span class="region-flag">🇹🇭</span> Таиланд</div>
+      <div class="region-chip"><span class="region-flag">🇯🇵</span> Япония</div>
+      <div class="region-chip"><span class="region-flag">🇸🇬</span> Сингапур</div>
+      <div class="region-chip"><span class="region-flag">🇮🇩</span> Индонезия</div>
+      <div class="region-chip"><span class="region-flag">🇮🇳</span> Индия</div>
+      <div class="region-chip"><span class="region-flag">🇨🇦</span> Канада</div>
+      <div class="region-chip"><span class="region-flag">🇿🇦</span> ЮАР</div>
+      <div class="region-chip"><span class="region-flag">🇪🇬</span> Египет</div>
+      <div class="region-chip"><span class="region-flag">🇸🇦</span> Саудовская Аравия</div>
+      <div class="region-chip"><span class="region-flag">🇬🇧</span> Великобритания</div>
+      <div class="region-chip"><span class="region-flag">🇩🇪</span> Германия</div>
+      <div class="region-chip"><span class="region-flag">🇫🇷</span> Франция</div>
+      <div class="region-chip"><span class="region-flag">🇮🇹</span> Италия</div>
+      <div class="region-chip"><span class="region-flag">🇪🇸</span> Испания</div>
+      <div class="region-chip"><span class="region-flag">🇵🇱</span> Польша</div>
+      <div class="region-chip"><span class="region-flag">🇷🇴</span> Румыния</div>
+      <div class="region-chip"><span class="region-flag">🇺🇦</span> Украина</div>
+      <div class="region-chip"><span class="region-flag">🇰🇿</span> Казахстан</div>
+      <div class="region-chip"><span class="region-flag">🇬🇪</span> Грузия</div>
+      <div class="region-chip"><span class="region-flag">🇦🇲</span> Армения</div>
+      <div class="region-chip"><span class="region-flag">🇦🇿</span> Азербайджан</div>
+      <div class="region-chip"><span class="region-flag">🇲🇽</span> Мексика</div>
+      <div class="region-chip"><span class="region-flag">🇧🇷</span> Бразилия</div>
+      <div class="region-chip"><span class="region-flag">🇦🇺</span> Австралия</div>
+      <div class="region-chip"><span class="region-flag">🌏</span> +170 стран</div>
     </div>
   </div>
 </section>
