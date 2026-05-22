@@ -5,95 +5,116 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Политика конфиденциальности — Linkora eSIM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--black:#0a0a0a;--white:#f5f5f0;--green:#3ddc84;--gray:#6b7280;}
+:root {
+  --c-bg:#050d07; --c-bg2:#071009; --c-forest:#0a1a0c;
+  --c-emerald:#2d6a4f; --c-leaf:#52b788; --c-glow:#74c69d;
+  --c-mist:#b7e4c7; --c-white:#e8f5e9; --c-gray:#6b9e7a;
+  --c-border:rgba(82,183,136,0.12); --c-card:rgba(10,26,12,0.6);
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-sans:'Inter',system-ui,sans-serif;
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;}
-nav{padding:20px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.06);}
-.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--green);text-decoration:none;}
-.nav-logo span{color:var(--white);}
-.back{font-size:14px;color:var(--gray);text-decoration:none;}
-.back:hover{color:var(--white);}
-.content{max-width:760px;margin:0 auto;padding:60px 24px 100px;}
-h1{font-family:'DM Serif Display',serif;font-size:42px;margin-bottom:8px;}
-.updated{font-size:13px;color:var(--gray);margin-bottom:48px;}
-h2{font-size:22px;font-weight:600;margin:40px 0 16px;}
-p{color:rgba(245,245,240,0.75);margin-bottom:16px;}
-ul{color:rgba(245,245,240,0.75);padding-left:24px;margin-bottom:16px;}
-li{margin-bottom:8px;}
-a{color:var(--green);}
-footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:13px;color:var(--gray);}
-@media(max-width:768px){nav{padding:16px 20px;}.content{padding:40px 20px 80px;}}
+html{scroll-behavior:smooth;}
+body{background:var(--c-bg);color:var(--c-white);font-family:var(--font-sans);font-size:16px;line-height:1.7;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+nav{position:sticky;top:0;z-index:100;padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,13,7,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--c-border);}
+.nav-logo{font-family:var(--font-serif);font-size:22px;font-weight:300;color:var(--c-glow);letter-spacing:4px;text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+.nav-logo-dot{width:6px;height:6px;border-radius:50%;background:var(--c-leaf);box-shadow:0 0 8px var(--c-leaf);animation:pulse 3s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.8)}}
+.back{font-size:13px;color:var(--c-gray);letter-spacing:1px;text-transform:uppercase;transition:color 0.3s;display:flex;align-items:center;gap:8px;}
+.back:hover{color:var(--c-mist);}
+.back::before{content:'←';}
+.content{max-width:800px;margin:0 auto;padding:80px 24px 120px;}
+h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,64px);font-weight:300;line-height:1.05;margin-bottom:10px;}
+h1 em{font-style:italic;color:var(--c-glow);}
+.updated{font-size:11px;color:var(--c-gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:56px;padding-left:20px;border-left:2px solid rgba(82,183,136,0.3);}
+h2{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--c-mist);margin:52px 0 20px;display:flex;align-items:center;gap:12px;}
+h2::before{content:'';width:20px;height:1px;background:var(--c-leaf);flex-shrink:0;}
+p{color:rgba(232,240,228,0.65);margin-bottom:16px;font-weight:300;font-size:15px;}
+ul{color:rgba(232,240,228,0.65);padding-left:24px;margin-bottom:16px;}
+li{margin-bottom:10px;font-size:15px;font-weight:300;}
+strong{color:var(--c-white);font-weight:500;}
+a.link{color:var(--c-leaf);transition:color 0.3s;}
+a.link:hover{color:var(--c-glow);}
+.card{background:var(--c-card);border:1px solid var(--c-border);border-radius:20px;padding:32px 36px;margin-bottom:20px;backdrop-filter:blur(8px);transition:border-color 0.3s;}
+.card:hover{border-color:rgba(82,183,136,0.25);}
+.row{display:flex;gap:24px;padding:14px 0;border-bottom:1px solid rgba(82,183,136,0.07);align-items:baseline;}
+.row:last-child{border-bottom:none;}
+.row-label{font-size:11px;color:var(--c-gray);letter-spacing:1.5px;text-transform:uppercase;min-width:200px;flex-shrink:0;}
+.row-value{font-size:15px;color:var(--c-white);font-weight:300;}
+.highlight{background:rgba(82,183,136,0.06);border:1px solid rgba(82,183,136,0.15);border-radius:14px;padding:20px 24px;margin:24px 0;}
+.yes-card{background:rgba(45,106,79,0.1);border:1px solid rgba(82,183,136,0.2);border-radius:16px;padding:28px;margin-bottom:16px;}
+.no-card{background:rgba(139,0,0,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:16px;padding:28px;margin-bottom:16px;}
+.yes-card h3{color:var(--c-leaf);font-family:var(--font-serif);font-size:22px;font-weight:400;margin-bottom:14px;}
+.no-card h3{color:#ef4444;font-family:var(--font-serif);font-size:22px;font-weight:400;margin-bottom:14px;}
+footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;}
+.footer-links a{font-size:12px;color:var(--c-gray);letter-spacing:0.5px;transition:color 0.3s;}
+.footer-links a:hover{color:var(--c-mist);}
+.footer-copy{font-size:12px;color:rgba(107,158,122,0.4);}
+@media(max-width:768px){nav{padding:0 20px;}.content{padding:48px 20px 80px;}.row{flex-direction:column;gap:6px;}.row-label{min-width:auto;}footer{padding:32px 20px;flex-direction:column;align-items:flex-start;}}
+
 </style>
 </head>
 <body>
 <nav>
-  <a href="index.html" class="nav-logo">Linkora <span>eSIM</span></a>
-  <a href="index.html" class="back">← На главную</a>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>Linkora <span style="opacity:.5;font-weight:300"> eSIM</span></a>
+  <a href="index.html" class="back">На главную</a>
 </nav>
 <div class="content">
-  <h1>Политика конфиденциальности</h1>
-  <p class="updated">Дата последнего обновления: 1 января 2025 года</p>
+  <h1>Политика <em>конфиденциальности</em></h1>
+  <p class="updated">Дата обновления: 1 января 2026 года</p>
 
-  <p>Linkora eSIM («мы») серьёзно относится к защите ваших персональных данных. Настоящая политика описывает, какие данные мы собираем, как используем и защищаем их.</p>
+  <p>Linkora eSIM серьёзно относится к защите ваших персональных данных. Эта политика описывает какие данные мы собираем и как их используем.</p>
 
   <h2>1. Какие данные мы собираем</h2>
-  <p>Мы собираем минимально необходимые данные для оказания услуги:</p>
-  <ul>
-    <li><strong>Telegram ID</strong> — для идентификации аккаунта и доставки eSIM</li>
-    <li><strong>Telegram username</strong> — для связи в рамках поддержки</li>
-    <li><strong>Данные заказа</strong> — выбранный тариф, сумма оплаты, статус активации</li>
-    <li><strong>Подтверждение платежа</strong> — номер транзакции (данные карты не хранятся)</li>
-  </ul>
+  <div class="card">
+    <div class="row"><div class="row-label">Telegram ID</div><div class="row-value">Для идентификации и доставки eSIM</div></div>
+    <div class="row"><div class="row-label">Telegram username</div><div class="row-value">Для связи в рамках поддержки</div></div>
+    <div class="row"><div class="row-label">Данные заказа</div><div class="row-value">Тариф, сумма, статус активации</div></div>
+    <div class="row"><div class="row-label">Подтверждение платежа</div><div class="row-value">Номер транзакции (данные карт не хранятся)</div></div>
+  </div>
 
   <h2>2. Как мы используем данные</h2>
   <ul>
     <li>Для обработки заказа и доставки QR-кода eSIM</li>
     <li>Для оказания технической поддержки</li>
     <li>Для отправки уведомлений о заказе через Telegram</li>
-    <li>Для предотвращения мошенничества и злоупотреблений</li>
+    <li>Для предотвращения мошенничества</li>
   </ul>
 
   <h2>3. Хранение данных</h2>
-  <p>Данные хранятся в защищённой базе данных. Записи о заказах хранятся до 12 месяцев для целей поддержки и разрешения споров. Вы можете запросить удаление данных в любое время через поддержку.</p>
+  <p>Данные хранятся в защищённой базе данных до 12 месяцев. Вы можете запросить удаление в любое время через поддержку.</p>
 
-  <h2>4. Передача данных третьим лицам</h2>
-  <p>Мы передаём ограниченные данные следующим партнёрам:</p>
+  <h2>4. Третьи лица</h2>
+  <p>Мы передаём ограниченные данные партнёрам: поставщику eSIM (eSIM Cards) и платёжным системам (Telegram Stars, CryptoBot). Данные не продаются и не используются в рекламных целях.</p>
+
+  <h2>5. Ваши права</h2>
   <ul>
-    <li><strong>Поставщик eSIM (eSIM Cards)</strong> — для выполнения заказа</li>
-    <li><strong>Платёжные системы</strong> — Telegram Stars, CryptoBot — только в объёме, необходимом для обработки платежа</li>
-  </ul>
-  <p>Мы не продаём ваши данные третьим лицам. Данные не используются в рекламных целях.</p>
-
-  <h2>5. Данные Telegram</h2>
-  <p>Наш сервис работает через Telegram. К вашему использованию платформы Telegram применяется <a href="https://telegram.org/privacy" target="_blank">Политика конфиденциальности Telegram</a>. Мы получаем только те данные, которые Telegram предоставляет ботам (ID, username, имя).</p>
-
-  <h2>6. Ваши права</h2>
-  <p>Вы имеете право:</p>
-  <ul>
-    <li>Запросить доступ к данным, которые мы храним о вас</li>
+    <li>Запросить доступ к данным о вас</li>
     <li>Потребовать исправления неточных данных</li>
-    <li>Потребовать удаления ваших данных</li>
-    <li>Отозвать согласие на обработку данных в любое время</li>
+    <li>Потребовать удаления данных</li>
+    <li>Отозвать согласие на обработку</li>
   </ul>
-  <p>Для реализации прав обратитесь: <a href="https://t.me/esimruu_bot">@esimruu_bot</a></p>
+  <p>Для реализации прав: <a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></p>
 
-  <h2>7. Безопасность</h2>
-  <p>Мы применяем технические и организационные меры для защиты ваших данных. Тем не менее ни одна передача данных через интернет не является на 100% защищённой.</p>
-
-  <h2>8. Файлы cookie</h2>
+  <h2>6. Cookies</h2>
   <p>Наш сайт не использует файлы cookie для отслеживания или рекламы.</p>
 
-  <h2>9. Дети</h2>
-  <p>Наш сервис не предназначен для лиц моложе 18 лет. Мы не собираем данные несовершеннолетних намеренно.</p>
-
-  <h2>10. Изменения политики</h2>
-  <p>Мы можем периодически обновлять настоящую политику. Изменения публикуются на этой странице с обновлённой датой.</p>
-
-  <h2>11. Контакты</h2>
-  <p>Вопросы о конфиденциальности: <a href="https://t.me/esimruu_bot">@esimruu_bot</a></p>
+  <h2>7. Контакты</h2>
+  <p>Вопросы о конфиденциальности: <a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></p>
 </div>
-<footer>© 2025 Linkora eSIM &nbsp;·&nbsp; <a href="index.html" style="color:inherit;">Главная</a> &nbsp;·&nbsp; <a href="terms.html" style="color:inherit;">Оферта</a> &nbsp;·&nbsp; <a href="refund.html" style="color:inherit;">Возвраты</a></footer>
+<footer>
+  <div class="footer-links">
+    <a href="terms.html">Публичная оферта</a>
+    <a href="privacy.html">Конфиденциальность</a>
+    <a href="refund.html">Политика возвратов</a>
+    <a href="legal.html">Реквизиты</a>
+  </div>
+  <div class="footer-copy">© 2026 Linkora eSIM. Все права защищены.</div>
+</footer>
 </body>
 </html>
