@@ -561,7 +561,7 @@ nav.scrolled {
 
 /* ── FOOTER ── */
 footer {
-  padding: 64px 48px 40px;
+  padding: 64px 48px calc(40px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid rgba(82,183,136,0.08);
   position: relative;
 }
@@ -959,6 +959,49 @@ window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('loader').classList.add('done'), 1800);
 });
 
+/* ── PARTICLES ── */
+const canvas2 = document.getElementById('canvas');
+if (canvas2) {
+  const ctx = canvas2.getContext('2d');
+  let pts = [];
+  function rsz() { canvas2.width = window.innerWidth; canvas2.height = window.innerHeight; }
+  rsz(); window.addEventListener('resize', rsz);
+  class Pt {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x = Math.random() * canvas2.width;
+      this.y = init ? Math.random() * canvas2.height : canvas2.height + 10;
+      this.s = Math.random() * 2.5 + 0.5;
+      this.vy = Math.random() * 0.3 + 0.08;
+      this.vx = (Math.random() - 0.5) * 0.25;
+      this.o = Math.random() * 0.25 + 0.04;
+      this.c = Math.random() > 0.5 ? '#52b788' : '#74c69d';
+      this.leaf = Math.random() > 0.5;
+      this.r = Math.random() * Math.PI * 2;
+      this.dr = (Math.random() - 0.5) * 0.012;
+    }
+    update() {
+      this.y -= this.vy; this.x += this.vx + Math.sin(this.y * 0.007) * 0.2;
+      this.r += this.dr; if (this.y < -10) this.reset();
+    }
+    draw() {
+      ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.r);
+      ctx.globalAlpha = this.o; ctx.fillStyle = this.c;
+      ctx.beginPath();
+      if (this.leaf) ctx.ellipse(0, 0, this.s * 2.5, this.s, 0, 0, Math.PI * 2);
+      else ctx.arc(0, 0, this.s * 0.5, 0, Math.PI * 2);
+      ctx.fill(); ctx.restore();
+    }
+  }
+  for (let i = 0; i < 50; i++) pts.push(new Pt());
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas2.width, canvas2.height);
+    pts.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+}
+
 /* ── NAV scroll ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -980,7 +1023,7 @@ window.addEventListener('resize', resize);
 class Particle {
   constructor() { this.reset(true); }
   reset(init = false) {
-    this.x = Math.random() * canvas.width;
+    this.x = Math.random() * canvas2.width;
     this.y = init ? Math.random() * canvas.height : canvas.height + 20;
     this.size = Math.random() * 3 + 1;
     this.speed = Math.random() * 0.4 + 0.1;
@@ -1021,7 +1064,7 @@ class Particle {
 for (let i = 0; i < 60; i++) particles.push(new Particle());
 
 function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas2.width, canvas2.height);
   particles.forEach(p => { p.update(); p.draw(); });
   requestAnimationFrame(animate);
 }
