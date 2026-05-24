@@ -201,22 +201,18 @@ nav.scrolled {
   padding: 120px 24px 80px;
   position: relative; overflow: hidden;
 }
-.hero-bg-overlay {
-  position: absolute; inset: 0; z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(5,13,7,0.55) 0%, rgba(5,13,7,0.3) 40%, rgba(5,13,7,0.7) 80%, rgba(5,13,7,0.98) 100%),
-    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(5,13,7,0.2) 0%, transparent 70%);
-}
+
 .hero-layers {
   position: absolute; inset: 0; z-index: 0;
   overflow: hidden;
 }
 .hero-grad {
   position: absolute; inset: 0;
-  background-image: url('images/bg-forest.jpg');
-  background-size: cover;
-  background-position: center 20%;
-  background-repeat: no-repeat;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 10%, rgba(45,106,79,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(26,51,32,0.4) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 90% 80%, rgba(26,51,32,0.3) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 80% at 50% 120%, rgba(10,26,12,0.8) 0%, transparent 60%);
 }
 /* Decorative SVG branches */
 .branch {
@@ -711,99 +707,7 @@ footer {
 }
 .hero-bg { animation: windSway 18s ease-in-out infinite; }
 
-/* ── REAL BRANCH IMAGES ── */
-.branch-img {
-  position: fixed;
-  pointer-events: none;
-  z-index: 2;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 20px rgba(82,183,136,0.3));
-  transition: transform 0.1s linear;
-}
-.branch-tl {
-  top: -60px; left: -60px;
-  width: clamp(320px, 40vw, 600px);
-  transform-origin: top left;
-  animation: branchSway 8s ease-in-out infinite alternate;
-}
-.branch-tr {
-  top: -60px; right: -60px;
-  width: clamp(280px, 35vw, 550px);
-  transform: scaleX(-1);
-  transform-origin: top right;
-  animation: branchSway 9s ease-in-out infinite alternate-reverse;
-}
-.branch-bl {
-  bottom: -40px; left: -40px;
-  width: clamp(260px, 30vw, 480px);
-  transform: scaleY(-1);
-  transform-origin: bottom left;
-  animation: branchSway 10s ease-in-out infinite alternate;
-  opacity: 0.7;
-}
-.branch-br {
-  bottom: -40px; right: -40px;
-  width: clamp(240px, 28vw, 460px);
-  transform: scale(-1,-1);
-  transform-origin: bottom right;
-  animation: branchSway 7s ease-in-out infinite alternate-reverse;
-  opacity: 0.7;
-}
-.ferns-img {
-  position: fixed;
-  bottom: -20px; left: 50%;
-  transform: translateX(-50%);
-  width: clamp(600px, 90vw, 1200px);
-  pointer-events: none;
-  z-index: 2;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 30px rgba(82,183,136,0.2));
-  opacity: 0.85;
-}
-@keyframes branchSway {
-  0% { transform: rotate(0deg) translateY(0px); }
-  50% { transform: rotate(1.5deg) translateY(-4px); }
-  100% { transform: rotate(-0.8deg) translateY(2px); }
-}
-.branch-tr { animation-name: branchSwayFlip; }
-@keyframes branchSwayFlip {
-  0% { transform: scaleX(-1) rotate(0deg) translateY(0px); }
-  50% { transform: scaleX(-1) rotate(1.5deg) translateY(-4px); }
-  100% { transform: scaleX(-1) rotate(-0.8deg) translateY(2px); }
-}
-.branch-bl { animation-name: branchSwayBL; }
-@keyframes branchSwayBL {
-  0% { transform: scaleY(-1) rotate(0deg); }
-  50% { transform: scaleY(-1) rotate(1deg) translateY(3px); }
-  100% { transform: scaleY(-1) rotate(-0.5deg) translateY(-2px); }
-}
-.branch-br { animation-name: branchSwayBR; }
-@keyframes branchSwayBR {
-  0% { transform: scale(-1,-1) rotate(0deg); }
-  50% { transform: scale(-1,-1) rotate(1.2deg) translateY(3px); }
-  100% { transform: scale(-1,-1) rotate(-0.6deg) translateY(-2px); }
-}
 
-/* ── VINE FRAME ON FEATURED CARD ── */
-.price-card.featured {
-  border-color: rgba(82,183,136,0.3) !important;
-}
-.price-card.featured::after {
-  content: '';
-  position: absolute;
-  inset: -18px;
-  background: url('images/frame.png') center/cover no-repeat;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0.75;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 12px rgba(82,183,136,0.3));
-}
-
-@media (max-width: 768px) {
-  .branch-img { display: none; }
-  .ferns-img { display: none; }
-}
 
 </style>
 </head>
@@ -837,17 +741,25 @@ footer {
 <section class="hero">
   <div class="hero-layers">
     <div class="hero-grad"></div>
-    <!-- Real branch images -->
-    <img class="branch-img branch-tl" src="images/branch1.png" alt="">
-    <img class="branch-img branch-tr" src="images/branch2.png" alt="">
-    <img class="branch-img branch-bl" src="images/branch3.png" alt="">
-    <img class="branch-img branch-br" src="images/branch4.png" alt="">
-    <img class="ferns-img" src="images/ferns.png" alt="">
+    <!-- Branches SVG -->
+    <svg class="branch branch-tl" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 280 C60 200, 120 160, 200 100 C240 70, 280 50, 340 20" stroke="#52b788" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M80 240 C100 200, 130 170, 170 140" stroke="#52b788" stroke-width="1" fill="none" opacity="0.4"/>
+      <ellipse cx="200" cy="100" rx="8" ry="5" fill="#52b788" opacity="0.4" transform="rotate(-30 200 100)"/>
+      <ellipse cx="250" cy="110" rx="6" ry="4" fill="#74c69d" opacity="0.3" transform="rotate(-45 250 110)"/>
+      <ellipse cx="80" cy="240" rx="7" ry="4" fill="#52b788" opacity="0.35" transform="rotate(20 80 240)"/>
+      <ellipse cx="340" cy="20" rx="5" ry="3" fill="#b7e4c7" opacity="0.25" transform="rotate(-60 340 20)"/>
+    </svg>
+    <svg class="branch branch-tr" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 280 C60 200, 120 160, 200 100 C240 70, 280 50, 340 20" stroke="#52b788" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M80 240 C100 200, 130 170, 170 140" stroke="#52b788" stroke-width="1" fill="none" opacity="0.4"/>
+      <ellipse cx="200" cy="100" rx="8" ry="5" fill="#52b788" opacity="0.35" transform="rotate(-30 200 100)"/>
+      <ellipse cx="170" cy="140" rx="6" ry="4" fill="#74c69d" opacity="0.3" transform="rotate(20 170 140)"/>
+    </svg>
     <div class="mist mist-top"></div>
     <div class="mist mist-bottom"></div>
   </div>
 
-  <div class="hero-bg-overlay"></div>
   <div class="hero-inner">
     <div class="hero-badge"><span></span>Доступно в 200+ странах</div>
     <h1 class="hero-title">Свобода<br>быть <em>онлайн</em></h1>
