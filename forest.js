@@ -192,14 +192,6 @@
     ctx.save(); ctx.translate(W, 0); ctx.scale(-1, 1);
     drawCorner(ctx, 0, 0, 1, time + 80);
     ctx.restore();
-    // Bottom-left
-    ctx.save(); ctx.translate(0, H); ctx.scale(1, -1);
-    drawCorner(ctx, 0, 0, 0.7, time + 160);
-    ctx.restore();
-    // Bottom-right
-    ctx.save(); ctx.translate(W, H); ctx.scale(-1, -1);
-    drawCorner(ctx, 0, 0, 0.7, time + 240);
-    ctx.restore();
   }
 
   function drawCorner(c, ox, oy, scale, t) {
