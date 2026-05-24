@@ -43,12 +43,21 @@
   }
   window.addEventListener('scroll', () => {
   scrollY = window.scrollY;
-  // Parallax on hero background
-  const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
-    heroBg.style.transform = `translateY(${scrollY * 0.2}px) scale(${1 + scrollY * 0.0001})`;
-  }
-  // Nav fade in
+
+  // Parallax on branches
+  const btl = document.querySelector('.branch-tl');
+  const btr = document.querySelector('.branch-tr');
+  const bbl = document.querySelector('.branch-bl');
+  const bbr = document.querySelector('.branch-br');
+  const ferns = document.querySelector('.ferns-img');
+
+  if (btl) btl.style.transform = `rotate(${scrollY * 0.003}deg) translateY(${scrollY * 0.08}px)`;
+  if (btr) btr.style.transform = `scaleX(-1) rotate(${-scrollY * 0.003}deg) translateY(${scrollY * 0.08}px)`;
+  if (bbl) bbl.style.transform = `scaleY(-1) translateY(${-scrollY * 0.05}px)`;
+  if (bbr) bbr.style.transform = `scale(-1,-1) translateY(${-scrollY * 0.05}px)`;
+  if (ferns) ferns.style.transform = `translateX(-50%) translateY(${scrollY * 0.03}px)`;
+
+  // Nav fade
   const nav = document.getElementById('nav');
   if (nav) {
     if (scrollY > 80) {
