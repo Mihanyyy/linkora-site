@@ -194,6 +194,31 @@
     ctx.restore();
   }
 
+  /* ══════════════════════
+     FRACTAL BRANCHES (Gemini V2)
+  ══════════════════════ */
+  function drawFractalBranch(c, x, y, len, angle, width, depth, t) {
+    if (depth === 0 || len < 2) return;
+    c.beginPath();
+    c.moveTo(x, y);
+    const wind = Math.sin(t * 0.001 + x * 0.003) * 2.5;
+    const ex = x + Math.cos(angle + wind * 0.01) * len;
+    const ey = y + Math.sin(angle + wind * 0.01) * len;
+    c.lineCap = 'round';
+    c.lineWidth = width;
+    if (depth <= 2) {
+      c.strokeStyle = `rgba(82,183,136,${0.4 * PERF})`;
+      c.shadowBlur = 10; c.shadowColor = 'rgba(116,198,157,0.6)';
+    } else {
+      c.strokeStyle = `rgba(20,55,28,${(0.2 + 0.15/depth) * PERF})`;
+      c.shadowBlur = 0;
+    }
+    c.stroke();
+    c.beginPath(); c.moveTo(x, y); c.lineTo(ex, ey); c.stroke();
+    drawFractalBranch(c, ex, ey, len*0.72, angle-0.42, width*0.68, depth-1, t);
+    drawFractalBranch(c, ex, ey, len*0.72, angle+0.35, width*0.68, depth-1, t);
+  }
+
   function drawCorner(c, ox, oy, scale, t) {
     const s = scale;
     const sw = Math.sin(t * 0.0007);
@@ -335,35 +360,56 @@
   }
 
   /* ══════════════════════
-     FALLING LEAVES
+     FALLING LEAVES (Gemini V2 — depth physics)
   ══════════════════════ */
   class FallingLeaf {
     constructor(init) {
-      this.x = Math.random()*W; this.y = init ? Math.random()*H : -20;
-      this.vx = (Math.random()-0.5)*1.4; this.vy = Math.random()*0.6+0.2;
-      this.rot = Math.random()*Math.PI*2; this.rotSpeed = (Math.random()-0.5)*0.04;
-      this.size = Math.random()*9+4; this.alpha = (Math.random()*0.18+0.04)*PERF;
-      this.wobble = Math.random()*Math.PI*2; this.wobbleSpeed = Math.random()*0.025+0.008;
-      this.hue = 115+Math.random()*45;
+      this.reset();
+      if (init) this.y = Math.random() * H;
+    }
+    reset() {
+      this.x = Math.random() * W;
+      this.y = -20;
+      this.depth = Math.random() * 2 + 1; // parallax depth
+      this.size = (Math.random() * 7 + 4) / this.depth;
+      this.vy = (Math.random() * 0.8 + 0.4) / this.depth;
+      this.vx = (Math.random() * 0.8 - 0.4) / this.depth;
+      this.angle = Math.random() * Math.PI * 2;
+      this.spinSpeed = (Math.random() * 0.02 - 0.01);
+      this.hue = 120 + Math.random() * 40;
     }
     update() {
-      this.wobble += this.wobbleSpeed;
-      this.x += this.vx + Math.sin(this.wobble)*0.5; this.y += this.vy;
-      this.rot += this.rotSpeed;
+      this.y += this.vy;
+      this.x += this.vx + Math.sin(this.angle) * 0.3;
+      this.angle += this.spinSpeed;
+      // Mouse repulsion (AAA game style)
       if (!isMobile) {
-        const dx=this.x-cx, dy=this.y-cy, d=Math.sqrt(dx*dx+dy*dy);
-        if (d<90) { this.vx+=dx/d*0.12; this.vy+=dy/d*0.08; }
+        const dx = this.x - cx, dy = this.y - cy;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 130) {
+          const force = (130 - dist) / 130;
+          this.x += (dx / dist) * force * 3.5;
+          this.y += (dy / dist) * force * 2.5;
+        }
       }
-      this.vx *= 0.99; this.vy = Math.max(0.2, Math.min(1.4, this.vy*0.999));
-      if (this.y>H+30) { this.x=Math.random()*W; this.y=-20; this.vx=(Math.random()-0.5)*1.4; this.vy=Math.random()*0.6+0.2; }
+      if (this.y > H + 20) this.reset();
     }
     draw() {
-      ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.rot);
-      ctx.globalAlpha = this.alpha;
-      ctx.fillStyle = `hsl(${this.hue},45%,40%)`;
-      ctx.beginPath(); ctx.ellipse(0,0,this.size,this.size*0.45,0,0,Math.PI*2); ctx.fill();
-      ctx.strokeStyle = `hsl(${this.hue},30%,28%)`; ctx.lineWidth=0.5;
-      ctx.beginPath(); ctx.moveTo(-this.size,0); ctx.lineTo(this.size,0); ctx.stroke();
+      ctx.save();
+      ctx.translate(this.x, this.y - scrollY * 0.08 / this.depth);
+      ctx.rotate(this.angle);
+      const alpha = (0.3 + Math.sin(this.angle) * 0.1) / this.depth * PERF;
+      ctx.globalAlpha = alpha;
+      // Gemini gradient leaf
+      const grad = ctx.createLinearGradient(0, 0, this.size, this.size);
+      grad.addColorStop(0, `hsl(${this.hue},65%,55%)`);
+      grad.addColorStop(1, `hsl(${this.hue},40%,20%)`);
+      ctx.fillStyle = grad;
+      ctx.shadowBlur = 8 / this.depth;
+      ctx.shadowColor = `hsl(${this.hue},70%,50%)`;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, this.size, this.size * 0.48, 0, 0, Math.PI * 2);
+      ctx.fill();
       ctx.restore();
     }
   }
@@ -405,6 +451,22 @@
     ctx.clearRect(0,0,W,H);
     drawCornerBranches();
     drawEdgeVines();
+
+    // Fractal background trees (Gemini V2)
+    if (!isMobile) {
+      ctx.save();
+      const bgOff = scrollY * 0.15;
+      drawFractalBranch(ctx, W*0.08, H+80-bgOff, 120, -Math.PI/2, 14, 5, time);
+      drawFractalBranch(ctx, W*0.92, H+100-bgOff, 130, -Math.PI/2, 16, 5, time+50);
+      ctx.restore();
+
+      // Foreground branches hugging sides
+      ctx.save();
+      const fgOff = scrollY * 0.35;
+      drawFractalBranch(ctx, -15, H*0.55-fgOff, 90, -0.12, 10, 4, time+100);
+      drawFractalBranch(ctx, W+15, H*0.4-fgOff, 95, Math.PI+0.18, 10, 4, time+150);
+      ctx.restore();
+    }
     ctx.save(); fireflies.forEach(f=>{f.update();f.draw();}); ctx.restore();
     ctx.save(); leaves.forEach(l=>{l.update();l.draw();}); ctx.restore();
     if (!isMobile) {
@@ -424,6 +486,22 @@
   }
 
   animate();
+
+  /* ══════════════════════
+     MONOLITH MOUSE TRACKING (Gemini V2)
+  ══════════════════════ */
+  if (!isMobile) {
+    document.addEventListener('mousemove', e => {
+      // Track mouse on featured price card and CTA section
+      ['.price-card.featured', '.cta-section', '.hero-inner'].forEach(sel => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        el.style.setProperty('--my', `${e.clientY - rect.top}px`);
+      });
+    });
+  }
 
   /* ══════════════════════
      SVG BRANCH SWAY
