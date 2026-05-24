@@ -452,21 +452,7 @@
     drawCornerBranches();
     drawEdgeVines();
 
-    // Fractal background trees (Gemini V2)
-    if (!isMobile) {
-      ctx.save();
-      const bgOff = scrollY * 0.15;
-      drawFractalBranch(ctx, W*0.08, H+80-bgOff, 120, -Math.PI/2, 14, 5, time);
-      drawFractalBranch(ctx, W*0.92, H+100-bgOff, 130, -Math.PI/2, 16, 5, time+50);
-      ctx.restore();
 
-      // Foreground branches hugging sides
-      ctx.save();
-      const fgOff = scrollY * 0.35;
-      drawFractalBranch(ctx, -15, H*0.55-fgOff, 90, -0.12, 10, 4, time+100);
-      drawFractalBranch(ctx, W+15, H*0.4-fgOff, 95, Math.PI+0.18, 10, 4, time+150);
-      ctx.restore();
-    }
     ctx.save(); fireflies.forEach(f=>{f.update();f.draw();}); ctx.restore();
     ctx.save(); leaves.forEach(l=>{l.update();l.draw();}); ctx.restore();
     if (!isMobile) {
