@@ -29,17 +29,23 @@
   function resize() {
     W = canvas.width = bgCanvas.width = window.innerWidth;
     H = canvas.height = bgCanvas.height = window.innerHeight;
-    injectCardVines();
-  }
-  resize();
+    }
+  W = canvas.width = bgCanvas.width = window.innerWidth;
+  H = canvas.height = bgCanvas.height = window.innerHeight;
   window.addEventListener('resize', () => { resize(); });
 
   if (!isMobile) {
+    let targetX = 0, targetY = 0;
     document.addEventListener('mousemove', e => {
-      cx = e.clientX; cy = e.clientY;
+      targetX = e.clientX; targetY = e.clientY;
+    });
+    // Gemini inertia: smooth cursor lag (water/air effect)
+    setInterval(() => {
+      cx += (targetX - cx) * 0.08;
+      cy += (targetY - cy) * 0.08;
       cursorGlow.style.left = cx + 'px';
       cursorGlow.style.top = cy + 'px';
-    });
+    }, 16);
   }
   window.addEventListener('scroll', () => {
   scrollY = window.scrollY;
@@ -118,16 +124,7 @@
     });
   }
 
-  function animateCardVine(svg) {
-    let t = Math.random() * 100;
-    function sway() {
-      t += 0.008;
-      const s = Math.sin(t) * 2;
-      svg.style.transform = `rotate(${s * 0.15}deg) translateY(${s * 0.3}px)`;
-      requestAnimationFrame(sway);
-    }
-    sway();
-  }
+  
 
   /* ══════════════════════
      BACKGROUND
@@ -476,7 +473,6 @@
   });
 
   // Inject vines after DOM ready
-  setTimeout(injectCardVines, 500);
 
   console.log('🌿 Linkora Forest v4');
 })();
