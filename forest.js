@@ -21,7 +21,7 @@
 
   /* ── CURSOR ── */
   const cursorGlow = document.createElement('div');
-  cursorGlow.style.cssText = 'position:fixed;z-index:9998;pointer-events:none;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(82,183,136,0.025) 0%,transparent 70%);transform:translate(-50%,-50%);mix-blend-mode:screen;';
+  cursorGlow.style.cssText = 'position:fixed;z-index:9998;pointer-events:none;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,136,0.04) 0%,rgba(82,183,136,0.015) 40%,transparent 70%);transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width 0.4s,height 0.4s;';
   document.body.appendChild(cursorGlow);
 
   let W, H, cx = -500, cy = -500, scrollY = 0, time = 0;
@@ -41,7 +41,25 @@
       cursorGlow.style.top = cy + 'px';
     });
   }
-  window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+  window.addEventListener('scroll', () => {
+  scrollY = window.scrollY;
+  // Parallax on hero background
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    heroBg.style.transform = `translateY(${scrollY * 0.2}px) scale(${1 + scrollY * 0.0001})`;
+  }
+  // Nav fade in
+  const nav = document.getElementById('nav');
+  if (nav) {
+    if (scrollY > 80) {
+      nav.style.background = 'rgba(2,8,4,0.88)';
+      nav.style.backdropFilter = 'blur(24px) saturate(1.3)';
+    } else {
+      nav.style.background = 'rgba(5,13,7,0)';
+      nav.style.backdropFilter = 'none';
+    }
+  }
+});
 
   /* ══════════════════════
      CARD VINE OVERLAYS (DOM SVG)
