@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Страница не найдена | Linkora eSIM</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-bg: #050d07; --c-white: #e8f5e9; --c-green: #52b788;
+  --c-glow: #74c69d; --c-gray: #6b9e7a; --c-mist: #b7e4c7;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--c-bg); color: var(--c-white);
+  font-family: var(--font-sans);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; overflow: hidden;
+  background-image: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(45,106,79,0.12) 0%, transparent 60%);
+}
+canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.content {
+  position: relative; z-index: 1;
+  text-align: center; padding: 48px 32px;
+  max-width: 560px;
+}
+.num {
+  font-family: var(--font-serif);
+  font-size: clamp(100px, 20vw, 160px);
+  font-weight: 300; line-height: 1;
+  background: linear-gradient(135deg, var(--c-green) 0%, var(--c-glow) 50%, var(--c-mist) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  animation: breathe 4s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%,100% { filter: drop-shadow(0 0 20px rgba(82,183,136,0.3)); }
+  50% { filter: drop-shadow(0 0 40px rgba(116,198,157,0.6)); }
+}
+.title {
+  font-family: var(--font-serif);
+  font-size: 28px; font-weight: 300;
+  color: var(--c-mist); margin-bottom: 16px;
+}
+.subtitle {
+  font-size: 15px; color: var(--c-gray);
+  line-height: 1.7; font-weight: 300;
+  margin-bottom: 40px;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 36px;
+  background: rgba(45,106,79,0.3);
+  border: 1px solid rgba(82,183,136,0.3);
+  border-radius: 100px;
+  color: var(--c-mist); font-size: 14px;
+  text-decoration: none; font-weight: 400;
+  transition: all 0.4s;
+  backdrop-filter: blur(8px);
+}
+.btn:hover {
+  background: rgba(82,183,136,0.2);
+  border-color: rgba(116,198,157,0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(82,183,136,0.2);
+}
+.leaf {
+  display: inline-block;
+  animation: sway 3s ease-in-out infinite;
+  font-size: 32px; margin-bottom: 24px;
+}
+@keyframes sway {
+  0%,100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+</style>
+</head>
+<body>
+<canvas id="c404"></canvas>
+<div class="content">
+  <div class="leaf">🌿</div>
+  <div class="num">404</div>
+  <div class="title">Эта тропа ведёт в никуда</div>
+  <p class="subtitle">Страница потерялась в лесу. Возможно, она была перемещена или никогда не существовала.</p>
+  <a href="/" class="btn">← Вернуться домой</a>
+</div>
+<script>
+const c = document.getElementById('c404');
+const ctx = c.getContext('2d');
+let W, H, t = 0;
+const pts = [];
+
+function resize() {
+  W = c.width = window.innerWidth;
+  H = c.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+for(let i = 0; i < 30; i++) {
+  pts.push({
+    x: Math.random()*W, y: Math.random()*H,
+    vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.3,
+    s: Math.random()*2+.5, o: Math.random()*.3+.05,
+    hue: 130+Math.random()*30, phase: Math.random()*Math.PI*2
+  });
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  t++;
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p => {
+    p.x += p.vx + Math.sin(t*.008+p.phase)*.3;
+    p.y += p.vy;
+    if(p.y < -10) { p.y = H+10; p.x = Math.random()*W; }
+    if(p.y > H+10) { p.y = -10; }
+    const pulse = .5+.5*Math.sin(t*.05+p.phase);
+    ctx.globalAlpha = p.o * pulse;
+    const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.s*8);
+    g.addColorStop(0,`hsla(${p.hue},80%,65%,1)`);
+    g.addColorStop(1,'transparent');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.s*8,0,Math.PI*2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+}
+animate();
+</script>
+</body>
+</html>

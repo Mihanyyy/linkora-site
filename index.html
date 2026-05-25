@@ -218,6 +218,7 @@ nav.scrolled {
 .branch {
   position: absolute; pointer-events: none;
   opacity: 0; animation: branchReveal 2s var(--ease-out) forwards;
+  will-change: transform, opacity;
 }
 .branch-tl { top: -20px; left: -40px; width: 420px; animation-delay: 1.2s; transform-origin: top left; }
 .branch-tr { top: -20px; right: -40px; width: 380px; transform: scaleX(-1); animation-delay: 1.4s; }
@@ -670,7 +671,9 @@ footer {
 .reveal {
   opacity: 0; transform: translateY(40px);
   transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  will-change: opacity, transform;
 }
+.reveal.visible { will-change: auto; }
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ── MOBILE ── */
@@ -743,6 +746,18 @@ footer {
 .btn-forest:hover { animation: none; }
 
 
+
+
+/* Letter-by-letter animation */
+.letter-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: letterReveal 0.6s var(--ease-out) forwards;
+}
+@keyframes letterReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
 
 </style>
 </head>
@@ -833,7 +848,7 @@ footer {
     <div class="steps-grid reveal">
       <div class="step-card">
         <div class="step-num">01</div>
-        <div class="step-icon"><img src="icons/step1.png" alt="Выберите тариф" style="width:72px;height:72px;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 0 12px rgba(82,183,136,0.4));"></div>
+        <div class="step-icon"><img loading="lazy" src="icons/step1.png" alt="Выберите тариф" style="width:72px;height:72px;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 0 12px rgba(82,183,136,0.4));"></div>
         <div class="step-title">Выберите тариф</div>
         <p class="step-text">Найдите план для вашего направления. Глобальные, региональные или страновые — все варианты в одном месте.</p>
       </div>
@@ -845,7 +860,7 @@ footer {
       </div>
       <div class="step-card">
         <div class="step-num">03</div>
-        <div class="step-icon"><img src="icons/step3.png" alt="Сканируйте" style="width:72px;height:72px;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 0 12px rgba(82,183,136,0.4));"></div>
+        <div class="step-icon"><img loading="lazy" src="icons/step3.png" alt="Сканируйте" style="width:72px;height:72px;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 0 12px rgba(82,183,136,0.4));"></div>
         <div class="step-title">Сканируйте и подключайтесь</div>
         <p class="step-text">QR-код приходит в Telegram за секунды. Сканируйте — и вы уже онлайн. Всё.</p>
       </div>
@@ -864,32 +879,32 @@ footer {
     </div>
     <div class="features-grid reveal">
       <div class="feat-card">
-        <div class="feat-icon"><img src="icons/bolt.png" alt="Доставка"></div>
+        <div class="feat-icon"><img loading="lazy" src="icons/bolt.png" alt="Доставка"></div>
         <div class="feat-title">Мгновенная доставка</div>
         <p class="feat-text">QR-код в Telegram за секунды после оплаты. Никакого ожидания и курьеров.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon"><img src="icons/globe.png" alt="Покрытие"></div>
+        <div class="feat-icon"><img loading="lazy" src="icons/globe.png" alt="Покрытие"></div>
         <div class="feat-title">Глобальное покрытие</div>
         <p class="feat-text">200+ стран. Одно место для всех потребностей в связи во время путешествий.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon"><img src="icons/phone.png" alt="Устройства"></div>
+        <div class="feat-icon"><img loading="lazy" src="icons/phone.png" alt="Устройства"></div>
         <div class="feat-title">Все устройства</div>
         <p class="feat-text">iPhone XS+, Samsung Galaxy S20+, Google Pixel 3+ и большинство современных Android.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon"><img src="icons/lock.png" alt="Безопасность"></div>
+        <div class="feat-icon"><img loading="lazy" src="icons/lock.png" alt="Безопасность"></div>
         <div class="feat-title">Безопасная оплата</div>
         <p class="feat-text">Telegram Stars и криптовалюта для максимальной конфиденциальности. Никаких данных карт.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon"><img src="icons/chat.png" alt="Поддержка"></div>
+        <div class="feat-icon"><img loading="lazy" src="icons/chat.png" alt="Поддержка"></div>
         <div class="feat-title">Поддержка 24/7</div>
         <p class="feat-text">Команда доступна круглосуточно через Telegram для решения любых вопросов.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon"><img src="icons/recycle.png" alt="Номер"></div>
+        <div class="feat-icon"><img loading="lazy" src="icons/recycle.png" alt="Номер"></div>
         <div class="feat-title">Сохраните номер</div>
         <p class="feat-text">Ваша обычная SIM остаётся в телефоне. Местные данные + домашний номер одновременно.</p>
       </div>
@@ -1086,47 +1101,7 @@ window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('loader').classList.add('done'), 1800);
 });
 
-/* ── PARTICLES ── */
-const canvas2 = document.getElementById('canvas');
-if (canvas2) {
-  const ctx = canvas2.getContext('2d');
-  let pts = [];
-  function rsz() { canvas2.width = window.innerWidth; canvas2.height = window.innerHeight; }
-  rsz(); window.addEventListener('resize', rsz);
-  class Pt {
-    constructor() { this.reset(true); }
-    reset(init) {
-      this.x = Math.random() * canvas2.width;
-      this.y = init ? Math.random() * canvas2.height : canvas2.height + 10;
-      this.s = Math.random() * 2.5 + 0.5;
-      this.vy = Math.random() * 0.3 + 0.08;
-      this.vx = (Math.random() - 0.5) * 0.25;
-      this.o = Math.random() * 0.25 + 0.04;
-      this.c = Math.random() > 0.5 ? '#52b788' : '#74c69d';
-      this.leaf = Math.random() > 0.5;
-      this.r = Math.random() * Math.PI * 2;
-      this.dr = (Math.random() - 0.5) * 0.012;
-    }
-    update() {
-      this.y -= this.vy; this.x += this.vx + Math.sin(this.y * 0.007) * 0.2;
-      this.r += this.dr; if (this.y < -10) this.reset();
-    }
-    draw() {
-      ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.r);
-      ctx.globalAlpha = this.o; ctx.fillStyle = this.c;
-      ctx.beginPath();
-      if (this.leaf) ctx.ellipse(0, 0, this.s * 2.5, this.s, 0, 0, Math.PI * 2);
-      else ctx.arc(0, 0, this.s * 0.5, 0, Math.PI * 2);
-      ctx.fill(); ctx.restore();
-    }
-  }
-  for (let i = 0; i < 50; i++) pts.push(new Pt());
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas2.width, canvas2.height);
-    pts.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
+/* particles handled by forest.js */
 }
 
 /* ── NAV scroll ── */
@@ -1227,6 +1202,23 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
+
+<script>
+// Letter by letter animation for hero title
+function animateLetters() {
+  const title = document.querySelector('.hero-title');
+  if (!title) return;
+  const html = title.innerHTML;
+  // Split by words preserving HTML tags
+  title.innerHTML = html.replace(/([А-Яа-яЁёA-Za-z0-9]+)/g, (word) => {
+    return word.split('').map((letter, i) =>
+      `<span class="letter-animate" style="animation-delay:${1.8 + i * 0.04}s">${letter}</span>`
+    ).join('');
+  });
+}
+document.addEventListener('DOMContentLoaded', animateLetters);
+</script>
+
 <script src="forest.js" defer></script>
 </body>
 </html>
