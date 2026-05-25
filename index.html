@@ -293,16 +293,16 @@ nav.scrolled {
 
 .btn-forest {
   padding: 16px 40px;
-  background: linear-gradient(135deg, rgba(45,106,79,0.8), rgba(82,183,136,0.6));
-  border: 1px solid rgba(116,198,157,0.4);
+  background: linear-gradient(135deg, rgba(45,106,79,0.95), rgba(82,183,136,0.85));
+  border: 1px solid rgba(116,198,157,0.6);
   border-radius: 100px;
-  font-size: 14px; font-weight: 500;
+  font-size: 15px; font-weight: 500;
   letter-spacing: 0.5px;
-  color: var(--c-white);
+  color: #fff;
   display: inline-flex; align-items: center; gap: 10px;
   backdrop-filter: blur(12px);
   transition: all 0.5s var(--ease-out);
-  box-shadow: 0 4px 24px rgba(82,183,136,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+  box-shadow: 0 4px 24px rgba(82,183,136,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
   overflow: hidden; position: relative;
 }
 .btn-forest::before {
@@ -340,7 +340,7 @@ nav.scrolled {
   opacity: 0; animation: reveal 1s var(--ease-out) 2.5s forwards;
   z-index: 2;
 }
-@media (max-width: 768px) { .hero-scroll { display: none; } }
+.hero-scroll { display: none !important; }
 .hero-scroll span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--c-gray); }
 .scroll-line {
   width: 1px; height: 48px;
