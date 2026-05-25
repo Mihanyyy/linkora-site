@@ -747,16 +747,6 @@ footer {
 
 
 
-
-/* Letter-by-letter animation */
-.letter-animate {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: letterReveal 0.6s var(--ease-out) forwards;
-}
-@keyframes letterReveal {
-  to { opacity: 1; transform: translateY(0); }
 }
 
 </style>
@@ -1102,7 +1092,6 @@ window.addEventListener('load', () => {
 });
 
 /* particles handled by forest.js */
-}
 
 /* ── NAV scroll ── */
 const nav = document.getElementById('nav');
@@ -1201,22 +1190,6 @@ window.addEventListener('scroll', () => {
     b.style.transform = `translateY(${y * 0.15}px) ${b.classList.contains('branch-tr') ? 'scaleX(-1)' : ''}`;
   });
 });
-</script>
-
-<script>
-// Letter by letter animation for hero title
-function animateLetters() {
-  const title = document.querySelector('.hero-title');
-  if (!title) return;
-  const html = title.innerHTML;
-  // Split by words preserving HTML tags
-  title.innerHTML = html.replace(/([А-Яа-яЁёA-Za-z0-9]+)/g, (word) => {
-    return word.split('').map((letter, i) =>
-      `<span class="letter-animate" style="animation-delay:${1.8 + i * 0.04}s">${letter}</span>`
-    ).join('');
-  });
-}
-document.addEventListener('DOMContentLoaded', animateLetters);
 </script>
 
 <script src="forest.js" defer></script>
