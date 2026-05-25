@@ -780,6 +780,40 @@ footer {
 
 
 
+
+/* Price description text */
+.price-desc-text { font-size:13px; color:var(--c-gray); margin-bottom:20px; line-height:1.7; font-weight:300; }
+.price-desc-featured { color:rgba(232,240,228,0.65); }
+
+/* Nav online indicator */
+.nav-online {
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-online::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+/* How to activate page link */
+.activate-hint {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--c-gray);
+}
+.activate-hint a {
+  color: var(--c-leaf);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(82,183,136,0.3);
+  transition: border-color 0.2s;
+}
+.activate-hint a:hover { border-color: var(--c-leaf); }
+
 </style>
 </head>
 <body>
@@ -886,6 +920,10 @@ footer {
         <p class="step-text">QR-код приходит в Telegram за секунды. Сканируйте — и вы уже онлайн. Всё.</p>
       </div>
     </div>
+    <p class="activate-hint reveal">
+      Подробная инструкция по активации →
+      <a href="how-to-activate.html" aria-label="Как активировать eSIM на iPhone и Android">Как активировать eSIM</a>
+    </p>
   </div>
 </section>
 
@@ -1226,10 +1264,6 @@ window.addEventListener('scroll', () => {
 <script src="forest.js" defer></script>
 
 <script>
-
-}, { threshold: 0.8 });
-statVals.forEach(el => statObs.observe(el));
-
 // ── SMOOTH SCROLL for nav ──
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {

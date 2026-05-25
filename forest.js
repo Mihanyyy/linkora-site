@@ -39,13 +39,15 @@
     document.addEventListener('mousemove', e => {
       targetX = e.clientX; targetY = e.clientY;
     });
-    // Gemini inertia: smooth cursor lag (water/air effect)
-    setInterval(() => {
+    // Smooth cursor via rAF
+    function updateCursor() {
       cx += (targetX - cx) * 0.08;
       cy += (targetY - cy) * 0.08;
       cursorGlow.style.left = cx + 'px';
       cursorGlow.style.top = cy + 'px';
-    }, 16);
+      requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
   }
   window.addEventListener('scroll', () => {
   scrollY = window.scrollY;
@@ -509,12 +511,17 @@
   ══════════════════════ */
   const em = document.querySelector('.hero-title em');
   if (em) {
-    let gv=0,gd=1;
-    setInterval(()=>{
-      gv+=gd*0.012; if(gv>=1)gd=-1; if(gv<=0)gd=1;
-      const i=0.22+gv*0.3;
-      em.style.textShadow=`0 0 ${22+gv*22}px rgba(82,183,136,${i}),0 0 ${44+gv*28}px rgba(82,183,136,${i*0.35})`;
-    },50);
+    let gv=0, gd=1, lastBreath=0;
+    function breathe(ts) {
+      if (ts - lastBreath > 48) {
+        gv+=gd*0.012; if(gv>=1)gd=-1; if(gv<=0)gd=1;
+        const i=0.22+gv*0.3;
+        em.style.textShadow=`0 0 ${22+gv*22}px rgba(82,183,136,${i}),0 0 ${44+gv*28}px rgba(82,183,136,${i*0.35})`;
+        lastBreath = ts;
+      }
+      requestAnimationFrame(breathe);
+    }
+    requestAnimationFrame(breathe);
   }
 
   /* ══════════════════════
@@ -529,6 +536,4 @@
   });
 
   // Inject vines after DOM ready
-
-  console.log('🌿 Linkora Forest v4');
 })();

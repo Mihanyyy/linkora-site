@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как активировать eSIM на iPhone и Android — Linkora eSIM</title>
+<meta name="description" content="Пошаговая инструкция по активации eSIM на iPhone XS и новее, Samsung Galaxy, Google Pixel и других Android устройствах.">
+<meta name="keywords" content="как активировать eSIM, eSIM на iPhone, eSIM Android, установить eSIM, QR код eSIM">
+<link rel="canonical" href="https://linkora.app/how-to-activate.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap&font-display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-bg:#050d07; --c-white:#e8f5e9; --c-green:#52b788;
+  --c-glow:#74c69d; --c-mist:#b7e4c7; --c-gray:#6b9e7a;
+  --c-card:rgba(10,26,12,0.6); --c-border:rgba(82,183,136,0.12);
+  --font-serif:'Cormorant Garamond',serif; --font-sans:'Inter',sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--c-bg);color:var(--c-white);font-family:var(--font-sans);font-size:16px;line-height:1.7;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(45,106,79,0.1) 0%,transparent 60%);pointer-events:none;}
+
+nav{position:sticky;top:0;z-index:100;padding:0 48px;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,13,7,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--c-border);}
+.nav-logo{font-family:var(--font-serif);font-size:20px;font-weight:300;color:var(--c-glow);letter-spacing:4px;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;}
+.nav-logo-dot{width:6px;height:6px;border-radius:50%;background:var(--c-green);box-shadow:0 0 6px var(--c-green);animation:pulse 3s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.back{font-size:13px;color:var(--c-gray);text-decoration:none;letter-spacing:0.5px;transition:color 0.3s;display:flex;align-items:center;gap:6px;}
+.back:hover{color:var(--c-mist);}
+
+.content{max-width:860px;margin:0 auto;padding:72px 24px 120px;position:relative;z-index:1;}
+.page-tag{font-size:11px;color:var(--c-green);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.page-tag::before{content:'';width:20px;height:1px;background:var(--c-green);}
+h1{font-family:var(--font-serif);font-size:clamp(36px,6vw,60px);font-weight:300;line-height:1.05;margin-bottom:20px;}
+h1 em{font-style:italic;color:var(--c-glow);}
+.intro{font-size:17px;color:var(--c-gray);line-height:1.8;font-weight:300;margin-bottom:56px;max-width:620px;}
+
+/* Device tabs */
+.device-tabs{display:flex;gap:8px;margin-bottom:40px;}
+.dtab{padding:10px 24px;background:rgba(10,26,12,0.6);border:1px solid var(--c-border);border-radius:100px;font-size:13px;color:var(--c-gray);cursor:pointer;transition:all 0.3s;user-select:none;}
+.dtab.active{background:rgba(45,106,79,0.3);border-color:rgba(82,183,136,0.5);color:var(--c-glow);}
+.dtab:hover{border-color:rgba(82,183,136,0.3);color:var(--c-mist);}
+
+.device-content{display:none;}
+.device-content.active{display:block;}
+
+/* Steps */
+.steps-list{display:flex;flex-direction:column;gap:16px;margin-bottom:48px;}
+.step-item{display:flex;gap:20px;padding:24px 28px;background:var(--c-card);border:1px solid var(--c-border);border-radius:16px;backdrop-filter:blur(8px);transition:border-color 0.3s;}
+.step-item:hover{border-color:rgba(82,183,136,0.25);}
+.step-num{font-family:var(--font-serif);font-size:36px;font-weight:300;color:rgba(82,183,136,0.25);line-height:1;flex-shrink:0;width:40px;}
+.step-body h3{font-size:17px;font-weight:500;color:var(--c-mist);margin-bottom:8px;}
+.step-body p{font-size:14px;color:var(--c-gray);line-height:1.7;font-weight:300;}
+.step-body code{background:rgba(82,183,136,0.1);border:1px solid rgba(82,183,136,0.2);border-radius:6px;padding:2px 8px;font-size:13px;color:var(--c-glow);font-family:monospace;}
+
+/* Tips */
+.tip-box{background:rgba(45,106,79,0.1);border:1px solid rgba(82,183,136,0.2);border-radius:14px;padding:20px 24px;margin-bottom:16px;}
+.tip-box strong{color:var(--c-mist);display:block;margin-bottom:6px;}
+.tip-box p{font-size:14px;color:var(--c-gray);font-weight:300;line-height:1.7;}
+
+/* CTA */
+.cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:48px;}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;background:linear-gradient(135deg,rgba(45,106,79,0.9),rgba(82,183,136,0.8));border:1px solid rgba(116,198,157,0.5);border-radius:100px;color:#fff;font-size:14px;font-weight:500;text-decoration:none;transition:all 0.3s;box-shadow:0 4px 20px rgba(82,183,136,0.25);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(82,183,136,0.35);}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;background:rgba(10,26,12,0.5);border:1px solid rgba(82,183,136,0.2);border-radius:100px;color:var(--c-mist);font-size:14px;text-decoration:none;transition:all 0.3s;backdrop-filter:blur(8px);}
+.btn-ghost:hover{border-color:rgba(82,183,136,0.5);transform:translateY(-2px);}
+
+/* Compatibility */
+.compat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:48px;}
+.compat-item{padding:14px 18px;background:var(--c-card);border:1px solid var(--c-border);border-radius:12px;font-size:13px;color:var(--c-gray);display:flex;align-items:center;gap:10px;}
+.compat-item::before{content:'✦';color:var(--c-green);font-size:10px;}
+
+footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;font-size:12px;color:rgba(107,158,122,0.5);}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{color:var(--c-gray);text-decoration:none;font-size:13px;transition:color 0.2s;}
+.footer-links a:hover{color:var(--c-mist);}
+
+@media(max-width:768px){nav{padding:0 20px;}.content{padding:48px 20px 80px;}.cta-row{flex-direction:column;}.device-tabs{flex-wrap:wrap;}footer{padding:32px 20px;flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>Linkora <span style="opacity:.5;font-weight:300"> eSIM</span></a>
+  <a href="index.html" class="back">← На главную</a>
+</nav>
+
+<div class="content">
+  <div class="page-tag">Инструкция</div>
+  <h1>Как активировать <em>eSIM</em></h1>
+  <p class="intro">После оплаты вы получите QR-код в Telegram. Активация занимает 1 минуту. Ниже — пошаговая инструкция для всех устройств.</p>
+
+  <!-- Device tabs -->
+  <div class="device-tabs">
+    <div class="dtab active" onclick="switchTab('iphone')">📱 iPhone</div>
+    <div class="dtab" onclick="switchTab('samsung')">🔷 Samsung</div>
+    <div class="dtab" onclick="switchTab('android')">🤖 Android</div>
+  </div>
+
+  <!-- iPhone -->
+  <div class="device-content active" id="tab-iphone">
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Убедитесь что устройство поддерживает eSIM</h3>
+          <p>Зайдите в <code>Настройки → Основные → Об этом устройстве</code>. Найдите раздел "Доступные SIM" — если он есть, eSIM поддерживается.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Подключитесь к Wi-Fi</h3>
+          <p>Для загрузки eSIM нужен интернет. Используйте домашний Wi-Fi или Wi-Fi в аэропорту до вылета.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Откройте настройки сотовой связи</h3>
+          <p>Зайдите в <code>Настройки → Сотовая связь → Добавить план</code>.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Отсканируйте QR-код</h3>
+          <p>Нажмите "Использовать QR-код" и наведите камеру на QR-код из Telegram-бота. Или введите данные вручную.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h3>Подтвердите установку</h3>
+          <p>Следуйте инструкциям на экране. Дайте eSIM имя (например "Linkora EU") и выберите её как данные по умолчанию.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <h3>Готово — вы онлайн!</h3>
+          <p>eSIM активируется при первом использовании данных. Можно установить заранее — отсчёт начнётся только в поездке.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Совместимые iPhone</strong>
+      <p>iPhone XS, XS Max, XR и все новее (11, 12, 13, 14, 15 серии). iPhone SE 2020 и новее.</p>
+    </div>
+  </div>
+
+  <!-- Samsung -->
+  <div class="device-content" id="tab-samsung">
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Проверьте совместимость</h3>
+          <p>Samsung Galaxy S20 и новее, Z Fold, Z Flip серии. Зайдите в <code>Настройки → Подключения → Диспетчер SIM</code>.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Добавьте eSIM</h3>
+          <p>Зайдите в <code>Настройки → Подключения → Диспетчер SIM → Добавить план eSIM</code>.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Сканируйте QR-код</h3>
+          <p>Выберите "Сканировать QR-код оператора" и наведите камеру на QR-код из Telegram.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Активируйте</h3>
+          <p>Следуйте инструкциям. Выберите eSIM как основной источник данных.</p>
+        </div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>💡 Совместимые Samsung</strong>
+      <p>Galaxy S20, S21, S22, S23, S24 серии, Z Fold 2+, Z Flip 3+, Note 20 серии.</p>
+    </div>
+  </div>
+
+  <!-- Android -->
+  <div class="device-content" id="tab-android">
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Проверьте поддержку</h3>
+          <p>Зайдите в <code>Настройки → Сеть и интернет → SIM-карты</code>. Если есть опция "Добавить eSIM" — устройство поддерживает.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Добавьте eSIM</h3>
+          <p>Нажмите <code>Добавить eSIM → Сканировать QR-код</code> и отсканируйте QR из Telegram.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Активируйте</h3>
+          <p>Подтвердите установку и выберите eSIM как источник мобильных данных.</p>
+        </div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>💡 Совместимые Android</strong>
+      <p>Google Pixel 3+, Motorola Razr, Huawei P40+, OnePlus 12+, и многие другие. Уточните у производителя.</p>
+    </div>
+  </div>
+
+  <!-- Compatibility -->
+  <h2 style="font-family:var(--font-serif);font-size:32px;font-weight:300;margin:48px 0 24px;color:var(--c-mist);">Совместимые устройства</h2>
+  <div class="compat-grid">
+    <div class="compat-item">iPhone XS и новее</div>
+    <div class="compat-item">iPhone SE 2020+</div>
+    <div class="compat-item">Samsung Galaxy S20+</div>
+    <div class="compat-item">Samsung Z Fold/Flip</div>
+    <div class="compat-item">Google Pixel 3+</div>
+    <div class="compat-item">Motorola Razr</div>
+    <div class="compat-item">iPad Pro 2018+</div>
+    <div class="compat-item">iPad Air 2019+</div>
+  </div>
+
+  <div class="tip-box">
+    <strong>⚠️ Важно перед покупкой</strong>
+    <p>Убедитесь что ваше устройство не залочено на одного оператора (carrier locked). Если телефон куплен в рассрочку у оператора — возможно потребуется разлочка.</p>
+  </div>
+
+  <div class="cta-row">
+    <a href="https://t.me/esimruu_bot" class="btn-primary" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.286c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.935z"/></svg>
+      Купить eSIM
+    </a>
+    <a href="index.html#faq" class="btn-ghost">Частые вопросы</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Главная</a>
+    <a href="terms.html">Оферта</a>
+    <a href="privacy.html">Конфиденциальность</a>
+    <a href="refund.html">Возвраты</a>
+    <a href="legal.html">Реквизиты</a>
+  </div>
+  <span>© 2026 Linkora eSIM</span>
+</footer>
+
+<script>
+function switchTab(device) {
+  document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.device-content').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + device).classList.add('active');
+}
+</script>
+</body>
+</html>
