@@ -23,6 +23,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Linkora eSIM — Свобода быть онлайн везде">
 <meta name="twitter:description" content="Мгновенная eSIM для 200+ стран. Без физической SIM-карты.">
+<meta name="twitter:image" content="https://linkora.app/og-image.png">
+<meta property="og:image" content="https://linkora.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
 <!-- Schema.org structured data -->
 <script type="application/ld+json">
@@ -765,6 +769,17 @@ footer {
 
 }
 
+
+/* Counter animation */
+.stat-val[data-target] { transition: none; }
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.stat-val.counted { animation: countUp 0.5s ease forwards; }
+
+
+
 </style>
 </head>
 <body>
@@ -790,7 +805,7 @@ footer {
     <a href="#pricing">Тарифы</a>
     <a href="#faq">FAQ</a>
     <a href="terms.html">Оферта</a>
-    <a href="https://t.me/esimruu_bot" class="nav-cta">Получить eSIM</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="nav-cta">Получить eSIM</a>
   </div>
 </nav>
 
@@ -822,11 +837,11 @@ footer {
     <h1 class="hero-title">Свобода<br>быть <em>онлайн</em></h1>
     <p class="hero-sub">Мгновенная eSIM для путешественников. Никаких физических карт — только чистое подключение в любой точке мира.</p>
     <div class="hero-actions">
-      <a href="https://t.me/esimruu_bot" class="btn-forest">
+      <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="btn-forest">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.286c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.935z"/></svg>
         Открыть в Telegram
       </a>
-      <a href="#how" class="btn-ghost">Узнать больше</a>
+      <a href="#how" class="btn-ghost" aria-label="Узнать как работает eSIM">Узнать больше</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="stat-val">200+</div><div class="stat-lbl">Стран</div></div>
@@ -984,7 +999,7 @@ footer {
           <li>Мгновенная доставка QR</li>
           <li>Поддержка 24/7</li>
         </ul>
-        <a href="https://t.me/esimruu_bot" class="price-btn outline">Купить</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="price-btn outline">Купить</a>
       </div>
       <div class="price-card featured">
         <div class="price-badge">Рекомендованный</div>
@@ -1000,7 +1015,7 @@ footer {
           <li>Мгновенная доставка QR</li>
           <li>Поддержка 24/7</li>
         </ul>
-        <a href="https://t.me/esimruu_bot" class="price-btn solid">Купить</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="price-btn solid">Купить</a>
       </div>
       <div class="price-card">
         <div class="price-region">🇨🇳 Китай</div>
@@ -1015,11 +1030,11 @@ footer {
           <li>Мгновенная доставка QR</li>
           <li>Поддержка 24/7</li>
         </ul>
-        <a href="https://t.me/esimruu_bot" class="price-btn outline">Купить</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="price-btn outline">Купить</a>
       </div>
     </div>
     <p class="reveal" style="text-align:center;margin-top:32px;font-size:14px;color:var(--c-gray);">
-      Больше тарифов в <a href="https://t.me/esimruu_bot" style="color:var(--c-leaf);">Telegram-боте</a> — региональные и страновые планы.
+      Больше тарифов в <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" style="color:var(--c-leaf);">Telegram-боте</a> — региональные и страновые планы.
     </p>
   </div>
 </section>
@@ -1068,7 +1083,7 @@ footer {
     <div class="section-tag" style="display:inline-block;margin-bottom:24px;">Начните сегодня</div>
     <h2 class="section-title">Готовы путешествовать<br>без <em>проблем со связью?</em></h2>
     <p style="color:var(--c-gray);margin:20px auto 48px;max-width:400px;font-size:17px;font-weight:300;line-height:1.8;">Тысячи путешественников уже остаются на связи с Linkora eSIM.</p>
-    <a href="https://t.me/esimruu_bot" class="btn-forest" style="font-size:15px;padding:18px 48px;">
+    <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="btn-forest" style="font-size:15px;padding:18px 48px;">
       Открыть Telegram-бот →
     </a>
   </div>
@@ -1090,7 +1105,7 @@ footer {
     </div>
     <div class="footer-col">
       <h4>Поддержка</h4>
-      <a href="https://t.me/esimruu_bot">Telegram-бот</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot">Telegram-бот</a>
       <a href="#faq">FAQ</a>
       <a href="#how">Как активировать</a>
     </div>
@@ -1209,5 +1224,23 @@ window.addEventListener('scroll', () => {
 </script>
 
 <script src="forest.js" defer></script>
+
+<script>
+
+}, { threshold: 0.8 });
+statVals.forEach(el => statObs.observe(el));
+
+// ── SMOOTH SCROLL for nav ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
 </body>
 </html>
