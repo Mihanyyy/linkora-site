@@ -38,8 +38,8 @@ h1 em{font-style:italic;color:var(--c-glow);}
 .intro{font-size:17px;color:var(--c-gray);line-height:1.8;font-weight:300;margin-bottom:56px;max-width:620px;}
 
 /* Device tabs */
-.device-tabs{display:flex;gap:8px;margin-bottom:40px;}
-.dtab{padding:10px 24px;background:rgba(10,26,12,0.6);border:1px solid var(--c-border);border-radius:100px;font-size:13px;color:var(--c-gray);cursor:pointer;transition:all 0.3s;user-select:none;}
+.device-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:nowrap;}
+.dtab{padding:10px 20px;background:rgba(10,26,12,0.6);border:1px solid var(--c-border);border-radius:100px;font-size:13px;color:var(--c-gray);cursor:pointer;transition:all 0.3s;user-select:none;white-space:nowrap;flex-shrink:0;}
 .dtab.active{background:rgba(45,106,79,0.3);border-color:rgba(82,183,136,0.5);color:var(--c-glow);}
 .dtab:hover{border-color:rgba(82,183,136,0.3);color:var(--c-mist);}
 
@@ -53,7 +53,7 @@ h1 em{font-style:italic;color:var(--c-glow);}
 .step-num{font-family:var(--font-serif);font-size:36px;font-weight:300;color:rgba(82,183,136,0.25);line-height:1;flex-shrink:0;width:40px;}
 .step-body h3{font-size:17px;font-weight:500;color:var(--c-mist);margin-bottom:8px;}
 .step-body p{font-size:14px;color:var(--c-gray);line-height:1.7;font-weight:300;}
-.step-body code{background:rgba(82,183,136,0.1);border:1px solid rgba(82,183,136,0.2);border-radius:6px;padding:2px 8px;font-size:13px;color:var(--c-glow);font-family:monospace;white-space:nowrap;display:inline;}
+.step-body code{background:rgba(82,183,136,0.1);border:1px solid rgba(82,183,136,0.2);border-radius:6px;padding:2px 8px;font-size:12px;color:var(--c-glow);font-family:monospace;white-space:normal;display:inline;word-break:break-word;}
 
 /* Tips */
 .tip-box{background:rgba(45,106,79,0.1);border:1px solid rgba(82,183,136,0.2);border-radius:14px;padding:20px 24px;margin-bottom:16px;}
@@ -77,6 +77,15 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
 .footer-links a{color:var(--c-gray);text-decoration:none;font-size:13px;transition:color 0.2s;}
 .footer-links a:hover{color:var(--c-mist);}
 
+
+@media(max-width:480px){
+  .device-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+  .device-tabs::-webkit-scrollbar{display:none;}
+  .dtab{padding:9px 16px;font-size:12px;}
+  .step-body code{font-size:11px;padding:2px 6px;word-break:break-word;white-space:normal;}
+  .step-item{padding:20px 16px;gap:14px;}
+  .step-num{font-size:28px;width:32px;}
+}
 @media(max-width:768px){nav{padding:0 20px;}.content{padding:48px 20px 80px;}.cta-row{flex-direction:column;}.device-tabs{flex-wrap:wrap;}footer{padding:32px 20px;flex-direction:column;}}
 </style>
 </head>
