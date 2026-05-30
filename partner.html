@@ -162,15 +162,26 @@ h2{
   background:var(--c-card);border:1px solid var(--c-border);
   border-radius:20px;backdrop-filter:blur(8px);
   display:flex;flex-direction:column;gap:16px;
+  cursor:pointer;transition:all 0.4s var(--ease);
+  position:relative;overflow:hidden;
 }
-.payout-icon{font-size:32px;}
+.payout-card::before{
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,rgba(82,183,136,0.06) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.4s;pointer-events:none;
+}
+.payout-card:hover{border-color:rgba(82,183,136,0.3);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+.payout-card:hover::before{opacity:1;}
+.payout-card.active{border-color:rgba(82,183,136,0.4);box-shadow:0 0 30px rgba(82,183,136,0.08);}
+.payout-icon{font-size:32px;line-height:1;}
 .payout-card h3{font-size:18px;font-weight:400;color:var(--c-mist);font-family:var(--font-serif);}
-.payout-card p{font-size:14px;color:var(--c-gray);line-height:1.7;font-weight:300;}
+.payout-card p{font-size:14px;color:var(--c-gray);line-height:1.7;font-weight:300;flex:1;}
 .payout-badge{
   display:inline-flex;align-items:center;gap:6px;
   padding:6px 14px;background:rgba(82,183,136,0.08);
   border:1px solid rgba(82,183,136,0.2);border-radius:100px;
   font-size:12px;color:var(--c-glow);
+  align-self:flex-start;margin-top:auto;
 }
 
 /* FAQ */
@@ -290,7 +301,7 @@ footer{
       <span class="stat-lbl">Комиссия</span>
     </div>
     <div class="stat-item">
-      <span class="stat-num">$10</span>
+      <span class="stat-num">$80</span>
       <span class="stat-lbl">Мин. выплата</span>
     </div>
     <div class="stat-item">
@@ -327,7 +338,7 @@ footer{
     <div class="step-card">
       <div class="step-num">04</div>
       <h3>Получайте выплаты</h3>
-      <p>Накопили от $10 — запросите выплату. Переводим в USDT или на карту.</p>
+      <p>Накопили от $80 — запросите выплату. Переводим в USDT или на карту.</p>
     </div>
   </div>
 </div>
@@ -344,7 +355,7 @@ footer{
       <ul class="cond-list">
         <li>20% с каждого заказа вашего реферала</li>
         <li>Комиссия начисляется сразу после оплаты</li>
-        <li>Минимальная сумма для выплаты — $10</li>
+        <li>Минимальная сумма для выплаты — $80</li>
         <li>Выплаты по запросу — напишите @linkorasupport</li>
         <li>Выплачиваем в течение 24 часов</li>
       </ul>
@@ -443,7 +454,7 @@ footer{
         Как запросить выплату?
         <div class="faq-icon">+</div>
       </div>
-      <div class="faq-a">Напишите в поддержку @linkorasupport с указанием суммы и реквизитов. Минимальная сумма — $10. Выплачиваем в течение 24 часов.</div>
+      <div class="faq-a">Напишите в поддержку @linkorasupport с указанием суммы и реквизитов. Минимальная сумма — $80. Выплачиваем в течение 24 часов.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">
@@ -481,8 +492,30 @@ footer{
 <script>
 function toggleFaq(el) {
   const item = el.parentElement;
-  item.classList.toggle('open');
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  // Open clicked if it was closed
+  if (!isOpen) item.classList.add('open');
 }
+
+// Payout card interaction
+document.querySelectorAll('.payout-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.payout-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+  });
+});
+
+// Step cards hover glow
+document.querySelectorAll('.step-card').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(82,183,136,0.06)';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.boxShadow = '';
+  });
+});
 </script>
 </body>
 </html>
