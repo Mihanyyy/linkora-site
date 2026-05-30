@@ -280,6 +280,40 @@ footer{
 @media(max-width:480px){
   .steps-grid{grid-template-columns:1fr;}
 }
+
+/* Condition tabs */
+.cond-tabs {
+  display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;
+}
+.cond-tab {
+  padding:10px 22px;
+  background:rgba(10,26,12,0.6);
+  border:1px solid var(--c-border);
+  border-radius:100px;
+  font-size:13px;color:var(--c-gray);
+  cursor:pointer;transition:all 0.3s;
+  font-family:var(--font-sans);
+  white-space:nowrap;
+}
+.cond-tab:hover {
+  border-color:rgba(82,183,136,0.3);color:var(--c-mist);
+}
+.cond-tab.active {
+  background:rgba(45,106,79,0.3);
+  border-color:rgba(82,183,136,0.5);
+  color:var(--c-glow);
+}
+.cond-panels { position:relative; }
+.cond-panel { display:none; }
+.cond-panel.active { display:block; }
+.cond-panel .cond-card {
+  animation: fadeInUp 0.3s ease forwards;
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
 </style>
 </head>
 <body>
@@ -349,45 +383,57 @@ footer{
 <div class="section">
   <div class="section-tag">Условия</div>
   <h2>Прозрачные условия</h2>
-  <div class="conditions-grid">
-    <div class="cond-card">
-      <h3>💰 Комиссия и выплаты</h3>
-      <ul class="cond-list">
-        <li>20% с каждого заказа вашего реферала</li>
-        <li>Комиссия начисляется сразу после оплаты</li>
-        <li>Минимальная сумма для выплаты — $80</li>
-        <li>Выплаты по запросу — напишите @linkorasupport</li>
-        <li>Выплачиваем в течение 24 часов</li>
-      </ul>
+  <!-- Tabs -->
+  <div class="cond-tabs">
+    <button class="cond-tab active" onclick="switchCond(this,'cond-1')">💰 Комиссия</button>
+    <button class="cond-tab" onclick="switchCond(this,'cond-2')">🌿 Рефералы</button>
+    <button class="cond-tab" onclick="switchCond(this,'cond-3')">✅ Участники</button>
+    <button class="cond-tab" onclick="switchCond(this,'cond-4')">🚫 Ограничения</button>
+  </div>
+
+  <div class="cond-panels">
+    <div class="cond-panel active" id="cond-1">
+      <div class="cond-card">
+        <ul class="cond-list">
+          <li>20% с каждого заказа вашего реферала</li>
+          <li>Комиссия начисляется сразу после оплаты</li>
+          <li>Минимальная сумма для выплаты — $80</li>
+          <li>Выплаты по запросу — напишите @linkorasupport</li>
+          <li>Выплачиваем в течение 24 часов</li>
+        </ul>
+      </div>
     </div>
-    <div class="cond-card">
-      <h3>🌿 Рефералы</h3>
-      <ul class="cond-list">
-        <li>Неограниченное количество рефералов</li>
-        <li>Комиссия со всех покупок реферала навсегда</li>
-        <li>Статистика в реальном времени через бота</li>
-        <li>Команда /partner — ваша ссылка и статистика</li>
-        <li>Реферал закрепляется за вами навсегда</li>
-      </ul>
+    <div class="cond-panel" id="cond-2">
+      <div class="cond-card">
+        <ul class="cond-list">
+          <li>Неограниченное количество рефералов</li>
+          <li>Комиссия со всех покупок реферала навсегда</li>
+          <li>Статистика в реальном времени через бота</li>
+          <li>Команда /partner — ваша ссылка и статистика</li>
+          <li>Реферал закрепляется за вами навсегда</li>
+        </ul>
+      </div>
     </div>
-    <div class="cond-card">
-      <h3>✅ Кто может участвовать</h3>
-      <ul class="cond-list">
-        <li>Travel блогеры и создатели контента</li>
-        <li>Telegram каналы про путешествия</li>
-        <li>Владельцы сайтов о путешествиях</li>
-        <li>Все кто готов честно рекомендовать</li>
-        <li>Минимальной аудитории нет</li>
-      </ul>
+    <div class="cond-panel" id="cond-3">
+      <div class="cond-card">
+        <ul class="cond-list">
+          <li>Travel блогеры и создатели контента</li>
+          <li>Telegram каналы про путешествия</li>
+          <li>Владельцы сайтов о путешествиях</li>
+          <li>Все кто готов честно рекомендовать</li>
+          <li>Минимальной аудитории нет</li>
+        </ul>
+      </div>
     </div>
-    <div class="cond-card">
-      <h3>🚫 Ограничения</h3>
-      <ul class="cond-list">
-        <li>Запрещён спам и агрессивная реклама</li>
-        <li>Нельзя реферить самого себя</li>
-        <li>Запрещено вводить людей в заблуждение</li>
-        <li>Нарушение условий — отключение от программы</li>
-      </ul>
+    <div class="cond-panel" id="cond-4">
+      <div class="cond-card">
+        <ul class="cond-list">
+          <li>Запрещён спам и агрессивная реклама</li>
+          <li>Нельзя реферить самого себя</li>
+          <li>Запрещено вводить людей в заблуждение</li>
+          <li>Нарушение условий — отключение от программы</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -497,6 +543,14 @@ function toggleFaq(el) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   // Open clicked if it was closed
   if (!isOpen) item.classList.add('open');
+}
+
+// Conditions tabs
+function switchCond(btn, id) {
+  document.querySelectorAll('.cond-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.cond-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
 }
 
 // Payout card interaction
