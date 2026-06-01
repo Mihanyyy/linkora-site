@@ -93,6 +93,13 @@ const T = {
     'faq6-q':'Есть ли возврат денег?',
     'how-hint2':'Подробная инструкция →',
     // FOOTER
+    'cta-btn-main': 'Открыть Telegram-бот →',
+    'more-c': '+170 стран',
+    'faq1-a': 'eSIM — встроенная цифровая SIM-карта в вашем устройстве. Вместо физической карты вы скачиваете мобильный тариф через QR-код. Активация занимает 1-2 минуты.',
+    'faq2-a': 'iPhone XS и новее, Samsung Galaxy S20+, Google Pixel 3+ и многие другие Android-устройства.',
+    'faq3-a': 'После оплаты QR-код приходит в Telegram. iPhone: Настройки → Сотовая связь → Добавить план. Android: Настройки → Сеть → SIM → Добавить eSIM.',
+    'faq5-a': 'Наши тарифы — только для данных. Звонки через приложения: WhatsApp, Telegram, FaceTime.',
+    'faq6-a': 'Полный возврат если eSIM не активирована. После активации возврат невозможен.',
     'footer-company':'Компания','footer-support':'Поддержка',
     'footer-rights':'Все права защищены',
     'footer-offer':'Публичная оферта','footer-privacy':'Конфиденциальность',
@@ -180,6 +187,13 @@ const T = {
     'faq4-a2':'The plan starts from the first data usage, not from eSIM installation. You can install it before your trip — it starts only when you arrive in the country.',
     'faq5-q':'Can I make calls via eSIM?',
     'faq6-q':'Is there a refund policy?',
+    'cta-btn-main': 'Open Telegram bot →',
+    'more-c': '+170 countries',
+    'faq1-a': 'eSIM is a built-in digital SIM card. Download a mobile plan via QR code. Activation takes 1-2 minutes.',
+    'faq2-a': 'iPhone XS and newer, Samsung Galaxy S20+, Google Pixel 3+ and many other Android devices.',
+    'faq3-a': 'After payment, QR code arrives in Telegram. iPhone: Settings → Cellular → Add Plan. Android: Settings → Network → SIM → Add eSIM.',
+    'faq5-a': 'Our plans are data-only. Calls via apps: WhatsApp, Telegram, FaceTime.',
+    'faq6-a': 'Full refund if eSIM is not activated. No refund after activation.',
     'footer-company':'Company','footer-support':'Support',
     'footer-rights':'All rights reserved',
     'footer-offer':'Terms of Service','footer-privacy':'Privacy Policy',
@@ -267,6 +281,13 @@ const T = {
     'faq4-a2':'套餐从第一次使用数据时开始，而不是安装eSIM时。可以在出行前安装——到达目的地才开始计算。',
     'faq5-q':'可以通过eSIM打电话吗？',
     'faq6-q':'有退款政策吗？',
+    'cta-btn-main': '打开Telegram机器人 →',
+    'more-c': '+170个国家',
+    'faq1-a': 'eSIM是设备中内置的数字SIM卡。通过二维码下载移动套餐。激活需要1-2分钟。',
+    'faq2-a': 'iPhone XS及更新款、三星Galaxy S20+、谷歌Pixel 3+和许多其他安卓设备。',
+    'faq3-a': '付款后二维码发送到Telegram。iPhone：设置→蜂窝网络→添加套餐。安卓：设置→网络→SIM→添加eSIM。',
+    'faq5-a': '我们的套餐仅限数据。可通过WhatsApp、Telegram、FaceTime通话。',
+    'faq6-a': '如果eSIM未激活可全额退款。激活后不可退款。',
     'footer-company':'公司','footer-support':'支持',
     'footer-rights':'版权所有',
     'footer-offer':'服务条款','footer-privacy':'隐私政策',
@@ -354,6 +375,13 @@ const T = {
     'faq4-a2':'El plan comienza desde el primer uso de datos, no desde la instalación. Puedes instalarla antes del viaje — empieza solo cuando llegues al país.',
     'faq5-q':'¿Puedo llamar por eSIM?',
     'faq6-q':'¿Hay política de devolución?',
+    'cta-btn-main': 'Abrir bot de Telegram →',
+    'more-c': '+170 países',
+    'faq1-a': 'eSIM es una tarjeta SIM digital integrada. Descarga un plan móvil mediante QR. La activación tarda 1-2 minutos.',
+    'faq2-a': 'iPhone XS y más nuevos, Samsung Galaxy S20+, Google Pixel 3+ y muchos otros Android.',
+    'faq3-a': 'Tras el pago, el QR llega a Telegram. iPhone: Ajustes → Datos móviles → Añadir plan. Android: Ajustes → Red → SIM → Añadir eSIM.',
+    'faq5-a': 'Nuestros planes son solo para datos. Llamadas por WhatsApp, Telegram, FaceTime.',
+    'faq6-a': 'Reembolso completo si la eSIM no está activada. Sin reembolso después de la activación.',
     'footer-company':'Empresa','footer-support':'Soporte',
     'footer-rights':'Todos los derechos reservados',
     'footer-offer':'Términos de Servicio','footer-privacy':'Política de Privacidad',
@@ -441,6 +469,13 @@ const T = {
     'faq4-a2':'Der Tarif beginnt ab der ersten Datennutzung, nicht ab der eSIM-Installation. Sie können ihn vor der Reise installieren — er beginnt erst wenn Sie im Land ankommen.',
     'faq5-q':'Kann ich über eSIM telefonieren?',
     'faq6-q':'Gibt es eine Rückerstattungsrichtlinie?',
+    'cta-btn-main': 'Telegram-Bot öffnen →',
+    'more-c': '+170 Länder',
+    'faq1-a': 'eSIM ist eine integrierte digitale SIM-Karte. Laden Sie einen Tarif per QR-Code herunter. Aktivierung dauert 1-2 Minuten.',
+    'faq2-a': 'iPhone XS und neuer, Samsung Galaxy S20+, Google Pixel 3+ und viele andere Android-Geräte.',
+    'faq3-a': 'Nach Zahlung kommt der QR-Code in Telegram. iPhone: Einstellungen → Mobilfunk → Plan hinzufügen. Android: Einstellungen → Netzwerk → SIM → eSIM hinzufügen.',
+    'faq5-a': 'Unsere Tarife sind nur für Daten. Anrufe über WhatsApp, Telegram, FaceTime.',
+    'faq6-a': 'Volle Rückerstattung wenn eSIM nicht aktiviert. Keine Rückerstattung nach Aktivierung.',
     'footer-company':'Unternehmen','footer-support':'Support',
     'footer-rights':'Alle Rechte vorbehalten',
     'footer-offer':'Nutzungsbedingungen','footer-privacy':'Datenschutz',
@@ -472,11 +507,16 @@ function t(key) {
 }
 
 function applyTranslations() {
-  // Apply all translations by id
+  // Apply all translations by id - try both formats
   Object.keys(T.ru).forEach(key => {
-    const id = 'i18n-' + key.replace(/_/g, '-');
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = t(key);
+    // Try key with dashes as id
+    const id1 = 'i18n-' + key;
+    const el1 = document.getElementById(id1);
+    if (el1) { el1.innerHTML = t(key); return; }
+    // Try key with underscores converted to dashes
+    const id2 = 'i18n-' + key.replace(/_/g, '-');
+    const el2 = document.getElementById(id2);
+    if (el2) el2.innerHTML = t(key);
   });
 
   // Update lang button
