@@ -904,6 +904,16 @@ footer {
     <a href="#pricing">Тарифы</a>
     <a href="#faq"><span data-i18n="nav_faq">FAQ</span></a>
     <a href="terms.html">Оферта</a>
+    <div id="langSwitcher" style="position:relative;display:inline-block;">
+      <button id="langCurrentBtn" onclick="toggleLangMenu()">🇷🇺 RU <span style="opacity:0.5;font-size:10px;">▾</span></button>
+      <div id="langMenu">
+        <div class="lang-option" data-lang="ru" onclick="setLang('ru');toggleLangMenu()">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="en" onclick="setLang('en');toggleLangMenu()">🇬🇧 English</div>
+        <div class="lang-option" data-lang="zh" onclick="setLang('zh');toggleLangMenu()">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="es" onclick="setLang('es');toggleLangMenu()">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="de" onclick="setLang('de');toggleLangMenu()">🇩🇪 Deutsch</div>
+      </div>
+    </div>
     <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="nav-cta"><span data-i18n="nav_cta">Получить eSIM</span></a>
   </div>
 </nav>
