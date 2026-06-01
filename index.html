@@ -53,10 +53,10 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"Что такое eSIM?","acceptedAnswer":{"@type":"Answer","text":"eSIM — встроенная цифровая SIM-карта. Не нужна физическая карта — тариф скачивается напрямую на устройство."}},
+    {"@type":"Question","name":"<span id="i18n-faq1-q">Что такое eSIM?</span>","acceptedAnswer":{"@type":"Answer","text":"eSIM — встроенная цифровая SIM-карта. Не нужна физическая карта — тариф скачивается напрямую на устройство."}},
     {"@type":"Question","name":"Как активировать eSIM на iPhone?","acceptedAnswer":{"@type":"Answer","text":"Настройки → Сотовая связь → Добавить план → Сканировать QR-код из Telegram."}},
     {"@type":"Question","name":"Какие устройства поддерживают eSIM?","acceptedAnswer":{"@type":"Answer","text":"iPhone XS и новее, Samsung Galaxy S20+, Google Pixel 3+ и большинство современных Android."}},
-    {"@type":"Question","name":"Когда начинается действие тарифа?","acceptedAnswer":{"@type":"Answer","text":"Тариф начинается с момента первого использования данных, не с момента установки eSIM."}}
+    {"@type":"Question","name":"<span id="i18n-faq4-q">Когда начинается действие тарифа?</span>","acceptedAnswer":{"@type":"Answer","text":"Тариф начинается с момента первого использования данных, не с момента установки eSIM."}}
   ]
 }
 </script>
@@ -900,10 +900,10 @@ footer {
     Linkora <span style="opacity:.5;font-weight:300"> eSIM</span>
   </a>
   <div class="nav-links">
-    <a href="#how">Как работает</a>
-    <a href="#pricing">Тарифы</a>
-    <a href="#faq"><span data-i18n="nav_faq">FAQ</span></a>
-    <a href="terms.html">Оферта</a>
+    <a href="#how"><span id="i18n-nav-how">КАК РАБОТАЕТ</span></a>
+    <a href="#pricing"><span id="i18n-nav-pricing">ТАРИФЫ</span></a>
+    <a href="#faq"><span id="i18n-nav-faq"><span id="i18n-footer-faq">FAQ</span></span></a>
+    <a href="terms.html"><span id="i18n-nav-offer">ОФЕРТА</span></a>
     <div id="langSwitcher" style="position:relative;display:inline-block;">
       <button id="langCurrentBtn" onclick="toggleLangMenu()">🇷🇺 RU <span style="opacity:0.5;font-size:10px;">▾</span></button>
       <div id="langMenu">
@@ -914,7 +914,7 @@ footer {
         <div class="lang-option" data-lang="de" onclick="setLang('de');toggleLangMenu()">🇩🇪 Deutsch</div>
       </div>
     </div>
-    <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="nav-cta"><span data-i18n="nav_cta">Получить eSIM</span></a>
+    <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="nav-cta"><span id="i18n-nav-cta">Получить eSIM</span></a>
   </div>
 </nav>
 
@@ -943,8 +943,8 @@ footer {
 
   <div class="hero-inner">
     <div class="hero-badge"><span></span>Доступно в 200+ странах</div>
-    <h1 class="hero-title">Свобода<br>быть <em>онлайн</em></h1>
-    <p class="hero-sub">Мгновенная eSIM для путешественников. Никаких физических карт — только чистое подключение в любой точке мира.</p>
+    <h1 class="hero-title" id="i18n-hero-title">Свобода<br>быть <em>онлайн</em></h1>
+    <p class="hero-sub" id="i18n-hero-sub">Мгновенная eSIM для путешественников. Никаких физических карт — только чистое подключение в любой точке мира.</p>
     <div class="hero-actions">
       <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="btn-forest">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.286c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.935z"/></svg>
@@ -953,10 +953,10 @@ footer {
       <a href="#how" class="btn-ghost" aria-label="Узнать как работает eSIM"><span data-i18n="hero_btn_more">Узнать больше</span></a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="stat-val">200+</div><div class="stat-lbl"><span data-i18n="stat_countries">Стран</span></div></div>
-      <div class="hero-stat"><div class="stat-val">5G</div><div class="stat-lbl"><span data-i18n="stat_speed">Скорость</span></div></div>
-      <div class="hero-stat"><div class="stat-val">1 мин</div><div class="stat-lbl"><span data-i18n="stat_activation">Активация</span></div></div>
-      <div class="hero-stat"><div class="stat-val">24/7</div><div class="stat-lbl"><span data-i18n="stat_support"><span data-i18n="footer_support">Поддержка</span></span></div></div>
+      <div class="hero-stat"><div class="stat-val">200+</div><div class="stat-lbl"><span data-i18n="stat_countries"><span id="i18n-stat-countries">Стран</span></span></div></div>
+      <div class="hero-stat"><div class="stat-val">5G</div><div class="stat-lbl"><span data-i18n="stat_speed"><span id="i18n-stat-speed">Скорость</span></span></div></div>
+      <div class="hero-stat"><div class="stat-val">1 мин</div><div class="stat-lbl"><span data-i18n="stat_activation"><span id="i18n-stat-activation">Активация</span></span></div></div>
+      <div class="hero-stat"><div class="stat-val">24/7</div><div class="stat-lbl"><span data-i18n="stat_support"><span data-i18n="footer_support"><span id="i18n-stat-support">Поддержка</span></span></span></div></div>
     </div>
   </div>
 
@@ -973,19 +973,19 @@ footer {
   <div class="section-inner">
     <div class="reveal">
       <div class="section-tag">Просто и быстро</div>
-      <h2 class="section-title"><span data-i18n="how_title_1">Три шага до</span><br><em><span data-i18n="how_title_em">свободного интернета</span></em></h2>
+      <h2 class="section-title"><span data-i18n="how_title_1"><span id="i18n-how-title-1">Три шага до</span></span><br><em><span data-i18n="how_title_em"><span id="i18n-how-title-em">свободного интернета</span></span></em></h2>
     </div>
     <div class="steps-grid reveal">
       <div class="step-card">
         <div class="step-num">01</div>
         <div class="step-icon"><img loading="lazy" src="icons/step1.png" alt="Выберите тариф" style="width:72px;height:72px;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 0 12px rgba(82,183,136,0.4));"></div>
-        <div class="step-title"><span data-i18n="step1_title">Выберите тариф</span></div>
+        <div class="step-title"><span data-i18n="step1_title"><span id="i18n-step1-title">Выберите тариф</span></span></div>
         <p class="step-text">Найдите план для вашего направления. Глобальные, региональные или страновые — все варианты в одном месте.</p>
       </div>
       <div class="step-card">
         <div class="step-num">02</div>
         <div class="step-icon">✦</div>
-        <div class="step-title"><span data-i18n="step2_title">Оплатите</span></div>
+        <div class="step-title"><span data-i18n="step2_title"><span id="i18n-step2-title">Оплатите</span></span></div>
         <p class="step-text">Telegram Stars, криптовалюта или банковская карта. Платёж мгновенный, безопасный, без лишних шагов.</p>
       </div>
       <div class="step-card">
@@ -997,7 +997,7 @@ footer {
     </div>
     <p class="activate-hint reveal">
       Подробная инструкция по активации →
-      <a href="how-to-activate.html" aria-label="Как активировать eSIM на iPhone и Android">Как активировать eSIM</a>
+      <a href="how-to-activate.html" aria-label="Как активировать eSIM на iPhone и Android"><span id="i18n-footer-how">Как активировать eSIM</span></a>
     </p>
   </div>
 </section>
@@ -1014,33 +1014,33 @@ footer {
     <div class="features-grid reveal">
       <div class="feat-card">
         <div class="feat-icon"><img loading="lazy" src="icons/bolt.png" alt="Доставка"></div>
-        <div class="feat-title"><span data-i18n="feat1_title">Мгновенная доставка</span></div>
-        <p class="feat-text">QR-код в Telegram за секунды после оплаты. Никакого ожидания и курьеров.</p>
+        <div class="feat-title"><span data-i18n="feat1_title"><span id="i18n-feat1-title">Мгновенная доставка</span></span></div>
+        <p class="feat-text"><span id="i18n-feat1-text">QR-код в Telegram за секунды после оплаты. Никакого ожидания и курьеров.</span></p>
       </div>
       <div class="feat-card">
         <div class="feat-icon"><img loading="lazy" src="icons/globe.png" alt="Покрытие"></div>
-        <div class="feat-title"><span data-i18n="feat2_title">Глобальное покрытие</span></div>
-        <p class="feat-text">200+ стран. Одно место для всех потребностей в связи во время путешествий.</p>
+        <div class="feat-title"><span data-i18n="feat2_title"><span id="i18n-feat2-title">Глобальное покрытие</span></span></div>
+        <p class="feat-text"><span id="i18n-feat2-text">200+ стран. Одно место для всех потребностей в связи во время путешествий.</span></p>
       </div>
       <div class="feat-card">
         <div class="feat-icon"><img loading="lazy" src="icons/phone.png" alt="Устройства"></div>
-        <div class="feat-title"><span data-i18n="feat3_title">Все устройства</span></div>
-        <p class="feat-text">iPhone XS+, Samsung Galaxy S20+, Google Pixel 3+ и большинство современных Android.</p>
+        <div class="feat-title"><span data-i18n="feat3_title"><span id="i18n-feat3-title">Все устройства</span></span></div>
+        <p class="feat-text"><span id="i18n-feat3-text">iPhone XS+, Samsung Galaxy S20+, Google Pixel 3+ и большинство современных Android.</span></p>
       </div>
       <div class="feat-card">
         <div class="feat-icon"><img loading="lazy" src="icons/lock.png" alt="Безопасность"></div>
-        <div class="feat-title"><span data-i18n="feat4_title">Безопасная оплата</span></div>
-        <p class="feat-text">Telegram Stars и криптовалюта для максимальной конфиденциальности. Никаких данных карт.</p>
+        <div class="feat-title"><span data-i18n="feat4_title"><span id="i18n-feat4-title">Безопасная оплата</span></span></div>
+        <p class="feat-text"><span id="i18n-feat4-text">Telegram Stars и криптовалюта для максимальной конфиденциальности. Никаких данных карт.</span></p>
       </div>
       <div class="feat-card">
         <div class="feat-icon"><img loading="lazy" src="icons/chat.png" alt="Поддержка"></div>
-        <div class="feat-title"><span data-i18n="feat5_title">Поддержка 24/7</span></div>
-        <p class="feat-text">Команда доступна круглосуточно через Telegram для решения любых вопросов.</p>
+        <div class="feat-title"><span data-i18n="feat5_title"><span id="i18n-feat5-title">Поддержка 24/7</span></span></div>
+        <p class="feat-text"><span id="i18n-feat5-text">Команда доступна круглосуточно через Telegram для решения любых вопросов.</span></p>
       </div>
       <div class="feat-card">
         <div class="feat-icon"><img loading="lazy" src="icons/recycle.png" alt="Номер"></div>
-        <div class="feat-title"><span data-i18n="feat6_title">Сохраните номер</span></div>
-        <p class="feat-text">Ваша обычная SIM остаётся в телефоне. Местные данные + домашний номер одновременно.</p>
+        <div class="feat-title"><span data-i18n="feat6_title"><span id="i18n-feat6-title">Сохраните номер</span></span></div>
+        <p class="feat-text"><span id="i18n-feat6-text">Ваша обычная SIM остаётся в телефоне. Местные данные + домашний номер одновременно.</span></p>
       </div>
     </div>
   </div>
@@ -1101,10 +1101,10 @@ footer {
     <div class="pricing-grid reveal">
       <div class="price-card">
         <div class="price-region">🇨🇳 Китай</div>
-        <div class="price-name"><span data-i18n="price_starter">Стартовый</span></div>
+        <div class="price-name"><span data-i18n="price_starter"><span id="i18n-price-starter">Стартовый</span></span></div>
         <div class="price-amount"><sup>$</sup>16.94</div>
-        <div class="price-period">∞ Безлимит · 30 дней</div><div class="price-rub">≈ 1 100 ₽</div>
-        <p class="price-desc">Стабильный интернет под Instagram, TikTok, Telegram и YouTube.</p>
+        <div class="price-period"><span id="i18n-price-unlimited-1"><span id="i18n-price-unlimited-2"><span id="i18n-price-unlimited-3">∞ Безлимит · 30 дней</span></span></span></div><div class="price-rub">≈ 1 100 ₽</div>
+        <p class="price-desc"><span id="i18n-price-sub-starter">Стабильный интернет под Instagram, TikTok, Telegram и YouTube.</span></p>
         <ul class="price-list">
           <li>China Unlimited Basic</li>
           <li>Безлимитный трафик</li>
@@ -1112,15 +1112,15 @@ footer {
           <li>Мгновенная доставка QR</li>
           <li><span data-i18n="feat5_title">Поддержка 24/7</span></li>
         </ul>
-        <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="price-btn outline">Купить</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot" class="price-btn outline"><span id="i18n-price-buy-1"><span id="i18n-price-buy-2"><span id="i18n-price-buy-3">Купить</span></span></span></a>
       </div>
       <div class="price-card featured">
-        <div class="price-badge"><span data-i18n="price_recommended">Рекомендованный</span></div>
+        <div class="price-badge"><span data-i18n="price_recommended"><span id="i18n-price-recommended">Рекомендованный</span></span></div>
         <div class="price-region">🇪🇺 Европа</div>
         <div class="price-name"><span data-i18n="price_recommended">Рекомендованный</span></div>
         <div class="price-amount"><sup>$</sup>32.21</div>
         <div class="price-period">∞ Безлимит · 30 дней</div><div class="price-rub">≈ 2 200 ₽</div>
-        <p class="price-desc">Лучший баланс цены, скорости и стабильности для ежедневного использования.</p>
+        <p class="price-desc"><span id="i18n-price-sub-recommended">Лучший баланс цены, скорости и стабильности для ежедневного использования.</span></p>
         <ul class="price-list">
           <li>Europe Unlimited</li>
           <li>Безлимитный трафик</li>
@@ -1132,10 +1132,10 @@ footer {
       </div>
       <div class="price-card">
         <div class="price-region">🇨🇳 Китай</div>
-        <div class="price-name"><span data-i18n="price_explorer">Исследователь</span></div>
+        <div class="price-name"><span data-i18n="price_explorer"><span id="i18n-price-explorer">Исследователь</span></span></div>
         <div class="price-amount"><sup>$</sup>44.99</div>
         <div class="price-period">∞ Безлимит · 30 дней</div><div class="price-rub">≈ 3 100 ₽</div>
-        <p class="price-desc">YouTube, стримы, игры, раздача интернета и активное использование.</p>
+        <p class="price-desc"><span id="i18n-price-sub-explorer">YouTube, стримы, игры, раздача интернета и активное использование.</span></p>
         <ul class="price-list">
           <li>China Unlimited Premium</li>
           <li>Безлимитный трафик</li>
@@ -1159,7 +1159,7 @@ footer {
   <div class="section-inner">
     <div class="reveal" style="text-align:center;">
       <div class="section-tag" style="display:inline-block;">Вопросы</div>
-      <h2 class="section-title" style="margin-top:8px;">Частые <em><span data-i18n="faq_title_em">вопросы</span></em></h2>
+      <h2 class="section-title" style="margin-top:8px;">Частые <em><span data-i18n="faq_title_em"><span id="i18n-faq-title-em">вопросы</span></span></em></h2>
     </div>
     <div class="faq-wrap reveal">
       <div class="faq-item">
@@ -1167,11 +1167,11 @@ footer {
         <div class="faq-a">eSIM — встроенная цифровая SIM-карта в вашем устройстве. Вместо физической карты вы скачиваете мобильный тариф напрямую. Работает вместе с обычной SIM — сохраняете домашний номер и используете местный интернет за рубежом.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Совместимо ли моё устройство? <div class="faq-icon">+</div></div>
+        <div class="faq-q"><span id="i18n-faq2-q">Совместимо ли моё устройство?</span> <div class="faq-icon">+</div></div>
         <div class="faq-a">iPhone XS и новее, Samsung Galaxy S20+, Google Pixel 3+ и многие другие Android-устройства. На iPhone: Настройки → Основные → Об этом устройстве → Доступные SIM. На Android: Настройки → Сеть → SIM-карты → Добавить eSIM.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Как активировать eSIM? <div class="faq-icon">+</div></div>
+        <div class="faq-q"><span id="i18n-faq3-q">Как активировать eSIM?</span> <div class="faq-icon">+</div></div>
         <div class="faq-a">После оплаты QR-код приходит в Telegram. На iPhone: Настройки → Сотовая связь → Добавить план → Сканировать QR. На Android: Настройки → Сеть → SIM → Добавить eSIM → Сканировать QR. Нужен Wi-Fi или мобильный интернет для активации. <a href="how-to-activate.html" style="color:var(--c-leaf);">Подробная инструкция →</a></div>
       </div>
       <div class="faq-item">
@@ -1179,11 +1179,11 @@ footer {
         <div class="faq-a">Тариф начинается с момента первого использования данных, а не установки eSIM. Можно установить до поездки — не начнёт действовать до прилёта.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Можно ли звонить через eSIM? <div class="faq-icon">+</div></div>
+        <div class="faq-q"><span id="i18n-faq5-q">Можно ли звонить через eSIM?</span> <div class="faq-icon">+</div></div>
         <div class="faq-a">Наши тарифы — только для данных. Звонки через приложения: WhatsApp, Telegram, FaceTime. Обычная SIM остаётся активной для звонков и SMS.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Есть ли возврат денег? <div class="faq-icon">+</div></div>
+        <div class="faq-q"><span id="i18n-faq6-q">Есть ли возврат денег?</span> <div class="faq-icon">+</div></div>
         <div class="faq-a">Полный возврат если eSIM не активирована (QR не отсканирован). После активации возврат невозможен. Подробнее в <a href="refund.html" style="color:var(--c-leaf);">Политике возвратов</a>.</div>
       </div>
     </div>
@@ -1210,22 +1210,22 @@ footer {
       <p>Международная мобильная связь для путешественников. Мгновенная активация, 200+ стран, поддержка 24/7.</p>
     </div>
     <div class="footer-col">
-      <h4><span data-i18n="footer_company">Компания</span></h4>
-      <a href="terms.html">Публичная оферта</a>
-      <a href="privacy.html">Конфиденциальность</a>
-      <a href="refund.html">Политика возвратов</a>
-      <a href="legal.html">Юридическая информация</a>
-      <a href="partner.html">Партнёрская программа</a>
+      <h4><span data-i18n="footer_company"><span id="i18n-footer-company">Компания</span></span></h4>
+      <a href="terms.html"><span id="i18n-footer-offer">Публичная оферта</span></a>
+      <a href="privacy.html"><span id="i18n-footer-privacy">Конфиденциальность</span></a>
+      <a href="refund.html"><span id="i18n-footer-refund">Политика возвратов</span></a>
+      <a href="legal.html"><span id="i18n-footer-legal">Юридическая информация</span></a>
+      <a href="partner.html"><span id="i18n-footer-partner">Партнёрская программа</span></a>
     </div>
     <div class="footer-col">
-      <h4><span data-i18n="footer_support">Поддержка</span></h4>
-      <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot">Telegram-бот</a>
+      <h4><span data-i18n="footer_support"><span id="i18n-footer-support">Поддержка</span></span></h4>
+      <a target="_blank" rel="noopener noreferrer" href="https://t.me/esimruu_bot"><span id="i18n-footer-bot">Telegram-бот</span></a>
       <a href="#faq">FAQ</a>
       <a href="#how">Как активировать</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Linkora eSIM. Все права защищены.</span>
+    <span><span id="i18n-footer-copy">© 2026 Linkora eSIM</span>. <span id="i18n-footer-rights">Все права защищены</span>.</span>
     <span>Международная мобильная связь для путешественников</span>
   </div>
 </footer>
