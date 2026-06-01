@@ -102,6 +102,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   }
 }
 </style>
+<script src="lang-switcher.js"></script>
 </head>
 <body>
 
@@ -112,7 +113,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
 
 <div class="content">
   <div class="page-tag">Инструкция</div>
-  <h1>Как активировать <em>eSIM</em></h1>
+  <h1 id="t-h1">Как активировать <em>eSIM</em></h1>
   <p class="intro">После оплаты вы получите QR-код в Telegram. Активация занимает 1 минуту. Ниже — пошаговая инструкция для всех устройств.</p>
 
   <!-- Device tabs -->
@@ -289,6 +290,25 @@ function switchTab(device) {
   event.target.classList.add('active');
   document.getElementById('tab-' + device).classList.add('active');
 }
+</script>
+
+<script>
+(function() {
+  if (typeof buildSwitcher === 'function') buildSwitcher('lang-sw');
+  if (typeof getLang !== 'function') return;
+  const lang = getLang();
+  const PAGE_T = {"ru": {"back": "← На главную", "h1": "Как активировать eSIM", "sub": "Пошаговая инструкция для iPhone и Android"}, "en": {"back": "← Back to Home", "h1": "How to activate eSIM", "sub": "Step-by-step guide for iPhone and Android"}, "zh": {"back": "← 返回首页", "h1": "如何激活eSIM", "sub": "iPhone和Android的逐步指南"}, "es": {"back": "← Volver", "h1": "Cómo activar eSIM", "sub": "Guía paso a paso para iPhone y Android"}, "de": {"back": "← Zurück", "h1": "Wie man eSIM aktiviert", "sub": "Schritt-für-Schritt-Anleitung für iPhone und Android"}};
+  const tx = PAGE_T[lang] || PAGE_T.ru;
+  
+  const back = document.getElementById('back-link');
+  if (back && tx.back) back.textContent = tx.back;
+  
+  const h1 = document.getElementById('t-h1');
+  if (h1 && tx.h1) h1.textContent = tx.h1;
+  
+  const sub = document.querySelector('.page-subtitle, .hero-sub, .subtitle');
+  if (sub && tx.sub) sub.textContent = tx.sub;
+})();
 </script>
 </body>
 </html>

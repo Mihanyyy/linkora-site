@@ -59,6 +59,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
 @media(max-width:768px){nav{padding:0 20px;}.content{padding:48px 20px 80px;}.row{flex-direction:column;gap:6px;}.row-label{min-width:auto;}footer{padding:32px 20px;flex-direction:column;align-items:flex-start;}}
 
 </style>
+<script src="lang-switcher.js"></script>
 </head>
 <body>
 <nav>
@@ -66,7 +67,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   <a href="index.html" class="back">На главную</a>
 </nav>
 <div class="content">
-  <h1>Политика <em>возвратов</em></h1>
+  <h1 id="t-h1">Политика <em>возвратов</em></h1>
   <p class="updated">Дата обновления: 1 января 2026 года</p>
 
   <p>Мы хотим чтобы вы были довольны покупкой. Внимательно ознакомьтесь с условиями до оформления заказа.</p>
@@ -118,5 +119,24 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   </div>
   <div class="footer-copy">© 2026 Linkora eSIM. Все права защищены.</div>
 </footer>
+
+<script>
+(function() {
+  if (typeof buildSwitcher === 'function') buildSwitcher('lang-sw');
+  if (typeof getLang !== 'function') return;
+  const lang = getLang();
+  const PAGE_T = {"ru": {"back": "← На главную", "h1": "Политика возвратов"}, "en": {"back": "← Back", "h1": "Refund Policy"}, "zh": {"back": "← 返回", "h1": "退款政策"}, "es": {"back": "← Volver", "h1": "Política de Reembolso"}, "de": {"back": "← Zurück", "h1": "Rückgaberecht"}};
+  const tx = PAGE_T[lang] || PAGE_T.ru;
+  
+  const back = document.getElementById('back-link');
+  if (back && tx.back) back.textContent = tx.back;
+  
+  const h1 = document.getElementById('t-h1');
+  if (h1 && tx.h1) h1.textContent = tx.h1;
+  
+  const sub = document.querySelector('.page-subtitle, .hero-sub, .subtitle');
+  if (sub && tx.sub) sub.textContent = tx.sub;
+})();
+</script>
 </body>
 </html>

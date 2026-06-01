@@ -59,6 +59,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
 @media(max-width:768px){nav{padding:0 20px;}.content{padding:48px 20px 80px;}.row{flex-direction:column;gap:6px;}.row-label{min-width:auto;}footer{padding:32px 20px;flex-direction:column;align-items:flex-start;}}
 
 </style>
+<script src="lang-switcher.js"></script>
 </head>
 <body>
 <nav>
@@ -66,14 +67,14 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   <a href="index.html" class="back">На главную</a>
 </nav>
 <div class="content">
-  <h1>Юридическая <em>информация</em></h1>
+  <h1 id="t-h1">Юридическая <em>информация</em></h1>
   <p class="updated">Дата обновления: январь 2026 года</p>
 
   <h2>Исполнитель услуг</h2>
   <div class="card">
     <div class="row"><div class="row-label">Статус</div><div class="row-value">Самозанятый</div></div>
-    <div class="row"><div class="row-label">ФИО</div><div class="row-value">Мешков Богдан Алексеевич</div></div>
-    <div class="row"><div class="row-label">ИНН</div><div class="row-value">236100322021</div></div>
+    <div class="row"><div class="row-label">ФИО</div><div class="row-value">ВСТАВЬ СВОЁ ФИО ПОЛНОСТЬЮ</div></div>
+    <div class="row"><div class="row-label">ИНН</div><div class="row-value">ВСТАВЬ СВОЙ ИНН</div></div>
     <div class="row"><div class="row-label">Регион</div><div class="row-value">Краснодарский край, Россия</div></div>
     <div class="row"><div class="row-label">Система налогообложения</div><div class="row-value">Налог на профессиональный доход (НПД)</div></div>
   </div>
@@ -81,7 +82,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   <h2>Контактная информация</h2>
   <div class="card">
     <div class="row"><div class="row-label">Telegram (поддержка)</div><div class="row-value"><a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></div></div>
-    <div class="row"><div class="row-label">Email</div><div class="row-value">linkora.support@gmail.com</div></div>
+    <div class="row"><div class="row-label">Email</div><div class="row-value">ВСТАВЬ СВОЙ EMAIL</div></div>
     <div class="row"><div class="row-label">Время работы</div><div class="row-value">24/7</div></div>
   </div>
 
@@ -116,5 +117,24 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   </div>
   <div class="footer-copy">© 2026 Linkora eSIM. Все права защищены.</div>
 </footer>
+
+<script>
+(function() {
+  if (typeof buildSwitcher === 'function') buildSwitcher('lang-sw');
+  if (typeof getLang !== 'function') return;
+  const lang = getLang();
+  const PAGE_T = {"ru": {"back": "← На главную", "h1": "Юридическая информация"}, "en": {"back": "← Back", "h1": "Legal Information"}, "zh": {"back": "← 返回", "h1": "法律信息"}, "es": {"back": "← Volver", "h1": "Información Legal"}, "de": {"back": "← Zurück", "h1": "Rechtliche Informationen"}};
+  const tx = PAGE_T[lang] || PAGE_T.ru;
+  
+  const back = document.getElementById('back-link');
+  if (back && tx.back) back.textContent = tx.back;
+  
+  const h1 = document.getElementById('t-h1');
+  if (h1 && tx.h1) h1.textContent = tx.h1;
+  
+  const sub = document.querySelector('.page-subtitle, .hero-sub, .subtitle');
+  if (sub && tx.sub) sub.textContent = tx.sub;
+})();
+</script>
 </body>
 </html>

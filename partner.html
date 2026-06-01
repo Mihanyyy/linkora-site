@@ -315,12 +315,14 @@ footer{
 }
 
 </style>
+<script src="lang-switcher.js"></script>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo"><div class="nav-dot"></div>Linkora <span style="opacity:.5;font-weight:300"> eSIM</span></a>
-  <a href="index.html" class="back">← На главную</a>
+  <div id="lang-sw"></div>
+  <a href="index.html" class="back" id="back-link">← На главную</a>
 </nav>
 
 <!-- HERO -->
@@ -570,6 +572,438 @@ document.querySelectorAll('.step-card').forEach(card => {
     card.style.boxShadow = '';
   });
 });
+</script>
+
+<script>
+const PT = {
+  ru: {
+    back:'← На главную',
+    page_tag:'Партнёрская программа',
+    hero_title:'Зарабатывай<br>вместе с <em>Linkora</em>',
+    hero_sub:'Делись реферальной ссылкой — получай 20% с каждой продажи. Без ограничений по заработку. Выплаты в крипте или на карту.',
+    stat_commission:'Комиссия', stat_min:'Мин. выплата',
+    stat_countries:'Стран покрытия', stat_refs:'Рефералов',
+    how_tag:'Как работает',
+    how_title:'Четыре шага до заработка',
+    step1_title:'Напишите нам', step1_text:'Свяжитесь с поддержкой в Telegram — @linkorasupport. Расскажите о себе и своей аудитории.',
+    step2_title:'Получите ссылку', step2_text:'Мы создадим уникальную реферальную ссылку на бота. Делитесь ею где угодно.',
+    step3_title:'Клиент покупает', step3_text:'Человек переходит по вашей ссылке и покупает eSIM. Комиссия начисляется автоматически.',
+    step4_title:'Получайте выплаты', step4_text:'Накопили от $80 — запросите выплату. Переводим в USDT или на карту.',
+    cond_tag:'Условия', cond_title:'Прозрачные условия',
+    tab_commission:'💰 Комиссия', tab_refs:'🌿 Рефералы',
+    tab_who:'✅ Участники', tab_limits:'🚫 Ограничения',
+    cond1_1:'20% с каждого заказа вашего реферала',
+    cond1_2:'Комиссия начисляется сразу после оплаты',
+    cond1_3:'Минимальная сумма для выплаты — $80',
+    cond1_4:'Выплаты по запросу — напишите @linkorasupport',
+    cond1_5:'Выплачиваем в течение 24 часов',
+    cond2_1:'Неограниченное количество рефералов',
+    cond2_2:'Комиссия со всех покупок реферала навсегда',
+    cond2_3:'Статистика в реальном времени через бота',
+    cond2_4:'Команда /partner — ваша ссылка и статистика',
+    cond2_5:'Реферал закрепляется за вами навсегда',
+    cond3_1:'Travel блогеры и создатели контента',
+    cond3_2:'Telegram каналы про путешествия',
+    cond3_3:'Владельцы сайтов о путешествиях',
+    cond3_4:'Все кто готов честно рекомендовать',
+    cond3_5:'Минимальной аудитории нет',
+    cond4_1:'Запрещён спам и агрессивная реклама',
+    cond4_2:'Нельзя реферить самого себя',
+    cond4_3:'Запрещено вводить людей в заблуждение',
+    cond4_4:'Нарушение условий — отключение от программы',
+    pay_tag:'Способы выплат', pay_title:'Как получить деньги',
+    crypto_title:'Криптовалюта',
+    crypto_text:'Выплачиваем в USDT (TRC-20 или ERC-20), Bitcoin, TON. Рекомендуем USDT — минимальные комиссии сети.',
+    crypto_badge:'Рекомендуем',
+    card_title:'На карту',
+    card_text:'Переводим на российские карты Visa/Mastercard/Мир через СБП. Может занять до 3 рабочих дней.',
+    card_badge:'Доступно',
+    faq_tag:'Вопросы', faq_title:'Частые вопросы',
+    faq1_q:'Как узнать сколько я заработал?',
+    faq1_a:'Напишите боту @esimruu_bot команду /partner — увидите свою реферальную ссылку, количество рефералов, заказов и сумму к выплате в реальном времени.',
+    faq2_q:'Когда начисляется комиссия?',
+    faq2_a:'Сразу после успешной оплаты заказа вашим рефералом. Никакого ожидания — деньги начисляются автоматически в момент покупки.',
+    faq3_q:'Есть ли срок действия у реферала?',
+    faq3_a:'Нет. Реферал закрепляется за вами навсегда. Если он купит eSIM через год — вы получите комиссию.',
+    faq4_q:'Можно ли использовать свою ссылку для себя?',
+    faq4_a:'Нет. Система автоматически блокирует самореферала. Ссылка работает только для других пользователей.',
+    faq5_q:'Как запросить выплату?',
+    faq5_a:'Напишите в поддержку @linkorasupport с указанием суммы и реквизитов. Минимальная сумма — $80. Выплачиваем в течение 24 часов.',
+    faq6_q:'Нужна ли большая аудитория?',
+    faq6_a:'Нет минимальных требований к аудитории. Даже если у вас 100 подписчиков — вы можете зарабатывать. Главное — честные рекомендации.',
+    cta_title:'Готовы <em>начать</em>?',
+    cta_sub:'Напишите нам в Telegram — подключим вас к программе за несколько минут.',
+    cta_btn:'Написать @linkorasupport',
+  },
+  en: {
+    back:'← Back to Home',
+    page_tag:'Partner Program',
+    hero_title:'Earn<br>with <em>Linkora</em>',
+    hero_sub:'Share your referral link — earn 20% from every sale. No earning limits. Payouts in crypto or to card.',
+    stat_commission:'Commission', stat_min:'Min. payout',
+    stat_countries:'Countries', stat_refs:'Referrals',
+    how_tag:'How it works',
+    how_title:'Four steps to earning',
+    step1_title:'Contact us', step1_text:'Reach out to support on Telegram — @linkorasupport. Tell us about yourself and your audience.',
+    step2_title:'Get your link', step2_text:'We will create a unique referral link for the bot. Share it anywhere.',
+    step3_title:'Client buys', step3_text:'Someone follows your link and buys an eSIM. Commission is credited automatically.',
+    step4_title:'Get paid', step4_text:'Accumulated $80 or more — request a payout. We transfer in USDT or to card.',
+    cond_tag:'Terms', cond_title:'Transparent conditions',
+    tab_commission:'💰 Commission', tab_refs:'🌿 Referrals',
+    tab_who:'✅ Who can join', tab_limits:'🚫 Restrictions',
+    cond1_1:'20% from every order of your referral',
+    cond1_2:'Commission credited immediately after payment',
+    cond1_3:'Minimum payout amount — $80',
+    cond1_4:'Payouts on request — write to @linkorasupport',
+    cond1_5:'We pay within 24 hours',
+    cond2_1:'Unlimited number of referrals',
+    cond2_2:'Commission from all referral purchases forever',
+    cond2_3:'Real-time statistics via bot',
+    cond2_4:'/partner command — your link and statistics',
+    cond2_5:'Referral is assigned to you forever',
+    cond3_1:'Travel bloggers and content creators',
+    cond3_2:'Telegram channels about travel',
+    cond3_3:'Travel website owners',
+    cond3_4:'Anyone willing to honestly recommend',
+    cond3_5:'No minimum audience required',
+    cond4_1:'Spam and aggressive advertising prohibited',
+    cond4_2:'Self-referral is not allowed',
+    cond4_3:'Misleading people is prohibited',
+    cond4_4:'Violation of terms — disconnection from program',
+    pay_tag:'Payout methods', pay_title:'How to get paid',
+    crypto_title:'Cryptocurrency',
+    crypto_text:'We pay in USDT (TRC-20 or ERC-20), Bitcoin, TON. We recommend USDT — minimal network fees.',
+    crypto_badge:'Recommended',
+    card_title:'Bank card',
+    card_text:'We transfer to cards via bank transfer. May take up to 3 business days.',
+    card_badge:'Available',
+    faq_tag:'Questions', faq_title:'Frequently asked questions',
+    faq1_q:'How do I know how much I earned?',
+    faq1_a:'Send /partner to @esimruu_bot — you will see your referral link, number of referrals, orders and pending payout in real time.',
+    faq2_q:'When is commission credited?',
+    faq2_a:'Immediately after successful payment by your referral. No waiting — money is credited automatically at the moment of purchase.',
+    faq3_q:'Is there an expiry on referrals?',
+    faq3_a:'No. The referral is assigned to you forever. If they buy an eSIM a year later — you get the commission.',
+    faq4_q:'Can I use my own link?',
+    faq4_a:'No. The system automatically blocks self-referral. The link only works for other users.',
+    faq5_q:'How to request a payout?',
+    faq5_a:'Write to @linkorasupport with the amount and payment details. Minimum — $80. We pay within 24 hours.',
+    faq6_q:'Do I need a large audience?',
+    faq6_a:'No minimum audience requirements. Even with 100 followers you can earn. The key is honest recommendations.',
+    cta_title:'Ready to <em>start?</em>',
+    cta_sub:'Contact us on Telegram — we will connect you to the program in minutes.',
+    cta_btn:'Write to @linkorasupport',
+  },
+  zh: {
+    back:'← 返回首页',
+    page_tag:'合作伙伴计划',
+    hero_title:'与 <em>Linkora</em><br>一起赚钱',
+    hero_sub:'分享您的推荐链接——每次销售获得20%。无收入上限。以加密货币或银行卡收款。',
+    stat_commission:'佣金', stat_min:'最低提现',
+    stat_countries:'覆盖国家', stat_refs:'推荐人数',
+    how_tag:'如何运作',
+    how_title:'四步开始赚钱',
+    step1_title:'联系我们', step1_text:'通过Telegram联系支持团队——@linkorasupport。介绍您自己和您的受众。',
+    step2_title:'获取链接', step2_text:'我们将为机器人创建唯一的推荐链接。随处分享。',
+    step3_title:'客户购买', step3_text:'有人通过您的链接购买eSIM。佣金自动计入。',
+    step4_title:'收款', step4_text:'累计$80或以上——申请提现。通过USDT或银行卡转账。',
+    cond_tag:'条款', cond_title:'透明条款',
+    tab_commission:'💰 佣金', tab_refs:'🌿 推荐',
+    tab_who:'✅ 参与者', tab_limits:'🚫 限制',
+    cond1_1:'推荐人每笔订单获得20%',
+    cond1_2:'付款后立即计入佣金',
+    cond1_3:'最低提现金额——$80',
+    cond1_4:'按需提现——请联系@linkorasupport',
+    cond1_5:'24小时内付款',
+    cond2_1:'无限推荐人数',
+    cond2_2:'永久获得推荐人所有购买的佣金',
+    cond2_3:'通过机器人实时查看统计',
+    cond2_4:'/partner命令——您的链接和统计',
+    cond2_5:'推荐人永久绑定您',
+    cond3_1:'旅行博主和内容创作者',
+    cond3_2:'旅行类Telegram频道',
+    cond3_3:'旅游网站所有者',
+    cond3_4:'愿意诚实推荐的任何人',
+    cond3_5:'无最低受众要求',
+    cond4_1:'禁止垃圾邮件和激进广告',
+    cond4_2:'不允许自我推荐',
+    cond4_3:'禁止误导他人',
+    cond4_4:'违反条款——取消合作资格',
+    pay_tag:'提现方式', pay_title:'如何收款',
+    crypto_title:'加密货币',
+    crypto_text:'支持USDT（TRC-20或ERC-20）、Bitcoin、TON。推荐USDT——网络手续费最低。',
+    crypto_badge:'推荐',
+    card_title:'银行卡',
+    card_text:'通过银行转账到银行卡。可能需要最多3个工作日。',
+    card_badge:'可用',
+    faq_tag:'问题', faq_title:'常见问题',
+    faq1_q:'如何查看我的收入？',
+    faq1_a:'向@esimruu_bot发送/partner命令——实时查看您的推荐链接、推荐人数、订单数和待提现金额。',
+    faq2_q:'佣金何时计入？',
+    faq2_a:'推荐人成功付款后立即计入。无需等待——购买时自动计入。',
+    faq3_q:'推荐人有有效期吗？',
+    faq3_a:'没有。推荐人永久绑定您。即使一年后购买eSIM——您也会获得佣金。',
+    faq4_q:'可以使用自己的链接吗？',
+    faq4_a:'不可以。系统自动屏蔽自我推荐。链接只对其他用户有效。',
+    faq5_q:'如何申请提现？',
+    faq5_a:'联系@linkorasupport，注明金额和收款信息。最低$80。24小时内付款。',
+    faq6_q:'需要大量粉丝吗？',
+    faq6_a:'无最低受众要求。即使只有100名粉丝也可以赚钱。关键是诚实推荐。',
+    cta_title:'准备好<em>开始了吗？</em>',
+    cta_sub:'在Telegram联系我们——几分钟内加入合作计划。',
+    cta_btn:'联系@linkorasupport',
+  },
+  es: {
+    back:'← Volver al inicio',
+    page_tag:'Programa de socios',
+    hero_title:'Gana<br>con <em>Linkora</em>',
+    hero_sub:'Comparte tu enlace de referido — gana 20% de cada venta. Sin límites de ganancias. Cobros en cripto o tarjeta.',
+    stat_commission:'Comisión', stat_min:'Cobro mín.',
+    stat_countries:'Países', stat_refs:'Referidos',
+    how_tag:'Cómo funciona',
+    how_title:'Cuatro pasos para ganar',
+    step1_title:'Contáctanos', step1_text:'Escríbenos al soporte en Telegram — @linkorasupport. Cuéntanos sobre ti y tu audiencia.',
+    step2_title:'Obtén tu enlace', step2_text:'Crearemos un enlace de referido único para el bot. Compártelo donde quieras.',
+    step3_title:'El cliente compra', step3_text:'Alguien sigue tu enlace y compra una eSIM. La comisión se acredita automáticamente.',
+    step4_title:'Cobra', step4_text:'Has acumulado $80 o más — solicita el pago. Transferimos en USDT o a tarjeta.',
+    cond_tag:'Condiciones', cond_title:'Condiciones transparentes',
+    tab_commission:'💰 Comisión', tab_refs:'🌿 Referidos',
+    tab_who:'✅ Quién puede participar', tab_limits:'🚫 Restricciones',
+    cond1_1:'20% de cada pedido de tu referido',
+    cond1_2:'Comisión acreditada inmediatamente tras el pago',
+    cond1_3:'Cantidad mínima de pago — $80',
+    cond1_4:'Pagos a solicitud — escribe a @linkorasupport',
+    cond1_5:'Pagamos en 24 horas',
+    cond2_1:'Número ilimitado de referidos',
+    cond2_2:'Comisión de todas las compras del referido para siempre',
+    cond2_3:'Estadísticas en tiempo real via bot',
+    cond2_4:'Comando /partner — tu enlace y estadísticas',
+    cond2_5:'El referido se asigna a ti para siempre',
+    cond3_1:'Bloggers de viajes y creadores de contenido',
+    cond3_2:'Canales de Telegram sobre viajes',
+    cond3_3:'Propietarios de sitios de viajes',
+    cond3_4:'Cualquiera dispuesto a recomendar honestamente',
+    cond3_5:'Sin requisito mínimo de audiencia',
+    cond4_1:'Spam y publicidad agresiva prohibidos',
+    cond4_2:'El auto-referido no está permitido',
+    cond4_3:'Engañar a las personas está prohibido',
+    cond4_4:'Violación de términos — desconexión del programa',
+    pay_tag:'Métodos de pago', pay_title:'Cómo cobrar',
+    crypto_title:'Criptomoneda',
+    crypto_text:'Pagamos en USDT (TRC-20 o ERC-20), Bitcoin, TON. Recomendamos USDT — comisiones de red mínimas.',
+    crypto_badge:'Recomendado',
+    card_title:'Tarjeta bancaria',
+    card_text:'Transferimos a tarjetas por transferencia bancaria. Puede tardar hasta 3 días hábiles.',
+    card_badge:'Disponible',
+    faq_tag:'Preguntas', faq_title:'Preguntas frecuentes',
+    faq1_q:'¿Cómo saber cuánto he ganado?',
+    faq1_a:'Envía /partner a @esimruu_bot — verás tu enlace de referido, número de referidos, pedidos y pago pendiente en tiempo real.',
+    faq2_q:'¿Cuándo se acredita la comisión?',
+    faq2_a:'Inmediatamente después del pago exitoso de tu referido. Sin espera — el dinero se acredita automáticamente en el momento de la compra.',
+    faq3_q:'¿Los referidos tienen fecha de caducidad?',
+    faq3_a:'No. El referido se asigna a ti para siempre. Si compra una eSIM un año después — recibes la comisión.',
+    faq4_q:'¿Puedo usar mi propio enlace?',
+    faq4_a:'No. El sistema bloquea automáticamente el auto-referido. El enlace solo funciona para otros usuarios.',
+    faq5_q:'¿Cómo solicitar un pago?',
+    faq5_a:'Escribe a @linkorasupport con el importe y los datos de pago. Mínimo — $80. Pagamos en 24 horas.',
+    faq6_q:'¿Necesito una audiencia grande?',
+    faq6_a:'Sin requisitos mínimos de audiencia. Incluso con 100 seguidores puedes ganar. Lo importante son las recomendaciones honestas.',
+    cta_title:'¿Listo para <em>empezar?</em>',
+    cta_sub:'Contáctanos en Telegram — te conectaremos al programa en minutos.',
+    cta_btn:'Escribir a @linkorasupport',
+  },
+  de: {
+    back:'← Zurück zur Startseite',
+    page_tag:'Partnerprogramm',
+    hero_title:'Verdienen<br>mit <em>Linkora</em>',
+    hero_sub:'Teile deinen Empfehlungslink — verdiene 20% von jedem Verkauf. Keine Verdienstbeschränkungen. Auszahlungen in Krypto oder auf Karte.',
+    stat_commission:'Provision', stat_min:'Min. Auszahlung',
+    stat_countries:'Länder', stat_refs:'Empfehlungen',
+    how_tag:'Wie es funktioniert',
+    how_title:'Vier Schritte zum Verdienen',
+    step1_title:'Kontaktiere uns', step1_text:'Schreibe dem Support auf Telegram — @linkorasupport. Erzähle uns von dir und deiner Zielgruppe.',
+    step2_title:'Erhalte deinen Link', step2_text:'Wir erstellen einen einzigartigen Empfehlungslink für den Bot. Teile ihn überall.',
+    step3_title:'Kunde kauft', step3_text:'Jemand folgt deinem Link und kauft eine eSIM. Die Provision wird automatisch gutgeschrieben.',
+    step4_title:'Auszahlung erhalten', step4_text:'$80 oder mehr angesammelt — Auszahlung beantragen. Wir überweisen in USDT oder auf Karte.',
+    cond_tag:'Bedingungen', cond_title:'Transparente Bedingungen',
+    tab_commission:'💰 Provision', tab_refs:'🌿 Empfehlungen',
+    tab_who:'✅ Wer teilnehmen kann', tab_limits:'🚫 Einschränkungen',
+    cond1_1:'20% von jeder Bestellung deiner Empfehlung',
+    cond1_2:'Provision sofort nach Zahlung gutgeschrieben',
+    cond1_3:'Mindestbetrag für Auszahlung — $80',
+    cond1_4:'Auszahlungen auf Anfrage — schreibe @linkorasupport',
+    cond1_5:'Wir zahlen innerhalb von 24 Stunden',
+    cond2_1:'Unbegrenzte Anzahl von Empfehlungen',
+    cond2_2:'Provision von allen Käufen der Empfehlung für immer',
+    cond2_3:'Echtzeit-Statistiken via Bot',
+    cond2_4:'/partner Befehl — dein Link und Statistiken',
+    cond2_5:'Empfehlung wird dir für immer zugeordnet',
+    cond3_1:'Reiseblogger und Content-Creator',
+    cond3_2:'Telegram-Kanäle über Reisen',
+    cond3_3:'Reise-Website-Betreiber',
+    cond3_4:'Alle die ehrlich empfehlen möchten',
+    cond3_5:'Kein Mindestpublikum erforderlich',
+    cond4_1:'Spam und aggressive Werbung verboten',
+    cond4_2:'Selbst-Empfehlung ist nicht erlaubt',
+    cond4_3:'Menschen in die Irre führen ist verboten',
+    cond4_4:'Verstoß gegen Bedingungen — Ausschluss vom Programm',
+    pay_tag:'Auszahlungsmethoden', pay_title:'Wie man bezahlt wird',
+    crypto_title:'Kryptowährung',
+    crypto_text:'Wir zahlen in USDT (TRC-20 oder ERC-20), Bitcoin, TON. Wir empfehlen USDT — minimale Netzwerkgebühren.',
+    crypto_badge:'Empfohlen',
+    card_title:'Bankkarte',
+    card_text:'Wir überweisen auf Karten per Banküberweisung. Kann bis zu 3 Werktage dauern.',
+    card_badge:'Verfügbar',
+    faq_tag:'Fragen', faq_title:'Häufige Fragen',
+    faq1_q:'Wie erfahre ich wie viel ich verdient habe?',
+    faq1_a:'Sende /partner an @esimruu_bot — sieh deinen Empfehlungslink, Anzahl der Empfehlungen, Bestellungen und ausstehende Auszahlung in Echtzeit.',
+    faq2_q:'Wann wird die Provision gutgeschrieben?',
+    faq2_a:'Sofort nach erfolgreicher Zahlung deiner Empfehlung. Kein Warten — Geld wird automatisch beim Kauf gutgeschrieben.',
+    faq3_q:'Haben Empfehlungen ein Ablaufdatum?',
+    faq3_a:'Nein. Die Empfehlung wird dir für immer zugeordnet. Wenn sie ein Jahr später eine eSIM kaufen — erhältst du die Provision.',
+    faq4_q:'Kann ich meinen eigenen Link verwenden?',
+    faq4_a:'Nein. Das System blockiert automatisch Selbst-Empfehlungen. Der Link funktioniert nur für andere Benutzer.',
+    faq5_q:'Wie eine Auszahlung beantragen?',
+    faq5_a:'Schreibe @linkorasupport mit Betrag und Zahlungsdetails. Minimum — $80. Wir zahlen innerhalb von 24 Stunden.',
+    faq6_q:'Brauche ich ein großes Publikum?',
+    faq6_a:'Keine Mindestanforderungen an das Publikum. Selbst mit 100 Followern können Sie verdienen. Wichtig sind ehrliche Empfehlungen.',
+    cta_title:'Bereit <em>anzufangen?</em>',
+    cta_sub:'Kontaktiere uns auf Telegram — wir verbinden dich in Minuten mit dem Programm.',
+    cta_btn:'Schreiben an @linkorasupport',
+  },
+};
+
+(function() {
+  buildSwitcher('lang-sw');
+  const lang = getLang();
+  const tx = PT[lang] || PT.ru;
+
+  function s(id, html) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  }
+  function q(sel, html) {
+    const el = document.querySelector(sel);
+    if (el) el.innerHTML = html;
+  }
+
+  // Back link
+  const back = document.getElementById('back-link');
+  if (back) back.textContent = tx.back;
+
+  // Page tag
+  const tags = document.querySelectorAll('.page-tag');
+  if (tags[0]) tags[0].innerHTML = tags[0].innerHTML.replace(/Партнёрская программа|Partner Program|合作伙伴计划|Programa de socios|Partnerprogramm/, tx.page_tag);
+
+  // Hero
+  const h1 = document.querySelector('h1');
+  if (h1) h1.innerHTML = tx.hero_title;
+  const heroSub = document.querySelector('.hero-sub');
+  if (heroSub) heroSub.textContent = tx.hero_sub;
+
+  // Stats
+  const statLabels = document.querySelectorAll('.stat-lbl');
+  const statKeys = ['stat_commission','stat_min','stat_countries','stat_refs'];
+  statLabels.forEach((el, i) => { if (statKeys[i]) el.textContent = tx[statKeys[i]]; });
+
+  // How section tag & title
+  const sectionTags = document.querySelectorAll('.section-tag');
+  const sectionTitles = document.querySelectorAll('h2');
+
+  if (sectionTags[0]) sectionTags[0].textContent = tx.how_tag;
+  if (sectionTitles[0]) sectionTitles[0].textContent = tx.how_title;
+
+  // Steps
+  const stepCards = document.querySelectorAll('.step-card');
+  const stepKeys = [
+    ['step1_title','step1_text'],['step2_title','step2_text'],
+    ['step3_title','step3_text'],['step4_title','step4_text'],
+  ];
+  stepCards.forEach((card, i) => {
+    if (stepKeys[i]) {
+      const h3 = card.querySelector('h3');
+      const p = card.querySelector('p');
+      if (h3) h3.textContent = tx[stepKeys[i][0]];
+      if (p) p.textContent = tx[stepKeys[i][1]];
+    }
+  });
+
+  // Conditions tag & title
+  if (sectionTags[1]) sectionTags[1].textContent = tx.cond_tag;
+  if (sectionTitles[1]) sectionTitles[1].textContent = tx.cond_title;
+
+  // Condition tabs
+  const condTabs = document.querySelectorAll('.cond-tab');
+  const tabKeys = ['tab_commission','tab_refs','tab_who','tab_limits'];
+  condTabs.forEach((tab, i) => { if (tabKeys[i]) tab.textContent = tx[tabKeys[i]]; });
+
+  // Condition lists
+  const panels = document.querySelectorAll('.cond-panel .cond-list');
+  const condItems = [
+    ['cond1_1','cond1_2','cond1_3','cond1_4','cond1_5'],
+    ['cond2_1','cond2_2','cond2_3','cond2_4','cond2_5'],
+    ['cond3_1','cond3_2','cond3_3','cond3_4','cond3_5'],
+    ['cond4_1','cond4_2','cond4_3','cond4_4'],
+  ];
+  panels.forEach((panel, pi) => {
+    if (condItems[pi]) {
+      const items = panel.querySelectorAll('li');
+      items.forEach((li, ii) => {
+        if (condItems[pi][ii]) li.textContent = tx[condItems[pi][ii]];
+      });
+    }
+  });
+
+  // Payout section
+  if (sectionTags[2]) sectionTags[2].textContent = tx.pay_tag;
+  if (sectionTitles[2]) sectionTitles[2].textContent = tx.pay_title;
+
+  const payCards = document.querySelectorAll('.payout-card');
+  if (payCards[0]) {
+    const h3 = payCards[0].querySelector('h3');
+    const p = payCards[0].querySelector('p');
+    const badge = payCards[0].querySelector('.payout-badge');
+    if (h3) h3.textContent = tx.crypto_title;
+    if (p) p.textContent = tx.crypto_text;
+    if (badge) badge.textContent = tx.crypto_badge;
+  }
+  if (payCards[1]) {
+    const h3 = payCards[1].querySelector('h3');
+    const p = payCards[1].querySelector('p');
+    const badge = payCards[1].querySelector('.payout-badge');
+    if (h3) h3.textContent = tx.card_title;
+    if (p) p.textContent = tx.card_text;
+    if (badge) badge.textContent = tx.card_badge;
+  }
+
+  // FAQ
+  if (sectionTags[3]) sectionTags[3].textContent = tx.faq_tag;
+  if (sectionTitles[3]) sectionTitles[3].textContent = tx.faq_title;
+
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach((item, i) => {
+    const n = i + 1;
+    const qEl = item.querySelector('.faq-q');
+    const aEl = item.querySelector('.faq-a');
+    if (qEl && tx['faq'+n+'_q']) {
+      const icon = qEl.querySelector('.faq-icon');
+      qEl.childNodes.forEach(node => { if (node.nodeType === 3) node.textContent = tx['faq'+n+'_q'] + ' '; });
+      if (!icon) qEl.textContent = tx['faq'+n+'_q'];
+    }
+    if (aEl && tx['faq'+n+'_a']) aEl.textContent = tx['faq'+n+'_a'];
+  });
+
+  // CTA
+  const ctaBox = document.querySelector('.cta-box');
+  if (ctaBox) {
+    const h2 = ctaBox.querySelector('h2');
+    const p = ctaBox.querySelector('p');
+    const btn = ctaBox.querySelector('.btn-primary');
+    if (h2) h2.innerHTML = tx.cta_title;
+    if (p) p.textContent = tx.cta_sub;
+    if (btn) { const svg = btn.querySelector('svg'); btn.innerHTML = (svg ? svg.outerHTML : '') + ' ' + tx.cta_btn; }
+  }
+})();
 </script>
 </body>
 </html>
