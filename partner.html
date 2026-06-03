@@ -365,6 +365,23 @@ footer {
   footer { padding: 24px 20px; }
 }
 
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(82,183,136,0.06);
+  font-size: 12px;
+  color: rgba(107,158,122,0.5);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media(max-width:768px) {
+  .footer-bottom { flex-direction: column; text-align: center; gap: 4px; }
+}
+
 </style>
 <script src="lang-switcher.js"></script>
 </head>
@@ -707,8 +724,8 @@ const PT = {
     step3_title:'Client buys', step3_text:'Someone follows your link and buys an eSIM. Commission is credited automatically.',
     step4_title:'Get paid', step4_text:'Accumulated $80 or more — request a payout. We transfer in USDT or to card.',
     cond_tag:'Terms', cond_title:'Transparent conditions',
-    tab_commission:'💰 Commission', tab_refs:'🌿 Referrals',
-    tab_who:'✅ Who can join', tab_limits:'🚫 Restrictions',
+    tab_commission:'Commission', tab_refs:'Referrals',
+    tab_who:'Who can join', tab_limits:'Restrictions',
     cond1_1:'20% from every order of your referral',
     cond1_2:'Commission credited immediately after payment',
     cond1_3:'Minimum payout amount — $80',
@@ -766,8 +783,8 @@ const PT = {
     step3_title:'客户购买', step3_text:'有人通过您的链接购买eSIM。佣金自动计入。',
     step4_title:'收款', step4_text:'累计$80或以上——申请提现。通过USDT或银行卡转账。',
     cond_tag:'条款', cond_title:'透明条款',
-    tab_commission:'💰 佣金', tab_refs:'🌿 推荐',
-    tab_who:'✅ 参与者', tab_limits:'🚫 限制',
+    tab_commission:'佣金', tab_refs:'推荐',
+    tab_who:'参与者', tab_limits:'限制',
     cond1_1:'推荐人每笔订单获得20%',
     cond1_2:'付款后立即计入佣金',
     cond1_3:'最低提现金额——$80',
@@ -825,8 +842,8 @@ const PT = {
     step3_title:'El cliente compra', step3_text:'Alguien sigue tu enlace y compra una eSIM. La comisión se acredita automáticamente.',
     step4_title:'Cobra', step4_text:'Has acumulado $80 o más — solicita el pago. Transferimos en USDT o a tarjeta.',
     cond_tag:'Condiciones', cond_title:'Condiciones transparentes',
-    tab_commission:'💰 Comisión', tab_refs:'🌿 Referidos',
-    tab_who:'✅ Quién puede participar', tab_limits:'🚫 Restricciones',
+    tab_commission:'Comisión', tab_refs:'Referidos',
+    tab_who:'Quién puede participar', tab_limits:'Restricciones',
     cond1_1:'20% de cada pedido de tu referido',
     cond1_2:'Comisión acreditada inmediatamente tras el pago',
     cond1_3:'Cantidad mínima de pago — $80',
@@ -884,8 +901,8 @@ const PT = {
     step3_title:'Kunde kauft', step3_text:'Jemand folgt deinem Link und kauft eine eSIM. Die Provision wird automatisch gutgeschrieben.',
     step4_title:'Auszahlung erhalten', step4_text:'$80 oder mehr angesammelt — Auszahlung beantragen. Wir überweisen in USDT oder auf Karte.',
     cond_tag:'Bedingungen', cond_title:'Transparente Bedingungen',
-    tab_commission:'💰 Provision', tab_refs:'🌿 Empfehlungen',
-    tab_who:'✅ Wer teilnehmen kann', tab_limits:'🚫 Einschränkungen',
+    tab_commission:'Provision', tab_refs:'Empfehlungen',
+    tab_who:'Wer teilnehmen kann', tab_limits:'Einschränkungen',
     cond1_1:'20% von jeder Bestellung deiner Empfehlung',
     cond1_2:'Provision sofort nach Zahlung gutgeschrieben',
     cond1_3:'Mindestbetrag für Auszahlung — $80',
@@ -1080,6 +1097,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const b = (navigator.language||'ru').slice(0,2).toLowerCase();
     return L.includes(b) ? b : 'ru';
   })();
+  const FBT = {"ru": {"copy": "© 2026 Linkora eSIM", "rights": "Все права защищены", "sub": "Международная мобильная связь для путешественников"}, "en": {"copy": "© 2026 Linkora eSIM", "rights": "All rights reserved", "sub": "International mobile connectivity for travelers"}, "zh": {"copy": "© 2026 Linkora eSIM", "rights": "版权所有", "sub": "面向旅行者的国际移动连接"}, "es": {"copy": "© 2026 Linkora eSIM", "rights": "Todos los derechos reservados", "sub": "Conectividad móvil internacional para viajeros"}, "de": {"copy": "© 2026 Linkora eSIM", "rights": "Alle Rechte vorbehalten", "sub": "Internationale mobile Konnektivität für Reisende"}};
+  const fbt = FBT[lang] || FBT.ru;
+  const fbCopy = document.getElementById('fb-copy-rights');
+  const fbSub = document.getElementById('fb-sub');
+  if (fbCopy) fbCopy.textContent = fbt.copy + '. ' + fbt.rights + '.';
+  if (fbSub) fbSub.textContent = fbt.sub;
   const links = FT[lang] || FT.ru;
   const nav = document.getElementById('footer-nav-simple');
   if (!nav) return;
