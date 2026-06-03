@@ -51,12 +51,56 @@ a.link:hover{color:var(--c-glow);}
 .no-card{background:rgba(139,0,0,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:16px;padding:28px;margin-bottom:16px;}
 .yes-card h3{color:var(--c-leaf);font-family:var(--font-serif);font-size:22px;font-weight:400;margin-bottom:14px;}
 .no-card h3{color:#ef4444;font-family:var(--font-serif);font-size:22px;font-weight:400;margin-bottom:14px;}
-footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;}
+footer { padding: 32px 48px; border-top: none; background: linear-gradient(180deg, transparent 0%, rgba(5,13,7,0.8) 100%); }
 .footer-links{display:flex;gap:24px;flex-wrap:wrap;}
 .footer-links a{font-size:12px;color:var(--c-gray);letter-spacing:0.5px;transition:color 0.3s;}
 .footer-links a:hover{color:var(--c-mist);}
 .footer-copy{font-size:12px;color:rgba(107,158,122,0.4);}
 @media(max-width:768px){nav{padding:0 20px;}.content{padding:48px 20px 80px;}.row{flex-direction:column;gap:6px;}.row-label{min-width:auto;}footer{padding:32px 20px;flex-direction:column;align-items:flex-start;}}
+
+
+footer {
+  padding: 32px 48px;
+  border-top: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(5,13,7,0.8) 100%);
+}
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.footer-logo {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--c-mist, #b7e4c7);
+  letter-spacing: 2px;
+  opacity: 0.7;
+}
+.footer-sub {
+  font-size: 11px;
+  color: rgba(107,158,122,0.4);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.footer-links a {
+  font-size: 11px;
+  color: rgba(107,158,122,0.5);
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+.footer-links a:hover { color: var(--c-mist, #b7e4c7); }
 
 </style>
 <script src="lang-switcher.js"></script>

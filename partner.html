@@ -254,12 +254,7 @@ h2{
 }
 
 /* FOOTER */
-footer{
-  position:relative;z-index:1;
-  padding:40px 48px;border-top:1px solid var(--c-border);
-  display:flex;flex-wrap:wrap;gap:16px;
-  justify-content:space-between;align-items:center;
-}
+footer { padding: 32px 48px; border-top: none; background: linear-gradient(180deg, transparent 0%, rgba(5,13,7,0.8) 100%); }
 .footer-links{display:flex;gap:20px;flex-wrap:wrap;}
 .footer-links a{color:var(--c-gray);text-decoration:none;font-size:13px;transition:color 0.2s;}
 .footer-links a:hover{color:var(--c-mist);}
@@ -313,6 +308,50 @@ footer{
   from { opacity:0; transform:translateY(12px); }
   to { opacity:1; transform:translateY(0); }
 }
+
+
+footer {
+  padding: 32px 48px;
+  border-top: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(5,13,7,0.8) 100%);
+}
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.footer-logo {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--c-mist, #b7e4c7);
+  letter-spacing: 2px;
+  opacity: 0.7;
+}
+.footer-sub {
+  font-size: 11px;
+  color: rgba(107,158,122,0.4);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.footer-links a {
+  font-size: 11px;
+  color: rgba(107,158,122,0.5);
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+.footer-links a:hover { color: var(--c-mist, #b7e4c7); }
 
 </style>
 <script src="lang-switcher.js"></script>
@@ -941,10 +980,22 @@ document.addEventListener("DOMContentLoaded", function() {
   if (sTags[1]) sTags[1].textContent = tx.cond_tag;
   if (h2s[1]) h2s[1].textContent = tx.cond_title;
 
-  // Condition tabs
+  // Condition tabs — preserve img/icon inside
   document.querySelectorAll('.cond-tab').forEach((tab, i) => {
     const keys = ['tab_commission','tab_refs','tab_who','tab_limits'];
-    if (keys[i]) tab.textContent = tx[keys[i]];
+    if (!keys[i]) return;
+    const img = tab.querySelector('img');
+    if (img) {
+      // Keep image, update only text node
+      Array.from(tab.childNodes).forEach(node => {
+        if (node.nodeType === 3) node.textContent = ' ' + tx[keys[i]];
+      });
+      // If no text node exists, append one
+      const hasText = Array.from(tab.childNodes).some(n => n.nodeType === 3 && n.textContent.trim());
+      if (!hasText) tab.appendChild(document.createTextNode(' ' + tx[keys[i]]));
+    } else {
+      tab.textContent = tx[keys[i]];
+    }
   });
 
   // Condition list items
