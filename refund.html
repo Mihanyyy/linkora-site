@@ -68,9 +68,9 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
 </nav>
 <div class="content">
   <h1 id="t-h1">Политика <em>возвратов</em></h1>
-  <p class="updated">Дата обновления: 1 января 2026 года</p>
+  <p class="updated" data-t="updated">Дата обновления: 1 января 2026 года</p>
 
-  <p>Мы хотим чтобы вы были довольны покупкой. Внимательно ознакомьтесь с условиями до оформления заказа.</p>
+  <p data-t="intro">Мы хотим чтобы вы были довольны покупкой. Внимательно ознакомьтесь с условиями до оформления заказа.</p>
 
   <div class="yes-card">
     <h3>✦ Возврат возможен</h3>
@@ -93,7 +93,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
     </ul>
   </div>
 
-  <h2>Как запросить возврат</h2>
+  <h2 data-t="h2_1">Как запросить возврат</h2>
   <ol style="color:rgba(232,240,228,0.65);padding-left:24px;margin-bottom:16px;">
     <li style="margin-bottom:10px;font-size:15px;font-weight:300;">Откройте <a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></li>
     <li style="margin-bottom:10px;font-size:15px;font-weight:300;">Укажите номер заказа (например, #123)</li>
@@ -101,13 +101,13 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   </ol>
   <p>Мы отвечаем в течение 24 часов и обрабатываем одобренный возврат в течение 3–5 рабочих дней.</p>
 
-  <h2>Технические проблемы</h2>
+  <h2 data-t="h2_2">Технические проблемы</h2>
   <p>Если возникли трудности с активацией — обратитесь в поддержку <strong>до</strong> повторных попыток. В случае ошибки по нашей вине — замена eSIM или полный возврат.</p>
 
-  <h2>Криптовалюта и Telegram Stars</h2>
+  <h2 data-t="h2_3">Криптовалюта и Telegram Stars</h2>
   <p>Возврат производится в той же валюте по курсу на момент транзакции. Инициируем возврат в течение 24 часов после одобрения.</p>
 
-  <h2>Контакты</h2>
+  <h2 data-t="h2_4">Контакты</h2>
   <p>Вопросы: <a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></p>
 </div>
 <footer>
@@ -120,22 +120,22 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   <div class="footer-copy">© 2026 Linkora eSIM. Все права защищены.</div>
 </footer>
 
+
 <script>
 (function() {
   if (typeof buildSwitcher === 'function') buildSwitcher('lang-sw');
   if (typeof getLang !== 'function') return;
   const lang = getLang();
-  const PAGE_T = {"ru": {"back": "← На главную", "h1": "Политика возвратов"}, "en": {"back": "← Back", "h1": "Refund Policy"}, "zh": {"back": "← 返回", "h1": "退款政策"}, "es": {"back": "← Volver", "h1": "Política de Reembolso"}, "de": {"back": "← Zurück", "h1": "Rückgaberecht"}};
-  const tx = PAGE_T[lang] || PAGE_T.ru;
-  
+  const TX = {"ru": {"back": "← На главную", "h1": "Политика <em>возвратов</em>", "updated": "Дата обновления: 1 января 2026 года", "intro": "Мы хотим чтобы вы были довольны покупкой.", "h2_1": "Как запросить возврат", "p1_1": "Полный возврат возможен только если QR-код не был отсканирован.", "p1_2": "Напишите в поддержку @linkorasupport с номером заказа.", "p1_3": "Обработка в течение 1–3 рабочих дней.", "h2_2": "Технические проблемы", "p2_1": "Если eSIM не работает по техническим причинам — предоставим замену или возврат.", "p2_2": "Может потребоваться скриншот ошибки.", "h2_3": "Криптовалюта и Telegram Stars", "p3_1": "Возвраты за крипту — в той же криптовалюте по курсу на момент возврата.", "p3_2": "Возвраты за Stars — в Stars.", "h2_4": "Контакты", "p4_1": "@linkorasupport"}, "en": {"back": "← Back", "h1": "<em>Refund</em> Policy", "updated": "Last updated: January 1, 2026", "intro": "We want you to be satisfied with your purchase.", "h2_1": "How to Request a Refund", "p1_1": "Full refund only if QR code has not been scanned.", "p1_2": "Contact @linkorasupport with your order number.", "p1_3": "Processed within 1–3 business days.", "h2_2": "Technical Issues", "p2_1": "If eSIM does not work for technical reasons — replacement or refund.", "p2_2": "Screenshot may be required.", "h2_3": "Cryptocurrency and Telegram Stars", "p3_1": "Crypto refunds in the same currency at current rate.", "p3_2": "Stars refunds in Stars.", "h2_4": "Contacts", "p4_1": "@linkorasupport"}, "zh": {"back": "← 返回", "h1": "退款<em>政策</em>", "updated": "最后更新：2026年1月1日", "intro": "我们希望您对购买感到满意。", "h2_1": "如何申请退款", "p1_1": "仅在二维码未扫描时可全额退款。", "p1_2": "联系@linkorasupport并提供订单号。", "p1_3": "1-3个工作日处理。", "h2_2": "技术问题", "p2_1": "如eSIM因技术原因无法工作——提供替换或退款。", "p2_2": "可能需要截图。", "h2_3": "加密货币和Telegram Stars", "p3_1": "加密货币退款以当前汇率退还。", "p3_2": "Stars退款以Stars退还。", "h2_4": "联系", "p4_1": "@linkorasupport"}, "es": {"back": "← Volver", "h1": "Política de <em>Reembolso</em>", "updated": "Última actualización: 1 enero 2026", "intro": "Queremos que estés satisfecho.", "h2_1": "Cómo solicitar reembolso", "p1_1": "Reembolso completo solo si QR no escaneado.", "p1_2": "Contacta @linkorasupport con número de pedido.", "p1_3": "1–3 días hábiles.", "h2_2": "Problemas técnicos", "p2_1": "Si eSIM no funciona — reemplazo o reembolso.", "p2_2": "Puede requerirse captura.", "h2_3": "Cripto y Telegram Stars", "p3_1": "Reembolsos cripto al tipo actual.", "p3_2": "Stars en Stars.", "h2_4": "Contacto", "p4_1": "@linkorasupport"}, "de": {"back": "← Zurück", "h1": "<em>Rückgabe</em>recht", "updated": "Letzte Aktualisierung: 1. Januar 2026", "intro": "Wir möchten, dass Sie zufrieden sind.", "h2_1": "Rückerstattung beantragen", "p1_1": "Volle Rückerstattung nur wenn QR nicht gescannt.", "p1_2": "@linkorasupport mit Bestellnummer kontaktieren.", "p1_3": "Bearbeitung in 1–3 Werktagen.", "h2_2": "Technische Probleme", "p2_1": "Bei technischen Problemen — Ersatz oder Rückerstattung.", "p2_2": "Screenshot erforderlich.", "h2_3": "Krypto und Telegram Stars", "p3_1": "Krypto-Rückerstattung zum aktuellen Kurs.", "p3_2": "Stars in Stars.", "h2_4": "Kontakt", "p4_1": "@linkorasupport"}};
+  const tx = TX[lang] || TX.ru;
   const back = document.getElementById('back-link');
   if (back && tx.back) back.textContent = tx.back;
-  
   const h1 = document.getElementById('t-h1');
-  if (h1 && tx.h1) h1.textContent = tx.h1;
-  
-  const sub = document.querySelector('.page-subtitle, .hero-sub, .subtitle');
-  if (sub && tx.sub) sub.textContent = tx.sub;
+  if (h1 && tx.h1) h1.innerHTML = tx.h1;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (tx[key]) el.innerHTML = tx[key];
+  });
 })();
 </script>
 </body>

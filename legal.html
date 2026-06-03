@@ -68,9 +68,9 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
 </nav>
 <div class="content">
   <h1 id="t-h1">Юридическая <em>информация</em></h1>
-  <p class="updated">Дата обновления: январь 2026 года</p>
+  <p class="updated" data-t="updated">Дата обновления: январь 2026 года</p>
 
-  <h2>Исполнитель услуг</h2>
+  <h2 data-t="h2_1">Исполнитель услуг</h2>
   <div class="card">
     <div class="row"><div class="row-label">Статус</div><div class="row-value">Самозанятый</div></div>
     <div class="row"><div class="row-label">ФИО</div><div class="row-value">ВСТАВЬ СВОЁ ФИО ПОЛНОСТЬЮ</div></div>
@@ -79,14 +79,14 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
     <div class="row"><div class="row-label">Система налогообложения</div><div class="row-value">Налог на профессиональный доход (НПД)</div></div>
   </div>
 
-  <h2>Контактная информация</h2>
+  <h2 data-t="h2_2">Контактная информация</h2>
   <div class="card">
     <div class="row"><div class="row-label">Telegram (поддержка)</div><div class="row-value"><a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></div></div>
     <div class="row"><div class="row-label">Email</div><div class="row-value">ВСТАВЬ СВОЙ EMAIL</div></div>
     <div class="row"><div class="row-label">Время работы</div><div class="row-value">24/7</div></div>
   </div>
 
-  <h2>Описание деятельности</h2>
+  <h2 data-t="h2_3">Описание деятельности</h2>
   <div class="card">
     <div class="row"><div class="row-label">Вид деятельности</div><div class="row-value">Продажа услуг международной мобильной передачи данных через технологию eSIM</div></div>
     <div class="row"><div class="row-label">Тип услуги</div><div class="row-value">Цифровые услуги (eSIM — электронная SIM-карта)</div></div>
@@ -94,14 +94,14 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
     <div class="row"><div class="row-label">Канал продаж</div><div class="row-value">Telegram-бот @esimruu_bot</div></div>
   </div>
 
-  <h2>Документы</h2>
+  <h2 data-t="h2_4">Документы</h2>
   <div class="card">
     <div class="row"><div class="row-label">Публичная оферта</div><div class="row-value"><a href="terms.html" class="link">Читать →</a></div></div>
     <div class="row"><div class="row-label">Конфиденциальность</div><div class="row-value"><a href="privacy.html" class="link">Читать →</a></div></div>
     <div class="row"><div class="row-label">Политика возвратов</div><div class="row-value"><a href="refund.html" class="link">Читать →</a></div></div>
   </div>
 
-  <h2>Платёжная информация</h2>
+  <h2 data-t="h2_5">Платёжная информация</h2>
   <div class="card">
     <div class="row"><div class="row-label">Принимаемые валюты</div><div class="row-value">USD, криптовалюта (USDT, TON, BTC), Telegram Stars, RUB (СБП)</div></div>
     <div class="row"><div class="row-label">Платёжные системы</div><div class="row-value">Telegram Stars, CryptoBot, СБП (в процессе подключения)</div></div>
@@ -118,22 +118,22 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   <div class="footer-copy">© 2026 Linkora eSIM. Все права защищены.</div>
 </footer>
 
+
 <script>
 (function() {
   if (typeof buildSwitcher === 'function') buildSwitcher('lang-sw');
   if (typeof getLang !== 'function') return;
   const lang = getLang();
-  const PAGE_T = {"ru": {"back": "← На главную", "h1": "Юридическая информация"}, "en": {"back": "← Back", "h1": "Legal Information"}, "zh": {"back": "← 返回", "h1": "法律信息"}, "es": {"back": "← Volver", "h1": "Información Legal"}, "de": {"back": "← Zurück", "h1": "Rechtliche Informationen"}};
-  const tx = PAGE_T[lang] || PAGE_T.ru;
-  
+  const TX = {"ru": {"back": "← На главную", "h1": "Юридическая <em>информация</em>", "updated": "Дата обновления: январь 2026 года", "h2_1": "Исполнитель услуг", "p1_1": "Linkora eSIM — сервис международного мобильного интернета.", "p1_2": "Деятельность на основании российского законодательства.", "h2_2": "Контактная информация", "p2_1": "Поддержка: @linkorasupport (Telegram)", "p2_2": "Время ответа: в течение 24 часов.", "h2_3": "Описание деятельности", "p3_1": "Продажа eSIM-тарифов для международного использования через Telegram-бота.", "h2_4": "Документы", "p4_1": "Оферта, Политика конфиденциальности и Политика возвратов на сайте linkora.app.", "h2_5": "Платёжная информация", "p5_1": "Оплата через Telegram Stars и криптовалюту (USDT, TON, BTC).", "p5_2": "Данные карт не передаются и не хранятся."}, "en": {"back": "← Back", "h1": "Legal <em>Information</em>", "updated": "Last updated: January 2026", "h2_1": "Service Provider", "p1_1": "Linkora eSIM — international mobile internet service.", "p1_2": "Under Russian law.", "h2_2": "Contact Information", "p2_1": "Support: @linkorasupport (Telegram)", "p2_2": "Response within 24 hours.", "h2_3": "Business Description", "p3_1": "eSIM plans for international use via Telegram bot.", "h2_4": "Documents", "p4_1": "Terms, Privacy Policy, Refund Policy at linkora.app.", "h2_5": "Payment Information", "p5_1": "Telegram Stars and crypto (USDT, TON, BTC).", "p5_2": "No card data stored."}, "zh": {"back": "← 返回", "h1": "法律<em>信息</em>", "updated": "最后更新：2026年1月", "h2_1": "服务提供商", "p1_1": "Linkora eSIM — 国际移动互联网服务。", "p1_2": "依据俄罗斯法律。", "h2_2": "联系信息", "p2_1": "支持：@linkorasupport（Telegram）", "p2_2": "24小时内响应。", "h2_3": "业务说明", "p3_1": "通过Telegram机器人销售eSIM套餐。", "h2_4": "文件", "p4_1": "条款、隐私政策和退款政策在linkora.app。", "h2_5": "支付信息", "p5_1": "Telegram Stars和加密货币。", "p5_2": "不存储卡数据。"}, "es": {"back": "← Volver", "h1": "Información <em>Legal</em>", "updated": "Última actualización: enero 2026", "h2_1": "Proveedor", "p1_1": "Linkora eSIM — internet móvil internacional.", "p1_2": "Ley rusa.", "h2_2": "Contacto", "p2_1": "@linkorasupport (Telegram)", "p2_2": "24 horas.", "h2_3": "Negocio", "p3_1": "Planes eSIM via bot Telegram.", "h2_4": "Documentos", "p4_1": "linkora.app", "h2_5": "Pagos", "p5_1": "Telegram Stars y cripto.", "p5_2": "Sin datos de tarjeta."}, "de": {"back": "← Zurück", "h1": "Rechtliche <em>Informationen</em>", "updated": "Letzte Aktualisierung: Januar 2026", "h2_1": "Dienstanbieter", "p1_1": "Linkora eSIM — internationaler mobiler Internetdienst.", "p1_2": "Russisches Recht.", "h2_2": "Kontakt", "p2_1": "@linkorasupport (Telegram)", "p2_2": "24 Stunden.", "h2_3": "Geschäft", "p3_1": "eSIM-Tarife via Telegram-Bot.", "h2_4": "Dokumente", "p4_1": "linkora.app", "h2_5": "Zahlung", "p5_1": "Telegram Stars und Krypto.", "p5_2": "Keine Kartendaten gespeichert."}};
+  const tx = TX[lang] || TX.ru;
   const back = document.getElementById('back-link');
   if (back && tx.back) back.textContent = tx.back;
-  
   const h1 = document.getElementById('t-h1');
-  if (h1 && tx.h1) h1.textContent = tx.h1;
-  
-  const sub = document.querySelector('.page-subtitle, .hero-sub, .subtitle');
-  if (sub && tx.sub) sub.textContent = tx.sub;
+  if (h1 && tx.h1) h1.innerHTML = tx.h1;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (tx[key]) el.innerHTML = tx[key];
+  });
 })();
 </script>
 </body>

@@ -68,11 +68,11 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
 </nav>
 <div class="content">
   <h1 id="t-h1">Политика <em>конфиденциальности</em></h1>
-  <p class="updated">Дата обновления: 1 января 2026 года</p>
+  <p class="updated" data-t="updated">Дата обновления: 1 января 2026 года</p>
 
   <p>Linkora eSIM серьёзно относится к защите ваших персональных данных. Эта политика описывает какие данные мы собираем и как их используем.</p>
 
-  <h2>1. Какие данные мы собираем</h2>
+  <h2 data-t="h2_1">1. Какие данные мы собираем</h2>
   <div class="card">
     <div class="row"><div class="row-label">Telegram ID</div><div class="row-value">Для идентификации и доставки eSIM</div></div>
     <div class="row"><div class="row-label">Telegram username</div><div class="row-value">Для связи в рамках поддержки</div></div>
@@ -80,7 +80,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
     <div class="row"><div class="row-label">Подтверждение платежа</div><div class="row-value">Номер транзакции (данные карт не хранятся)</div></div>
   </div>
 
-  <h2>2. Как мы используем данные</h2>
+  <h2 data-t="h2_2">2. Как мы используем данные</h2>
   <ul>
     <li>Для обработки заказа и доставки QR-кода eSIM</li>
     <li>Для оказания технической поддержки</li>
@@ -88,13 +88,13 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
     <li>Для предотвращения мошенничества</li>
   </ul>
 
-  <h2>3. Хранение данных</h2>
+  <h2 data-t="h2_3">3. Хранение данных</h2>
   <p>Данные хранятся в защищённой базе данных до 12 месяцев. Вы можете запросить удаление в любое время через поддержку.</p>
 
-  <h2>4. Третьи лица</h2>
+  <h2 data-t="h2_4">4. Третьи лица</h2>
   <p>Мы передаём ограниченные данные партнёрам: поставщику eSIM (eSIM Cards) и платёжным системам (Telegram Stars, CryptoBot). Данные не продаются и не используются в рекламных целях.</p>
 
-  <h2>5. Ваши права</h2>
+  <h2 data-t="h2_5">5. Ваши права</h2>
   <ul>
     <li>Запросить доступ к данным о вас</li>
     <li>Потребовать исправления неточных данных</li>
@@ -103,10 +103,10 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   </ul>
   <p>Для реализации прав: <a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></p>
 
-  <h2>6. Cookies</h2>
+  <h2 data-t="h2_6">6. Cookies</h2>
   <p>Наш сайт не использует файлы cookie для отслеживания или рекламы.</p>
 
-  <h2>7. Контакты</h2>
+  <h2 data-t="h2_7">7. Контакты</h2>
   <p>Вопросы о конфиденциальности: <a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></p>
 </div>
 <footer>
@@ -119,22 +119,22 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   <div class="footer-copy">© 2026 Linkora eSIM. Все права защищены.</div>
 </footer>
 
+
 <script>
 (function() {
   if (typeof buildSwitcher === 'function') buildSwitcher('lang-sw');
   if (typeof getLang !== 'function') return;
   const lang = getLang();
-  const PAGE_T = {"ru": {"back": "← На главную", "h1": "Политика конфиденциальности"}, "en": {"back": "← Back", "h1": "Privacy Policy"}, "zh": {"back": "← 返回", "h1": "隐私政策"}, "es": {"back": "← Volver", "h1": "Política de Privacidad"}, "de": {"back": "← Zurück", "h1": "Datenschutzrichtlinie"}};
-  const tx = PAGE_T[lang] || PAGE_T.ru;
-  
+  const TX = {"ru": {"back": "← На главную", "h1": "Политика <em>конфиденциальности</em>", "updated": "Дата обновления: 1 января 2026 года", "h2_1": "1. Какие данные мы собираем", "p1_1": "При использовании сервиса мы получаем: Telegram ID, имя в Telegram, информацию о заказах.", "p1_2": "Мы не собираем: номера телефонов, email, данные карт, геолокацию.", "h2_2": "2. Как мы используем данные", "p2_1": "Только для обработки заказов, доставки eSIM и поддержки.", "p2_2": "Мы не продаём данные третьим лицам.", "h2_3": "3. Хранение данных", "p3_1": "На защищённых серверах с шифрованием.", "p3_2": "Хранятся в течение срока договора плюс 1 год.", "h2_4": "4. Третьи лица", "p4_1": "Платёжные сервисы: Telegram Stars, CryptoBot.", "p4_2": "Для доставки eSIM используется eSIM Cards.", "h2_5": "5. Ваши права", "p5_1": "Запрос на удаление данных: @linkorasupport", "p5_2": "Данные транзакций могут храниться для юридических целей.", "h2_6": "6. Cookies", "p6_1": "Только технические cookies.", "h2_7": "7. Контакты", "p7_1": "@linkorasupport"}, "en": {"back": "← Back", "h1": "<em>Privacy</em> Policy", "updated": "Last updated: January 1, 2026", "h2_1": "1. What Data We Collect", "p1_1": "We receive: Telegram user ID, username, order information.", "p1_2": "We do not collect: phone numbers, emails, card data, location.", "h2_2": "2. How We Use Data", "p2_1": "Only for processing orders, eSIM delivery, and support.", "p2_2": "We do not sell data to third parties.", "h2_3": "3. Data Storage", "p3_1": "On secure servers with encryption.", "p3_2": "Stored for contract duration plus 1 year.", "h2_4": "4. Third Parties", "p4_1": "Payment services: Telegram Stars, CryptoBot.", "p4_2": "eSIM Cards used for delivery.", "h2_5": "5. Your Rights", "p5_1": "Request data deletion: @linkorasupport", "p5_2": "Transaction data may be retained for legal purposes.", "h2_6": "6. Cookies", "p6_1": "Technical cookies only.", "h2_7": "7. Contacts", "p7_1": "@linkorasupport"}, "zh": {"back": "← 返回", "h1": "<em>隐私</em>政策", "updated": "最后更新：2026年1月1日", "h2_1": "1. 我们收集哪些数据", "p1_1": "我们获取：Telegram用户ID、用户名、订单信息。", "p1_2": "我们不收集：电话、邮件、银行卡、定位。", "h2_2": "2. 数据使用", "p2_1": "仅用于订单处理、eSIM交付和支持。", "p2_2": "不出售数据。", "h2_3": "3. 数据存储", "p3_1": "加密安全服务器。", "p3_2": "合同期加1年。", "h2_4": "4. 第三方", "p4_1": "支付：Telegram Stars、CryptoBot。", "p4_2": "交付：eSIM Cards。", "h2_5": "5. 您的权利", "p5_1": "删除申请：@linkorasupport", "p5_2": "交易数据可能保留。", "h2_6": "6. Cookies", "p6_1": "仅技术cookies。", "h2_7": "7. 联系", "p7_1": "@linkorasupport"}, "es": {"back": "← Volver", "h1": "Política de <em>Privacidad</em>", "updated": "Última actualización: 1 enero 2026", "h2_1": "1. Datos que recopilamos", "p1_1": "Recibimos: ID Telegram, nombre, información de pedidos.", "p1_2": "No recopilamos: teléfonos, emails, tarjetas, ubicación.", "h2_2": "2. Uso de datos", "p2_1": "Solo para pedidos, entrega eSIM y soporte.", "p2_2": "No vendemos datos.", "h2_3": "3. Almacenamiento", "p3_1": "Servidores seguros con cifrado.", "p3_2": "Contrato más 1 año.", "h2_4": "4. Terceros", "p4_1": "Pagos: Telegram Stars, CryptoBot.", "p4_2": "Entrega: eSIM Cards.", "h2_5": "5. Tus derechos", "p5_1": "Eliminar datos: @linkorasupport", "p5_2": "Datos de transacciones pueden conservarse.", "h2_6": "6. Cookies", "p6_1": "Solo cookies técnicas.", "h2_7": "7. Contacto", "p7_1": "@linkorasupport"}, "de": {"back": "← Zurück", "h1": "<em>Datenschutz</em>richtlinie", "updated": "Letzte Aktualisierung: 1. Januar 2026", "h2_1": "1. Welche Daten wir erheben", "p1_1": "Wir erhalten: Telegram-ID, Name, Bestellinformationen.", "p1_2": "Wir erheben nicht: Telefon, E-Mail, Kartendaten, Standort.", "h2_2": "2. Datenverwendung", "p2_1": "Nur für Auftragsabwicklung und Support.", "p2_2": "Keine Datenweitergabe zu Marketingzwecken.", "h2_3": "3. Datenspeicherung", "p3_1": "Sichere Server mit Verschlüsselung.", "p3_2": "Vertragsdauer plus 1 Jahr.", "h2_4": "4. Dritte", "p4_1": "Zahlungsdienste: Telegram Stars, CryptoBot.", "p4_2": "Lieferung: eSIM Cards.", "h2_5": "5. Ihre Rechte", "p5_1": "Datenlöschung: @linkorasupport", "p5_2": "Transaktionsdaten können aufbewahrt werden.", "h2_6": "6. Cookies", "p6_1": "Nur technische Cookies.", "h2_7": "7. Kontakt", "p7_1": "@linkorasupport"}};
+  const tx = TX[lang] || TX.ru;
   const back = document.getElementById('back-link');
   if (back && tx.back) back.textContent = tx.back;
-  
   const h1 = document.getElementById('t-h1');
-  if (h1 && tx.h1) h1.textContent = tx.h1;
-  
-  const sub = document.querySelector('.page-subtitle, .hero-sub, .subtitle');
-  if (sub && tx.sub) sub.textContent = tx.sub;
+  if (h1 && tx.h1) h1.innerHTML = tx.h1;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (tx[key]) el.innerHTML = tx[key];
+  });
 })();
 </script>
 </body>
