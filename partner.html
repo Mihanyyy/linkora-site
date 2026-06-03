@@ -996,7 +996,15 @@ document.addEventListener("DOMContentLoaded", function() {
   // Condition tabs
   document.querySelectorAll('.cond-tab').forEach((tab, i) => {
     const keys = ['tab_commission','tab_refs','tab_who','tab_limits'];
-    if (keys[i]) tab.textContent = tx[keys[i]];
+    if (!keys[i]) return;
+    const img = tab.querySelector('img');
+    if (img) {
+      // Remove old text nodes, keep image
+      Array.from(tab.childNodes).forEach(n => { if (n.nodeType === 3) n.remove(); });
+      tab.appendChild(document.createTextNode(' ' + tx[keys[i]]));
+    } else {
+      tab.textContent = tx[keys[i]];
+    }
   });
 
   // Condition list items
