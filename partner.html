@@ -873,7 +873,7 @@ const PT = {
   },
 };
 
-(function() {
+document.addEventListener("DOMContentLoaded", function() {
   buildSwitcher('lang-sw');
   const lang = getLang();
   const tx = PT[lang] || PT.ru;
@@ -1013,7 +1013,7 @@ const PT = {
     if (p) p.textContent = tx.cta_sub;
     if (btn) { const svg = btn.querySelector('svg'); btn.innerHTML = (svg ? svg.outerHTML : '') + ' ' + tx.cta_btn; }
   }
-})();
+});
 </script>
 </body>
 </html>
