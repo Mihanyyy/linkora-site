@@ -111,13 +111,20 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
   <p data-t="p_contact_refund">Вопросы: <a href="https://t.me/esimruu_bot" class="link">@esimruu_bot</a></p>
 </div>
 <footer>
-  <div class="footer-links">
-    <a href="terms.html">Публичная оферта</a>
-    <a href="privacy.html">Конфиденциальность</a>
-    <a href="refund.html">Политика возвратов</a>
-    <a href="legal.html">Реквизиты</a>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Linkora eSIM</div>
+      <p class="footer-sub">© 2026 Linkora eSIM</p>
+    </div>
+    <nav class="footer-links" id="footer-nav">
+      <a href="terms.html">Публичная оферта</a>
+      <a href="privacy.html">Конфиденциальность</a>
+      <a href="refund.html">Политика возвратов</a>
+      <a href="legal.html">Юридическая информация</a>
+      <a href="partner.html">Партнёрская программа</a>
+      <a href="how-to-activate.html">Как активировать eSIM</a>
+    </nav>
   </div>
-  <div class="footer-copy">© 2026 Linkora eSIM. Все права защищены.</div>
 </footer>
 
 
@@ -136,6 +143,26 @@ document.addEventListener("DOMContentLoaded", function() {
     const key = el.getAttribute('data-t');
     if (tx[key]) el.innerHTML = tx[key];
   });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const FOOTER_T = {"ru": [["Публичная оферта", "terms.html"], ["Конфиденциальность", "privacy.html"], ["Политика возвратов", "refund.html"], ["Юридическая информация", "legal.html"], ["Партнёрская программа", "partner.html"], ["Как активировать eSIM", "how-to-activate.html"]], "en": [["Terms of Service", "terms.html"], ["Privacy Policy", "privacy.html"], ["Refund Policy", "refund.html"], ["Legal Information", "legal.html"], ["Partner Program", "partner.html"], ["How to activate eSIM", "how-to-activate.html"]], "zh": [["服务条款", "terms.html"], ["隐私政策", "privacy.html"], ["退款政策", "refund.html"], ["法律信息", "legal.html"], ["合作伙伴计划", "partner.html"], ["如何激活eSIM", "how-to-activate.html"]], "es": [["Términos de Servicio", "terms.html"], ["Política de Privacidad", "privacy.html"], ["Política de Reembolso", "refund.html"], ["Información Legal", "legal.html"], ["Programa de Socios", "partner.html"], ["Cómo activar eSIM", "how-to-activate.html"]], "de": [["Nutzungsbedingungen", "terms.html"], ["Datenschutz", "privacy.html"], ["Rückgaberecht", "refund.html"], ["Rechtliche Informationen", "legal.html"], ["Partnerprogramm", "partner.html"], ["Wie man eSIM aktiviert", "how-to-activate.html"]]};
+  const lang = (function() {
+    const saved = localStorage.getItem('linkora_lang');
+    const langs = ['ru','en','zh','es','de'];
+    if (saved && langs.includes(saved)) return saved;
+    const b = (navigator.language||'ru').slice(0,2).toLowerCase();
+    return langs.includes(b) ? b : 'ru';
+  })();
+  const links = FOOTER_T[lang] || FOOTER_T.ru;
+  const nav = document.getElementById('footer-nav');
+  if (nav) {
+    nav.innerHTML = links.map(([text, href]) => 
+      '<a href="' + href + '">' + text + '</a>'
+    ).join('');
+  }
 });
 </script>
 </body>
