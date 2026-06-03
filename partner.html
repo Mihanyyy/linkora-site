@@ -874,70 +874,74 @@ const PT = {
 };
 
 document.addEventListener("DOMContentLoaded", function() {
-  buildSwitcher('lang-sw');
-  const lang = getLang();
-  const tx = PT[lang] || PT.ru;
+  // Get language from localStorage
+  const lang = (function() {
+    const saved = localStorage.getItem('linkora_lang');
+    const langs = ['ru','en','zh','es','de'];
+    if (saved && langs.includes(saved)) return saved;
+    const browser = (navigator.language||'ru').slice(0,2).toLowerCase();
+    return langs.includes(browser) ? browser : 'ru';
+  })();
 
-  function s(id, html) {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = html;
-  }
-  function q(sel, html) {
-    const el = document.querySelector(sel);
-    if (el) el.innerHTML = html;
-  }
+  const tx = PT[lang] || PT.ru;
+  if (lang === 'ru') return; // Already in Russian
+
+  // Build lang switcher
+  if (typeof buildSwitcher === 'function') buildSwitcher('lang-sw');
+
+  function setText(el, text) { if (el) el.textContent = text; }
+  function setHTML(el, html) { if (el) el.innerHTML = html; }
 
   // Back link
   const back = document.getElementById('back-link');
   if (back) back.textContent = tx.back;
 
-  // Page tag
-  const tags = document.querySelectorAll('.page-tag');
-  if (tags[0]) tags[0].innerHTML = tags[0].innerHTML.replace(/Партнёрская программа|Partner Program|合作伙伴计划|Programa de socios|Partnerprogramm/, tx.page_tag);
-
-  // Hero
+  // H1
   const h1 = document.querySelector('h1');
-  if (h1) h1.innerHTML = tx.hero_title;
+  setHTML(h1, tx.hero_title);
+
+  // Hero sub
   const heroSub = document.querySelector('.hero-sub');
-  if (heroSub) heroSub.textContent = tx.hero_sub;
+  setText(heroSub, tx.hero_sub);
+
+  // Page tag
+  const pageTag = document.querySelector('.page-tag');
+  if (pageTag) pageTag.textContent = tx.page_tag;
 
   // Stats
-  const statLabels = document.querySelectorAll('.stat-lbl');
-  const statKeys = ['stat_commission','stat_min','stat_countries','stat_refs'];
-  statLabels.forEach((el, i) => { if (statKeys[i]) el.textContent = tx[statKeys[i]]; });
-
-  // How section tag & title
-  const sectionTags = document.querySelectorAll('.section-tag');
-  const sectionTitles = document.querySelectorAll('h2');
-
-  if (sectionTags[0]) sectionTags[0].textContent = tx.how_tag;
-  if (sectionTitles[0]) sectionTitles[0].textContent = tx.how_title;
-
-  // Steps
-  const stepCards = document.querySelectorAll('.step-card');
-  const stepKeys = [
-    ['step1_title','step1_text'],['step2_title','step2_text'],
-    ['step3_title','step3_text'],['step4_title','step4_text'],
-  ];
-  stepCards.forEach((card, i) => {
-    if (stepKeys[i]) {
-      const h3 = card.querySelector('h3');
-      const p = card.querySelector('p');
-      if (h3) h3.textContent = tx[stepKeys[i][0]];
-      if (p) p.textContent = tx[stepKeys[i][1]];
-    }
+  document.querySelectorAll('.stat-lbl').forEach((el, i) => {
+    const keys = ['stat_commission','stat_min','stat_countries','stat_refs'];
+    if (keys[i]) el.textContent = tx[keys[i]];
   });
 
-  // Conditions tag & title
-  if (sectionTags[1]) sectionTags[1].textContent = tx.cond_tag;
-  if (sectionTitles[1]) sectionTitles[1].textContent = tx.cond_title;
+  // Section tags
+  const sTags = document.querySelectorAll('.section-tag');
+  const h2s = document.querySelectorAll('h2');
+  if (sTags[0]) sTags[0].textContent = tx.how_tag;
+  if (h2s[0]) h2s[0].textContent = tx.how_title;
+
+  // Steps
+  document.querySelectorAll('.step-card').forEach((card, i) => {
+    const keys = [['step1_title','step1_text'],['step2_title','step2_text'],
+                  ['step3_title','step3_text'],['step4_title','step4_text']];
+    if (!keys[i]) return;
+    const h3 = card.querySelector('h3');
+    const p = card.querySelector('p');
+    if (h3) h3.textContent = tx[keys[i][0]];
+    if (p) p.textContent = tx[keys[i][1]];
+  });
+
+  // Conditions
+  if (sTags[1]) sTags[1].textContent = tx.cond_tag;
+  if (h2s[1]) h2s[1].textContent = tx.cond_title;
 
   // Condition tabs
-  const condTabs = document.querySelectorAll('.cond-tab');
-  const tabKeys = ['tab_commission','tab_refs','tab_who','tab_limits'];
-  condTabs.forEach((tab, i) => { if (tabKeys[i]) tab.textContent = tx[tabKeys[i]]; });
+  document.querySelectorAll('.cond-tab').forEach((tab, i) => {
+    const keys = ['tab_commission','tab_refs','tab_who','tab_limits'];
+    if (keys[i]) tab.textContent = tx[keys[i]];
+  });
 
-  // Condition lists
+  // Condition list items
   const panels = document.querySelectorAll('.cond-panel .cond-list');
   const condItems = [
     ['cond1_1','cond1_2','cond1_3','cond1_4','cond1_5'],
@@ -946,59 +950,39 @@ document.addEventListener("DOMContentLoaded", function() {
     ['cond4_1','cond4_2','cond4_3','cond4_4'],
   ];
   panels.forEach((panel, pi) => {
-    if (condItems[pi]) {
-      const items = panel.querySelectorAll('li');
-      items.forEach((li, ii) => {
-        if (condItems[pi][ii]) li.textContent = tx[condItems[pi][ii]];
-      });
-    }
+    if (!condItems[pi]) return;
+    panel.querySelectorAll('li').forEach((li, ii) => {
+      if (condItems[pi][ii]) li.textContent = tx[condItems[pi][ii]];
+    });
   });
 
   // Payout section
-  if (sectionTags[2]) sectionTags[2].textContent = tx.pay_tag;
-  if (sectionTitles[2]) sectionTitles[2].textContent = tx.pay_title;
+  if (sTags[2]) sTags[2].textContent = tx.pay_tag;
+  if (h2s[2]) h2s[2].textContent = tx.pay_title;
 
   const payCards = document.querySelectorAll('.payout-card');
-  if (payCards[0]) {
-    const h3 = payCards[0].querySelector('h3');
-    const p = payCards[0].querySelector('p');
-    const badge = payCards[0].querySelector('.payout-badge');
-    if (h3) h3.textContent = tx.crypto_title;
-    if (p) p.textContent = tx.crypto_text;
-    if (badge) badge.textContent = tx.crypto_badge;
-  }
-  if (payCards[1]) {
-    const h3 = payCards[1].querySelector('h3');
-    const p = payCards[1].querySelector('p');
-    const badge = payCards[1].querySelector('.payout-badge');
-    if (h3) h3.textContent = tx.card_title;
-    if (p) p.textContent = tx.card_text;
-    if (badge) badge.textContent = tx.card_badge;
-  }
+  [['crypto_title','crypto_text','crypto_badge'],['card_title','card_text','card_badge']].forEach((keys, i) => {
+    if (!payCards[i]) return;
+    const h3 = payCards[i].querySelector('h3');
+    const p = payCards[i].querySelector('p');
+    const badge = payCards[i].querySelector('.payout-badge');
+    if (h3) h3.textContent = tx[keys[0]];
+    if (p) p.textContent = tx[keys[1]];
+    if (badge) badge.textContent = tx[keys[2]];
+  });
 
   // FAQ
-  if (sectionTags[3]) sectionTags[3].textContent = tx.faq_tag;
-  if (sectionTitles[3]) sectionTitles[3].textContent = tx.faq_title;
+  if (sTags[3]) sTags[3].textContent = tx.faq_tag;
+  if (h2s[3]) h2s[3].textContent = tx.faq_title;
 
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach((item, i) => {
+  document.querySelectorAll('.faq-item').forEach((item, i) => {
     const n = i + 1;
     const qEl = item.querySelector('.faq-q');
     const aEl = item.querySelector('.faq-a');
     if (qEl && tx['faq'+n+'_q']) {
       const icon = qEl.querySelector('.faq-icon');
-      // Remove all text nodes
-      Array.from(qEl.childNodes).forEach(node => {
-        if (node.nodeType === 3) node.remove();
-      });
-      // Insert translated text before icon
-      const textNode = document.createTextNode(tx['faq'+n+'_q'] + ' ');
-      if (icon) qEl.insertBefore(textNode, icon);
-      else qEl.appendChild(textNode);
-    }
-    if (aEl && tx['faq'+n+'_a']) aEl.textContent = tx['faq'+n+'_a'];
-  });
-      if (!icon) qEl.textContent = tx['faq'+n+'_q'];
+      Array.from(qEl.childNodes).forEach(node => { if (node.nodeType === 3) node.remove(); });
+      qEl.insertBefore(document.createTextNode(tx['faq'+n+'_q'] + ' '), icon || null);
     }
     if (aEl && tx['faq'+n+'_a']) aEl.textContent = tx['faq'+n+'_a'];
   });
