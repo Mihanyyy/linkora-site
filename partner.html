@@ -987,7 +987,17 @@ const PT = {
     const aEl = item.querySelector('.faq-a');
     if (qEl && tx['faq'+n+'_q']) {
       const icon = qEl.querySelector('.faq-icon');
-      qEl.childNodes.forEach(node => { if (node.nodeType === 3) node.textContent = tx['faq'+n+'_q'] + ' '; });
+      // Remove all text nodes
+      Array.from(qEl.childNodes).forEach(node => {
+        if (node.nodeType === 3) node.remove();
+      });
+      // Insert translated text before icon
+      const textNode = document.createTextNode(tx['faq'+n+'_q'] + ' ');
+      if (icon) qEl.insertBefore(textNode, icon);
+      else qEl.appendChild(textNode);
+    }
+    if (aEl && tx['faq'+n+'_a']) aEl.textContent = tx['faq'+n+'_a'];
+  });
       if (!icon) qEl.textContent = tx['faq'+n+'_q'];
     }
     if (aEl && tx['faq'+n+'_a']) aEl.textContent = tx['faq'+n+'_a'];
