@@ -122,7 +122,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
 
 
 <script>
-(function() {
+document.addEventListener("DOMContentLoaded", function() {
   if (typeof buildSwitcher === 'function') buildSwitcher('lang-sw');
   if (typeof getLang !== 'function') return;
   const lang = getLang();
@@ -136,7 +136,7 @@ footer{padding:40px 48px;border-top:1px solid var(--c-border);display:flex;flex-
     const key = el.getAttribute('data-t');
     if (tx[key]) el.innerHTML = tx[key];
   });
-})();
+});
 </script>
 </body>
 </html>
