@@ -1350,5 +1350,177 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 </script>
 
+
+<!-- THREE.JS ATMOSPHERIC BACKGROUND -->
+<canvas id="bg-canvas" style="position:fixed;inset:0;z-index:-1;pointer-events:none;width:100%;height:100%;"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const bgCanvas = document.getElementById('bg-canvas');
+  if (!bgCanvas || typeof THREE === 'undefined') return;
+
+  /* ── RENDERER ── */
+  const renderer = new THREE.WebGLRenderer({
+    canvas: bgCanvas,
+    antialias: false,
+    alpha: true,
+    powerPreference: 'low-power'
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  /* ── SCENE & CAMERA ── */
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x050d07, 0.038);
+
+  const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 80);
+  camera.position.z = 15;
+
+  /* ── BRANCHES ── */
+  const branchMat = new THREE.LineBasicMaterial({
+    color: 0x1a4030,
+    transparent: true,
+    opacity: 0.45
+  });
+
+  function makeBranch(pts) {
+    const curve = new THREE.CatmullRomCurve3(pts);
+    const geo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(40));
+    return new THREE.Line(geo, branchMat);
+  }
+
+  const branchGroup = new THREE.Group();
+  const branchDefs = [
+    /* top-left main */
+    [new THREE.Vector3(-18, 12, -6), new THREE.Vector3(-11, 8, -4), new THREE.Vector3(-5, 5, -2), new THREE.Vector3(1, 2, 0)],
+    [new THREE.Vector3(-18, 12, -6), new THREE.Vector3(-13, 10, -5), new THREE.Vector3(-7, 13, -3), new THREE.Vector3(-2, 11, -1)],
+    /* sub-branches left */
+    [new THREE.Vector3(-5, 5, -2), new THREE.Vector3(-2, 9, -1), new THREE.Vector3(2, 11, 0)],
+    [new THREE.Vector3(-5, 5, -2), new THREE.Vector3(0, 4, 0), new THREE.Vector3(4, 3, 1)],
+    [new THREE.Vector3(-11, 8, -4), new THREE.Vector3(-8, 6, -2), new THREE.Vector3(-5, 9, -1)],
+    /* top-right main */
+    [new THREE.Vector3(18, 12, -6), new THREE.Vector3(11, 8, -4), new THREE.Vector3(5, 5, -2), new THREE.Vector3(-1, 2, 0)],
+    [new THREE.Vector3(18, 12, -6), new THREE.Vector3(13, 10, -5), new THREE.Vector3(7, 13, -3), new THREE.Vector3(2, 11, -1)],
+    /* sub-branches right */
+    [new THREE.Vector3(5, 5, -2), new THREE.Vector3(2, 9, -1), new THREE.Vector3(-2, 11, 0)],
+    [new THREE.Vector3(5, 5, -2), new THREE.Vector3(0, 4, 0), new THREE.Vector3(-4, 3, 1)],
+    /* thin hanging */
+    [new THREE.Vector3(-7, 13, -3), new THREE.Vector3(-9, 9, -1), new THREE.Vector3(-10, 6, 0)],
+    [new THREE.Vector3(7, 13, -3), new THREE.Vector3(9, 9, -1), new THREE.Vector3(10, 6, 0)],
+  ];
+  branchDefs.forEach(def => branchGroup.add(makeBranch(def)));
+  scene.add(branchGroup);
+
+  /* ── LEAF PARTICLES (fall down + sideways) ── */
+  const LEAF_COUNT = 350;
+  const leafPos = new Float32Array(LEAF_COUNT * 3);
+  const leafV = [];
+  for (let i = 0; i < LEAF_COUNT; i++) {
+    leafPos[i * 3]     = (Math.random() - 0.5) * 32;
+    leafPos[i * 3 + 1] = (Math.random() * 26) - 4;
+    leafPos[i * 3 + 2] = (Math.random() - 0.5) * 12 - 4;
+    leafV.push({
+      vx: (Math.random() - 0.5) * 0.007,
+      vy: -(Math.random() * 0.014 + 0.003),
+      wb: Math.random() * Math.PI * 2,
+      ws: Math.random() * 0.018 + 0.004
+    });
+  }
+  const leafGeo = new THREE.BufferGeometry();
+  leafGeo.setAttribute('position', new THREE.BufferAttribute(leafPos, 3));
+  const leafMat = new THREE.PointsMaterial({
+    color: 0x52b788, size: 0.13, transparent: true,
+    opacity: 0.4, sizeAttenuation: true, depthWrite: false
+  });
+  scene.add(new THREE.Points(leafGeo, leafMat));
+
+  /* ── SPORE / DUST PARTICLES (rise upward) ── */
+  const SPORE_COUNT = 900;
+  const sporePos = new Float32Array(SPORE_COUNT * 3);
+  const sporeV = [];
+  for (let i = 0; i < SPORE_COUNT; i++) {
+    sporePos[i * 3]     = (Math.random() - 0.5) * 30;
+    sporePos[i * 3 + 1] = (Math.random() * 24) - 12;
+    sporePos[i * 3 + 2] = (Math.random() - 0.5) * 10 - 3;
+    sporeV.push({
+      vx: (Math.random() - 0.5) * 0.003,
+      vy: Math.random() * 0.007 + 0.001,
+      wb: Math.random() * Math.PI * 2,
+      ws: Math.random() * 0.012 + 0.002
+    });
+  }
+  const sporeGeo = new THREE.BufferGeometry();
+  sporeGeo.setAttribute('position', new THREE.BufferAttribute(sporePos, 3));
+  const sporeMat = new THREE.PointsMaterial({
+    color: 0x52b788, size: 0.055, transparent: true,
+    opacity: 0.6, sizeAttenuation: true, depthWrite: false
+  });
+  scene.add(new THREE.Points(sporeGeo, sporeMat));
+
+  /* ── ANIMATION LOOP ── */
+  let t = 0, rafId;
+
+  function tick() {
+    rafId = requestAnimationFrame(tick);
+    t += 0.004;
+
+    /* branch sway — very slow organic motion */
+    branchGroup.rotation.z = Math.sin(t * 0.28) * 0.014 + Math.sin(t * 0.11) * 0.006;
+    branchGroup.rotation.x = Math.sin(t * 0.19) * 0.005;
+
+    /* leaves fall */
+    const lp = leafGeo.attributes.position.array;
+    for (let i = 0; i < LEAF_COUNT; i++) {
+      const v = leafV[i];
+      v.wb += v.ws;
+      lp[i * 3]     += v.vx + Math.sin(v.wb) * 0.004;
+      lp[i * 3 + 1] += v.vy;
+      if (lp[i * 3 + 1] < -13) {
+        lp[i * 3]     = (Math.random() - 0.5) * 32;
+        lp[i * 3 + 1] = 13;
+        lp[i * 3 + 2] = (Math.random() - 0.5) * 12 - 4;
+      }
+    }
+    leafGeo.attributes.position.needsUpdate = true;
+
+    /* spores rise */
+    const sp = sporeGeo.attributes.position.array;
+    for (let i = 0; i < SPORE_COUNT; i++) {
+      const v = sporeV[i];
+      v.wb += v.ws;
+      sp[i * 3]     += v.vx + Math.sin(v.wb) * 0.002;
+      sp[i * 3 + 1] += v.vy;
+      if (sp[i * 3 + 1] > 13) {
+        sp[i * 3]     = (Math.random() - 0.5) * 30;
+        sp[i * 3 + 1] = -13;
+        sp[i * 3 + 2] = (Math.random() - 0.5) * 10 - 3;
+      }
+    }
+    sporeGeo.attributes.position.needsUpdate = true;
+
+    renderer.render(scene, camera);
+  }
+
+  tick();
+
+  /* ── RESIZE ── */
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  /* pause when tab hidden */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(rafId);
+    else tick();
+  });
+})();
+</script>
+
 </body>
 </html>
