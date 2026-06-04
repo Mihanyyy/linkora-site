@@ -983,11 +983,6 @@ nav.scrolled { border-bottom-color: rgba(82,183,136,0.15); }
 <section class="hero">
   <div class="hero-layers">
     <div class="hero-grad"></div>
-    <!-- Branches -->
-    <img src="img/b1.png" alt="" class="branch branch-tl">
-    <img src="img/b1.png" alt="" class="branch branch-tr">
-    <img src="img/b1.png" alt="" class="branch branch-bl">
-    <img src="img/b1.png" alt="" class="branch branch-br">
     <div class="mist mist-top"></div>
     <div class="mist mist-bottom"></div>
   </div>
@@ -1516,50 +1511,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   pointLight.position.set(0, 8, 12);
   scene.add(pointLight);
 
-  /* ── BRANCHES (TubeGeometry + MeshStandardMaterial) ── */
-  const branchMat = new THREE.MeshStandardMaterial({
-    color: 0x2d6a4f, transparent: true, opacity: 0, roughness: 0.8, metalness: 0.05
-  });
-  const branchGlowMat = new THREE.MeshStandardMaterial({
-    color: 0x52b788, transparent: true, opacity: 0, roughness: 0.5,
-    emissive: new THREE.Color(0x52b788), emissiveIntensity: 0.25
-  });
-
-  function makeBranch(pts, mat) {
-    const curve = new THREE.CatmullRomCurve3(pts);
-    const geo = new THREE.TubeGeometry(curve, 20, 0.04, 8, false);
-    return new THREE.Mesh(geo, mat);
-  }
-
-  const branchGroup = new THREE.Group();
-  const branchDefs = [
-    [new THREE.Vector3(-18,12,-6), new THREE.Vector3(-11,8,-4), new THREE.Vector3(-5,5,-2), new THREE.Vector3(1,2,0)],
-    [new THREE.Vector3(-18,12,-6), new THREE.Vector3(-13,10,-5), new THREE.Vector3(-7,13,-3), new THREE.Vector3(-2,11,-1)],
-    [new THREE.Vector3(-5,5,-2),   new THREE.Vector3(-2,9,-1),  new THREE.Vector3(2,11,0)],
-    [new THREE.Vector3(-5,5,-2),   new THREE.Vector3(0,4,0),    new THREE.Vector3(4,3,1)],
-    [new THREE.Vector3(-11,8,-4),  new THREE.Vector3(-8,6,-2),  new THREE.Vector3(-5,9,-1)],
-    [new THREE.Vector3(18,12,-6),  new THREE.Vector3(11,8,-4),  new THREE.Vector3(5,5,-2), new THREE.Vector3(-1,2,0)],
-    [new THREE.Vector3(18,12,-6),  new THREE.Vector3(13,10,-5), new THREE.Vector3(7,13,-3), new THREE.Vector3(2,11,-1)],
-    [new THREE.Vector3(5,5,-2),    new THREE.Vector3(2,9,-1),   new THREE.Vector3(-2,11,0)],
-    [new THREE.Vector3(5,5,-2),    new THREE.Vector3(0,4,0),    new THREE.Vector3(-4,3,1)],
-    [new THREE.Vector3(-7,13,-3),  new THREE.Vector3(-9,9,-1),  new THREE.Vector3(-10,6,0)],
-    [new THREE.Vector3(7,13,-3),   new THREE.Vector3(9,9,-1),   new THREE.Vector3(10,6,0)],
-  ];
-  branchDefs.forEach(def => {
-    branchGroup.add(makeBranch(def, branchMat));
-    branchGroup.add(makeBranch(def, branchGlowMat));
-  });
-  scene.add(branchGroup);
-
-  /* GSAP entrance — branches fade in over 3s */
-  if (typeof gsap !== 'undefined') {
-    gsap.to(branchMat,     { opacity: 0.5,  duration: 3, ease: 'power2.out', delay: 0.5 });
-    gsap.to(branchGlowMat, { opacity: 0.15, duration: 3, ease: 'power2.out', delay: 0.5 });
-  } else {
-    branchMat.opacity = 0.5;
-    branchGlowMat.opacity = 0.15;
-  }
-
   /* ── LEAF PARTICLES (fall down + sideways) ── */
   const LEAF_COUNT = 350;
   const leafPos = new Float32Array(LEAF_COUNT * 3);
@@ -1630,10 +1581,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     camY += (mouseY - camY) * 0.025;
     camera.position.x = camX;
     camera.position.y = camY;
-
-    /* branch sway */
-    branchGroup.rotation.z = Math.sin(t*0.28)*0.014 + Math.sin(t*0.11)*0.006;
-    branchGroup.rotation.x = Math.sin(t*0.19)*0.005;
 
     /* leaves fall */
     const lp = leafGeo.attributes.position.array;
