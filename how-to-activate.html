@@ -178,6 +178,60 @@ footer {
   .footer-bottom { flex-direction: column; text-align: center; gap: 4px; }
 }
 
+
+/* Mobile lang switcher */
+.mobile-lang {
+  display: none;
+  position: relative;
+}
+.mobile-lang-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(82,183,136,0.2);
+  color: var(--c-white, #e8f5e9);
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.mobile-lang-btn:hover { border-color: rgba(82,183,136,0.4); }
+.mobile-lang-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #050d07;
+  border: 1px solid rgba(82,183,136,0.15);
+  border-radius: 8px;
+  padding: 4px;
+  min-width: 120px;
+  z-index: 1000;
+}
+.mobile-lang-menu.open { display: block; }
+.mobile-lang-opt {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #6b9e7a;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mobile-lang-opt:hover { background: rgba(82,183,136,0.1); color: #b7e4c7; }
+.mobile-lang-opt.active { color: #74c69d; }
+@media (max-width: 900px) {
+  .mobile-lang { display: block; }
+}
+@media (max-width: 768px) {
+  .mobile-lang { display: block; }
+}
+
 </style>
 <script src="lang-switcher.js"></script>
 </head>
@@ -186,6 +240,10 @@ footer {
 <nav>
   <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>Linkora <span style="opacity:.5;font-weight:300"> eSIM</span></a>
   <a href="index.html" class="back">← На главную</a>
+<div class="mobile-lang" id="mobileLang">
+  <button class="mobile-lang-btn" id="mobileLangBtn">🌐 <span id="mobileLangText">RU</span></button>
+  <div class="mobile-lang-menu" id="mobileLangMenu"></div>
+</div>
 </nav>
 
 <div class="content">
@@ -430,6 +488,50 @@ document.addEventListener("DOMContentLoaded", function() {
     if (t[key]) el.innerHTML = t[key];
   });
 });
+</script>
+
+<script>
+(function() {
+  const LANGS = ['ru','en','zh','es','de'];
+  const FLAGS = {ru:'🇷🇺',en:'🇬🇧',zh:'🇨🇳',es:'🇪🇸',de:'🇩🇪'};
+  const NAMES = {ru:'RU',en:'EN',zh:'ZH',es:'ES',de:'DE'};
+  
+  function getLangLocal() {
+    const s = localStorage.getItem('linkora_lang');
+    if (s && LANGS.includes(s)) return s;
+    const b = (navigator.language||'ru').slice(0,2).toLowerCase();
+    return LANGS.includes(b) ? b : 'ru';
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('mobileLangBtn');
+    const menu = document.getElementById('mobileLangMenu');
+    const txt = document.getElementById('mobileLangText');
+    if (!btn || !menu) return;
+    
+    const lang = getLangLocal();
+    if (txt) txt.textContent = NAMES[lang];
+    
+    menu.innerHTML = LANGS.map(l =>
+      '<div class="mobile-lang-opt' + (l === lang ? ' active' : '') + '" data-lang="' + l + '">' + FLAGS[l] + ' ' + NAMES[l] + '</div>'
+    ).join('');
+    
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      menu.classList.remove('open');
+    });
+    menu.querySelectorAll('.mobile-lang-opt').forEach(function(o) {
+      o.addEventListener('click', function() {
+        const l = o.dataset.lang;
+        localStorage.setItem('linkora_lang', l);
+        location.reload();
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>
