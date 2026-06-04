@@ -118,6 +118,23 @@ footer {
   footer { padding: 24px 20px; }
 }
 
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(82,183,136,0.06);
+  font-size: 12px;
+  color: rgba(107,158,122,0.5);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media(max-width:768px) {
+  .footer-bottom { flex-direction: column; text-align: center; gap: 4px; }
+}
+
 </style>
 <script src="lang-switcher.js"></script>
 </head>
@@ -203,6 +220,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const b = (navigator.language||'ru').slice(0,2).toLowerCase();
     return L.includes(b) ? b : 'ru';
   })();
+  const FBT = {"ru": {"copy": "© 2026 Linkora eSIM", "rights": "Все права защищены", "sub": "Международная мобильная связь для путешественников"}, "en": {"copy": "© 2026 Linkora eSIM", "rights": "All rights reserved", "sub": "International mobile connectivity for travelers"}, "zh": {"copy": "© 2026 Linkora eSIM", "rights": "版权所有", "sub": "面向旅行者的国际移动连接"}, "es": {"copy": "© 2026 Linkora eSIM", "rights": "Todos los derechos reservados", "sub": "Conectividad móvil internacional para viajeros"}, "de": {"copy": "© 2026 Linkora eSIM", "rights": "Alle Rechte vorbehalten", "sub": "Internationale mobile Konnektivität für Reisende"}};
+  const fbt = FBT[lang] || FBT.ru;
+  const fbCopy = document.getElementById('fb-copy-rights');
+  const fbSub = document.getElementById('fb-sub');
+  if (fbCopy) fbCopy.textContent = fbt.copy + '. ' + fbt.rights + '.';
+  if (fbSub) fbSub.textContent = fbt.sub;
   const links = FT[lang] || FT.ru;
   const nav = document.getElementById('footer-nav-simple');
   if (!nav) return;
@@ -213,6 +236,23 @@ document.addEventListener("DOMContentLoaded", function() {
     html += '<span class="footer-sep">·</span><a href="' + href + '">' + text + '</a>';
   });
   nav.innerHTML = html;
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof getLang !== 'function') return;
+  const lang = getLang();
+  const TX = {"ru": {"back": "← На главную", "h1": "Политика <em>возвратов</em>", "updated": "Дата обновления: 1 января 2026 года", "intro": "Мы хотим чтобы вы были довольны покупкой.", "div_possible": "✦ Возврат возможен", "li_r1": "QR-код eSIM <strong>не был отсканирован</strong> (eSIM не активирована)", "li_r2": "Заявка подана в течение <strong>30 дней</strong> с момента покупки", "li_r3": "Техническая ошибка на нашей стороне при доставке QR-кода", "li_r4": "Двойное списание по ошибке", "div_impossible": "✕ Возврат невозможен", "li_n1": "eSIM была <strong>активирована</strong> (QR-код отсканирован)", "li_n2": "Данные были частично или полностью использованы", "li_n3": "Несовместимое устройство (проверьте до покупки)", "li_n4": "Передумали после активации", "li_n5": "Забыли воспользоваться eSIM до истечения срока", "li_how1": "Откройте <a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "li_how2": "Укажите номер заказа (например, #123)", "li_how3": "Опишите причину возврата", "p_process": "Мы отвечаем в течение 24 часов и обрабатываем одобренный возврат в течение 3–5 рабочих дней.", "p_tech": "Если возникли трудности с активацией — обратитесь в поддержку до повторных попыток.", "p_currency": "Возврат производится в той же валюте по курсу на момент транзакции.", "p_contact_refund": "Вопросы: <a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "h2_1": "Как запросить возврат", "h2_2": "Технические проблемы", "h2_3": "Криптовалюта и Telegram Stars", "h2_4": "Контакты"}, "en": {"back": "← Back", "h1": "<em>Refund</em> Policy", "updated": "Last updated: January 1, 2026", "intro": "We want you to be satisfied.", "div_possible": "✦ Refund possible", "li_r1": "eSIM QR code was <strong>not scanned</strong> (not activated)", "li_r2": "Request within <strong>30 days</strong> of purchase", "li_r3": "Technical error on our side", "li_r4": "Double charge by mistake", "div_impossible": "✕ No refund", "li_n1": "eSIM was <strong>activated</strong> (QR scanned)", "li_n2": "Data was used", "li_n3": "Incompatible device", "li_n4": "Changed mind after activation", "li_n5": "Forgot to use eSIM", "li_how1": "Open <a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "li_how2": "Provide order number (e.g. #123)", "li_how3": "Describe the reason", "p_process": "We respond in 24h, process in 3–5 business days.", "p_tech": "Contact support if activation issues.", "p_currency": "Refund in same currency at transaction rate.", "p_contact_refund": "Questions: <a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "h2_1": "How to Request", "h2_2": "Technical Issues", "h2_3": "Crypto and Telegram Stars", "h2_4": "Contacts"}, "zh": {"back": "← 返回", "h1": "退款<em>政策</em>", "updated": "最后更新：2026年1月1日", "intro": "我们希望您满意。", "div_possible": "✦ 可退款", "li_r1": "二维码<strong>未扫描</strong>（未激活）", "li_r2": "购买后<strong>30天</strong>内申请", "li_r3": "我方技术错误", "li_r4": "误操作重复扣款", "div_impossible": "✕ 不可退款", "li_n1": "eSIM已<strong>激活</strong>", "li_n2": "数据已使用", "li_n3": "设备不兼容", "li_n4": "激活后改变主意", "li_n5": "忘记使用", "li_how1": "打开 <a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "li_how2": "提供订单号", "li_how3": "描述原因", "p_process": "24小时内回复，3-5个工作日处理。", "p_tech": "激活问题请联系支持。", "p_currency": "按交易时汇率退款。", "p_contact_refund": "问题：<a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "h2_1": "如何申请", "h2_2": "技术问题", "h2_3": "加密货币和Stars", "h2_4": "联系"}, "es": {"back": "← Volver", "h1": "Política de <em>Reembolso</em>", "updated": "Última actualización: 1 enero 2026", "intro": "Queremos que estés satisfecho.", "div_possible": "✦ Reembolso posible", "li_r1": "QR <strong>no escaneado</strong>", "li_r2": "Solicitud en <strong>30 días</strong>", "li_r3": "Error técnico nuestro", "li_r4": "Cargo doble", "div_impossible": "✕ Sin reembolso", "li_n1": "eSIM <strong>activada</strong>", "li_n2": "Datos usados", "li_n3": "Dispositivo incompatible", "li_n4": "Cambió de opinión", "li_n5": "Olvidó usar", "li_how1": "Abrir <a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "li_how2": "Número de pedido", "li_how3": "Describir motivo", "p_process": "Respondemos en 24h, procesamos en 3–5 días.", "p_tech": "Contacta soporte si hay problemas.", "p_currency": "Reembolso en misma divisa.", "p_contact_refund": "Preguntas: <a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "h2_1": "Cómo solicitar", "h2_2": "Problemas técnicos", "h2_3": "Cripto y Stars", "h2_4": "Contacto"}, "de": {"back": "← Zurück", "h1": "<em>Rückgabe</em>recht", "updated": "Letzte Aktualisierung: 1. Januar 2026", "intro": "Wir möchten, dass Sie zufrieden sind.", "div_possible": "✦ Rückerstattung möglich", "li_r1": "QR <strong>nicht gescannt</strong>", "li_r2": "Antrag in <strong>30 Tagen</strong>", "li_r3": "Technischer Fehler unsererseits", "li_r4": "Doppelabrechnung", "div_impossible": "✕ Keine Rückerstattung", "li_n1": "eSIM <strong>aktiviert</strong>", "li_n2": "Daten genutzt", "li_n3": "Inkompatibles Gerät", "li_n4": "Umgedacht", "li_n5": "Vergessen", "li_how1": "<a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a> öffnen", "li_how2": "Bestellnummer angeben", "li_how3": "Grund beschreiben", "p_process": "Antwort in 24h, Bearbeitung in 3–5 Tagen.", "p_tech": "Support bei Aktivierungsproblemen.", "p_currency": "Rückerstattung in gleicher Währung.", "p_contact_refund": "Fragen: <a href=\"https://t.me/esimruu_bot\" class=\"link\">@esimruu_bot</a>", "h2_1": "Wie beantragen", "h2_2": "Technische Probleme", "h2_3": "Krypto und Stars", "h2_4": "Kontakt"}};
+  const tx = TX[lang] || TX.ru;
+  const back = document.getElementById('back-link');
+  if (back && tx.back) back.textContent = tx.back;
+  const h1 = document.getElementById('t-h1');
+  if (h1 && tx.h1) h1.innerHTML = tx.h1;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (tx[key]) el.innerHTML = tx[key];
+  });
 });
 </script>
 </body>

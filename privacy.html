@@ -118,6 +118,23 @@ footer {
   footer { padding: 24px 20px; }
 }
 
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(82,183,136,0.06);
+  font-size: 12px;
+  color: rgba(107,158,122,0.5);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media(max-width:768px) {
+  .footer-bottom { flex-direction: column; text-align: center; gap: 4px; }
+}
+
 </style>
 <script src="lang-switcher.js"></script>
 </head>
@@ -202,6 +219,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const b = (navigator.language||'ru').slice(0,2).toLowerCase();
     return L.includes(b) ? b : 'ru';
   })();
+  const FBT = {"ru": {"copy": "© 2026 Linkora eSIM", "rights": "Все права защищены", "sub": "Международная мобильная связь для путешественников"}, "en": {"copy": "© 2026 Linkora eSIM", "rights": "All rights reserved", "sub": "International mobile connectivity for travelers"}, "zh": {"copy": "© 2026 Linkora eSIM", "rights": "版权所有", "sub": "面向旅行者的国际移动连接"}, "es": {"copy": "© 2026 Linkora eSIM", "rights": "Todos los derechos reservados", "sub": "Conectividad móvil internacional para viajeros"}, "de": {"copy": "© 2026 Linkora eSIM", "rights": "Alle Rechte vorbehalten", "sub": "Internationale mobile Konnektivität für Reisende"}};
+  const fbt = FBT[lang] || FBT.ru;
+  const fbCopy = document.getElementById('fb-copy-rights');
+  const fbSub = document.getElementById('fb-sub');
+  if (fbCopy) fbCopy.textContent = fbt.copy + '. ' + fbt.rights + '.';
+  if (fbSub) fbSub.textContent = fbt.sub;
   const links = FT[lang] || FT.ru;
   const nav = document.getElementById('footer-nav-simple');
   if (!nav) return;
@@ -212,6 +235,23 @@ document.addEventListener("DOMContentLoaded", function() {
     html += '<span class="footer-sep">·</span><a href="' + href + '">' + text + '</a>';
   });
   nav.innerHTML = html;
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof getLang !== 'function') return;
+  const lang = getLang();
+  const TX = {"ru": {"back": "← На главную", "h1": "Политика <em>конфиденциальности</em>", "updated": "Дата обновления: 1 января 2026 года", "p_intro": "Linkora eSIM серьёзно относится к защите ваших персональных данных. Эта политика описывает какие данные мы собираем и как их используем.", "h2_1": "1. Какие данные мы собираем", "p1_1": "При использовании сервиса мы получаем: Telegram ID, имя в Telegram, информацию о заказах.", "p1_2": "Мы не собираем: номера телефонов, email, данные карт, геолокацию.", "div_id1": "Для идентификации и доставки eSIM", "div_id2": "Для связи в рамках поддержки", "div_id3": "Данные заказа", "div_id4": "Тариф, сумма, статус активации", "div_id5": "Подтверждение платежа", "div_id6": "Номер транзакции (данные карт не хранятся)", "h2_2": "2. Как мы используем данные", "p2_1": "Только для обработки заказов, доставки eSIM и поддержки.", "p2_2": "Мы не продаём данные третьим лицам.", "li_use1": "Для обработки заказа и доставки QR-кода eSIM", "li_use2": "Для оказания технической поддержки", "li_use3": "Для отправки уведомлений о заказе через Telegram", "li_use4": "Для предотвращения мошенничества", "h2_3": "3. Хранение данных", "p3_1": "На защищённых серверах с шифрованием.", "p3_2": "Хранятся в течение срока договора плюс 1 год.", "p_storage": "Данные хранятся в защищённой базе данных до 12 месяцев. Вы можете запросить удаление в любое время через поддержку.", "h2_4": "4. Третьи лица", "p4_1": "Платёжные сервисы: Telegram Stars, CryptoBot.", "p4_2": "Для доставки eSIM используется eSIM Cards.", "p_third": "Мы передаём ограниченные данные партнёрам: поставщику eSIM и платёжным системам. Данные не продаются.", "h2_5": "5. Ваши права", "p5_1": "Запрос на удаление данных: @linkorasupport", "p5_2": "Данные транзакций могут храниться для юридических целей.", "li_right1": "Запросить доступ к данным о вас", "li_right2": "Потребовать исправления неточных данных", "li_right3": "Потребовать удаления данных", "li_right4": "Отозвать согласие на обработку", "p_rights_contact": "Для реализации прав: @esimruu_bot", "h2_6": "6. Cookies", "p6_1": "Только технические cookies.", "p_cookies": "Наш сайт не использует файлы cookie для отслеживания или рекламы.", "h2_7": "7. Контакты", "p7_1": "@linkorasupport", "p_contact": "Вопросы о конфиденциальности: @esimruu_bot"}, "en": {"back": "← Back", "h1": "<em>Privacy</em> Policy", "updated": "Last updated: January 1, 2026", "p_intro": "Linkora eSIM takes your personal data seriously.", "h2_1": "1. What We Collect", "p1_1": "Telegram ID, username, order info.", "p1_2": "We do not collect phones, emails, cards, location.", "div_id1": "For identification and eSIM delivery", "div_id2": "For support communication", "div_id3": "Order data", "div_id4": "Plan, amount, activation status", "div_id5": "Payment confirmation", "div_id6": "Transaction number (no card data stored)", "h2_2": "2. How We Use Data", "p2_1": "Only for orders, delivery, support.", "p2_2": "No data sold.", "li_use1": "For order processing and QR delivery", "li_use2": "For technical support", "li_use3": "For order notifications via Telegram", "li_use4": "For fraud prevention", "h2_3": "3. Storage", "p3_1": "Secure servers with encryption.", "p3_2": "Contract duration plus 1 year.", "p_storage": "Data stored securely for up to 12 months.", "h2_4": "4. Third Parties", "p4_1": "Telegram Stars, CryptoBot.", "p4_2": "eSIM Cards for delivery.", "p_third": "We share limited data with partners. Not sold.", "h2_5": "5. Your Rights", "p5_1": "Request deletion: @linkorasupport", "p5_2": "Transaction data may be retained.", "li_right1": "Request access to your data", "li_right2": "Request correction", "li_right3": "Request deletion", "li_right4": "Withdraw consent", "p_rights_contact": "To exercise rights: @esimruu_bot", "h2_6": "6. Cookies", "p6_1": "Technical cookies only.", "p_cookies": "No tracking or advertising cookies.", "h2_7": "7. Contacts", "p7_1": "@linkorasupport", "p_contact": "Privacy questions: @esimruu_bot"}, "zh": {"back": "← 返回", "h1": "<em>隐私</em>政策", "updated": "最后更新：2026年1月1日", "p_intro": "Linkora eSIM重视您的数据保护。", "h2_1": "1. 收集数据", "p1_1": "Telegram ID、用户名、订单信息。", "p1_2": "不收集电话、邮件、银行卡、定位。", "div_id1": "用于识别和eSIM交付", "div_id2": "用于支持沟通", "div_id3": "订单数据", "div_id4": "套餐、金额、激活状态", "div_id5": "付款确认", "div_id6": "交易号（不存储卡数据）", "h2_2": "2. 数据使用", "p2_1": "仅用于订单和支持。", "p2_2": "不出售数据。", "li_use1": "处理订单和交付二维码", "li_use2": "技术支持", "li_use3": "Telegram订单通知", "li_use4": "防止欺诈", "h2_3": "3. 存储", "p3_1": "加密安全服务器。", "p3_2": "合同期加1年。", "p_storage": "安全存储最多12个月。", "h2_4": "4. 第三方", "p4_1": "Telegram Stars、CryptoBot。", "p4_2": "eSIM Cards交付。", "p_third": "与合作伙伴共享有限数据。不出售。", "h2_5": "5. 您的权利", "p5_1": "删除申请：@linkorasupport", "p5_2": "交易数据可能保留。", "li_right1": "申请访问数据", "li_right2": "要求更正", "li_right3": "要求删除", "li_right4": "撤回同意", "p_rights_contact": "行使权利：@esimruu_bot", "h2_6": "6. Cookies", "p6_1": "仅技术cookies。", "p_cookies": "不使用跟踪cookies。", "h2_7": "7. 联系", "p7_1": "@linkorasupport", "p_contact": "隐私问题：@esimruu_bot"}, "es": {"back": "← Volver", "h1": "Política de <em>Privacidad</em>", "updated": "Última actualización: 1 enero 2026", "p_intro": "Linkora eSIM protege tus datos.", "h2_1": "1. Datos recopilados", "p1_1": "ID Telegram, nombre, pedidos.", "p1_2": "Sin teléfonos, emails, tarjetas, ubicación.", "div_id1": "Identificación y entrega eSIM", "div_id2": "Comunicación de soporte", "div_id3": "Datos del pedido", "div_id4": "Plan, monto, estado", "div_id5": "Confirmación de pago", "div_id6": "Número de transacción", "h2_2": "2. Uso de datos", "p2_1": "Solo para pedidos y soporte.", "p2_2": "No se venden datos.", "li_use1": "Procesar pedidos y entregar QR", "li_use2": "Soporte técnico", "li_use3": "Notificaciones via Telegram", "li_use4": "Prevenir fraude", "h2_3": "3. Almacenamiento", "p3_1": "Servidores seguros.", "p3_2": "Contrato más 1 año.", "p_storage": "Hasta 12 meses.", "h2_4": "4. Terceros", "p4_1": "Telegram Stars, CryptoBot.", "p4_2": "eSIM Cards para entrega.", "p_third": "Datos limitados con socios. No se venden.", "h2_5": "5. Tus derechos", "p5_1": "Eliminar: @linkorasupport", "p5_2": "Datos de transacciones pueden conservarse.", "li_right1": "Acceso a datos", "li_right2": "Corrección", "li_right3": "Eliminación", "li_right4": "Retirar consentimiento", "p_rights_contact": "Derechos: @esimruu_bot", "h2_6": "6. Cookies", "p6_1": "Solo técnicas.", "p_cookies": "Sin cookies publicitarias.", "h2_7": "7. Contacto", "p7_1": "@linkorasupport", "p_contact": "Privacidad: @esimruu_bot"}, "de": {"back": "← Zurück", "h1": "<em>Datenschutz</em>richtlinie", "updated": "Letzte Aktualisierung: 1. Januar 2026", "p_intro": "Linkora eSIM schützt Ihre Daten.", "h2_1": "1. Erhobene Daten", "p1_1": "Telegram-ID, Name, Bestellungen.", "p1_2": "Keine Telefone, E-Mails, Karten, Standort.", "div_id1": "Identifikation und Lieferung", "div_id2": "Support-Kommunikation", "div_id3": "Bestelldaten", "div_id4": "Tarif, Betrag, Status", "div_id5": "Zahlungsbestätigung", "div_id6": "Transaktionsnummer", "h2_2": "2. Datenverwendung", "p2_1": "Nur für Bestellungen und Support.", "p2_2": "Keine Weitergabe.", "li_use1": "Auftragsabwicklung", "li_use2": "Technischer Support", "li_use3": "Bestellbenachrichtigungen", "li_use4": "Betrugsprävention", "h2_3": "3. Speicherung", "p3_1": "Sichere Server.", "p3_2": "Vertragsdauer plus 1 Jahr.", "p_storage": "Bis 12 Monate.", "h2_4": "4. Dritte", "p4_1": "Telegram Stars, CryptoBot.", "p4_2": "eSIM Cards für Lieferung.", "p_third": "Begrenzte Daten mit Partnern. Nicht verkauft.", "h2_5": "5. Rechte", "p5_1": "Löschung: @linkorasupport", "p5_2": "Transaktionsdaten aufbewahrt.", "li_right1": "Datenzugang", "li_right2": "Korrektur", "li_right3": "Löschung", "li_right4": "Einwilligung widerrufen", "p_rights_contact": "Rechte: @esimruu_bot", "h2_6": "6. Cookies", "p6_1": "Nur technische.", "p_cookies": "Keine Werbe-Cookies.", "h2_7": "7. Kontakt", "p7_1": "@linkorasupport", "p_contact": "Datenschutz: @esimruu_bot"}};
+  const tx = TX[lang] || TX.ru;
+  const back = document.getElementById('back-link');
+  if (back && tx.back) back.textContent = tx.back;
+  const h1 = document.getElementById('t-h1');
+  if (h1 && tx.h1) h1.innerHTML = tx.h1;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (tx[key]) el.innerHTML = tx[key];
+  });
 });
 </script>
 </body>

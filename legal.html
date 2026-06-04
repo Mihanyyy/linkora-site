@@ -118,6 +118,23 @@ footer {
   footer { padding: 24px 20px; }
 }
 
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(82,183,136,0.06);
+  font-size: 12px;
+  color: rgba(107,158,122,0.5);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media(max-width:768px) {
+  .footer-bottom { flex-direction: column; text-align: center; gap: 4px; }
+}
+
 </style>
 <script src="lang-switcher.js"></script>
 </head>
@@ -201,6 +218,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const b = (navigator.language||'ru').slice(0,2).toLowerCase();
     return L.includes(b) ? b : 'ru';
   })();
+  const FBT = {"ru": {"copy": "© 2026 Linkora eSIM", "rights": "Все права защищены", "sub": "Международная мобильная связь для путешественников"}, "en": {"copy": "© 2026 Linkora eSIM", "rights": "All rights reserved", "sub": "International mobile connectivity for travelers"}, "zh": {"copy": "© 2026 Linkora eSIM", "rights": "版权所有", "sub": "面向旅行者的国际移动连接"}, "es": {"copy": "© 2026 Linkora eSIM", "rights": "Todos los derechos reservados", "sub": "Conectividad móvil internacional para viajeros"}, "de": {"copy": "© 2026 Linkora eSIM", "rights": "Alle Rechte vorbehalten", "sub": "Internationale mobile Konnektivität für Reisende"}};
+  const fbt = FBT[lang] || FBT.ru;
+  const fbCopy = document.getElementById('fb-copy-rights');
+  const fbSub = document.getElementById('fb-sub');
+  if (fbCopy) fbCopy.textContent = fbt.copy + '. ' + fbt.rights + '.';
+  if (fbSub) fbSub.textContent = fbt.sub;
   const links = FT[lang] || FT.ru;
   const nav = document.getElementById('footer-nav-simple');
   if (!nav) return;
@@ -211,6 +234,23 @@ document.addEventListener("DOMContentLoaded", function() {
     html += '<span class="footer-sep">·</span><a href="' + href + '">' + text + '</a>';
   });
   nav.innerHTML = html;
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof getLang !== 'function') return;
+  const lang = getLang();
+  const TX = {"ru": {"back": "← На главную", "h1": "Юридическая <em>информация</em>", "updated": "Дата обновления: январь 2026 года", "h2_1": "Исполнитель услуг", "p1_1": "Linkora eSIM — сервис международного мобильного интернета.", "p1_2": "Деятельность на основании российского законодательства.", "h2_2": "Контактная информация", "p2_1": "Поддержка: @linkorasupport (Telegram)", "p2_2": "Время ответа: в течение 24 часов.", "h2_3": "Описание деятельности", "p3_1": "Продажа eSIM-тарифов через Telegram-бота.", "h2_4": "Документы", "p4_1": "Оферта, Конфиденциальность и Возвраты на сайте linkora.app.", "h2_5": "Платёжная информация", "p5_1": "Telegram Stars и криптовалюта (USDT, TON, BTC).", "p5_2": "Данные карт не хранятся.", "div_status": "Статус", "div_selfemployed": "Самозанятый", "div_fio": "ФИО", "div_inn_label": "ИНН", "div_name": "Мешков Богдан Алексеевич", "div_inn": "236100322021", "div_region": "Регион", "div_location": "Краснодарский край, Россия", "div_tax_system": "Система налогообложения", "div_tax_type": "Налог на профессиональный доход (НПД)", "div_hours": "Время работы", "div_activity": "Вид деятельности", "div_activity_desc": "Продажа услуг международной мобильной передачи данных через технологию eSIM", "div_service_type": "Тип услуги", "div_service_desc": "Цифровые услуги (eSIM — электронная SIM-карта)", "div_geo": "География", "div_geo_desc": "200+ стран мира", "div_channel": "Канал продаж", "div_tg_bot": "Telegram-бот @esimruu_bot", "div_doc1": "Публичная оферта", "div_doc2": "Конфиденциальность", "div_doc3": "Политика возвратов", "div_read": "Читать →", "div_currencies": "Принимаемые валюты", "div_currencies_desc": "USD, криптовалюта (USDT, TON, BTC), Telegram Stars", "div_payment_systems": "Платёжные системы", "div_payment_desc": "Telegram Stars, CryptoBot", "div_security": "Безопасность", "div_security_desc": "Данные банковских карт не хранятся", "div_tg_support": "Telegram (поддержка)"}, "en": {"back": "← Back", "h1": "Legal <em>Information</em>", "updated": "Last updated: January 2026", "h2_1": "Service Provider", "p1_1": "Linkora eSIM — international mobile internet.", "p1_2": "Under Russian law.", "h2_2": "Contact", "p2_1": "Support: @linkorasupport", "p2_2": "Response within 24 hours.", "h2_3": "Business", "p3_1": "eSIM plans via Telegram bot.", "h2_4": "Documents", "p4_1": "Terms, Privacy, Refunds at linkora.app.", "h2_5": "Payment", "p5_1": "Telegram Stars and crypto.", "p5_2": "No card data stored.", "div_status": "Status", "div_selfemployed": "Self-employed", "div_fio": "Full Name", "div_inn_label": "Tax ID", "div_name": "Мешков Богдан Алексеевич", "div_inn": "236100322021", "div_region": "Region", "div_location": "Krasnodar Region, Russia", "div_tax_system": "Tax system", "div_tax_type": "Professional income tax", "div_hours": "Working hours", "div_activity": "Business activity", "div_activity_desc": "International mobile data services via eSIM", "div_service_type": "Service type", "div_service_desc": "Digital services (eSIM)", "div_geo": "Geography", "div_geo_desc": "200+ countries", "div_channel": "Sales channel", "div_tg_bot": "Telegram bot @esimruu_bot", "div_doc1": "Terms of Service", "div_doc2": "Privacy Policy", "div_doc3": "Refund Policy", "div_read": "Read →", "div_currencies": "Accepted currencies", "div_currencies_desc": "USD, crypto, Telegram Stars", "div_payment_systems": "Payment systems", "div_payment_desc": "Telegram Stars, CryptoBot", "div_security": "Security", "div_security_desc": "No card data stored", "div_tg_support": "Telegram (support)"}, "zh": {"back": "← 返回", "h1": "法律<em>信息</em>", "updated": "最后更新：2026年1月", "h2_1": "服务提供商", "p1_1": "Linkora eSIM — 国际移动网络。", "p1_2": "依据俄罗斯法律。", "h2_2": "联系", "p2_1": "支持：@linkorasupport", "p2_2": "24小时内响应。", "h2_3": "业务", "p3_1": "通过Telegram机器人销售eSIM套餐。", "h2_4": "文件", "p4_1": "条款、隐私、退款在linkora.app。", "h2_5": "支付", "p5_1": "Telegram Stars和加密货币。", "p5_2": "不存储卡数据。", "div_status": "状态", "div_selfemployed": "个体经营者", "div_fio": "姓名", "div_inn_label": "税号", "div_name": "Мешков Богдан Алексеевич", "div_inn": "236100322021", "div_region": "地区", "div_location": "俄罗斯克拉斯诺达尔", "div_tax_system": "税收制度", "div_tax_type": "专业收入税", "div_hours": "工作时间", "div_activity": "业务", "div_activity_desc": "通过eSIM提供国际移动数据", "div_service_type": "服务类型", "div_service_desc": "数字服务（eSIM）", "div_geo": "地理", "div_geo_desc": "200+国家", "div_channel": "销售渠道", "div_tg_bot": "Telegram机器人 @esimruu_bot", "div_doc1": "服务条款", "div_doc2": "隐私政策", "div_doc3": "退款政策", "div_read": "阅读 →", "div_currencies": "接受货币", "div_currencies_desc": "USD、加密货币、Telegram Stars", "div_payment_systems": "支付系统", "div_payment_desc": "Telegram Stars、CryptoBot", "div_security": "安全", "div_security_desc": "不存储卡数据", "div_tg_support": "Telegram（支持）"}, "es": {"back": "← Volver", "h1": "Información <em>Legal</em>", "updated": "Enero 2026", "h2_1": "Proveedor", "p1_1": "Linkora eSIM — internet móvil.", "p1_2": "Ley rusa.", "h2_2": "Contacto", "p2_1": "@linkorasupport", "p2_2": "24 horas.", "h2_3": "Negocio", "p3_1": "Planes eSIM via bot.", "h2_4": "Documentos", "p4_1": "linkora.app", "h2_5": "Pago", "p5_1": "Telegram Stars y cripto.", "p5_2": "Sin datos de tarjeta.", "div_status": "Estado", "div_selfemployed": "Autónomo", "div_fio": "Nombre", "div_inn_label": "NIF", "div_name": "Мешков Богдан Алексеевич", "div_inn": "236100322021", "div_region": "Región", "div_location": "Región Krasnodar, Rusia", "div_tax_system": "Sistema fiscal", "div_tax_type": "Impuesto profesional", "div_hours": "Horario", "div_activity": "Actividad", "div_activity_desc": "Datos móviles via eSIM", "div_service_type": "Tipo", "div_service_desc": "Servicios digitales", "div_geo": "Geografía", "div_geo_desc": "200+ países", "div_channel": "Canal", "div_tg_bot": "Bot @esimruu_bot", "div_doc1": "Términos", "div_doc2": "Privacidad", "div_doc3": "Reembolsos", "div_read": "Leer →", "div_currencies": "Divisas", "div_currencies_desc": "USD, cripto, Stars", "div_payment_systems": "Pagos", "div_payment_desc": "Stars, CryptoBot", "div_security": "Seguridad", "div_security_desc": "Sin datos de tarjeta", "div_tg_support": "Telegram (soporte)"}, "de": {"back": "← Zurück", "h1": "Rechtliche <em>Informationen</em>", "updated": "Januar 2026", "h2_1": "Dienstanbieter", "p1_1": "Linkora eSIM — mobiles Internet.", "p1_2": "Russisches Recht.", "h2_2": "Kontakt", "p2_1": "@linkorasupport", "p2_2": "24 Stunden.", "h2_3": "Geschäft", "p3_1": "eSIM-Tarife via Bot.", "h2_4": "Dokumente", "p4_1": "linkora.app", "h2_5": "Zahlung", "p5_1": "Telegram Stars und Krypto.", "p5_2": "Keine Kartendaten.", "div_status": "Status", "div_selfemployed": "Selbständig", "div_fio": "Name", "div_inn_label": "Steuer-ID", "div_name": "Мешков Богдан Алексеевич", "div_inn": "236100322021", "div_region": "Region", "div_location": "Region Krasnodar, Russland", "div_tax_system": "Steuersystem", "div_tax_type": "Berufseinkommen", "div_hours": "Geschäftszeiten", "div_activity": "Tätigkeit", "div_activity_desc": "Internationale Datendienste via eSIM", "div_service_type": "Typ", "div_service_desc": "Digitale Dienste", "div_geo": "Geografie", "div_geo_desc": "200+ Länder", "div_channel": "Kanal", "div_tg_bot": "Telegram-Bot @esimruu_bot", "div_doc1": "AGB", "div_doc2": "Datenschutz", "div_doc3": "Rückgaberecht", "div_read": "Lesen →", "div_currencies": "Währungen", "div_currencies_desc": "USD, Krypto, Stars", "div_payment_systems": "Zahlungssysteme", "div_payment_desc": "Stars, CryptoBot", "div_security": "Sicherheit", "div_security_desc": "Keine Kartendaten", "div_tg_support": "Telegram (Support)"}};
+  const tx = TX[lang] || TX.ru;
+  const back = document.getElementById('back-link');
+  if (back && tx.back) back.textContent = tx.back;
+  const h1 = document.getElementById('t-h1');
+  if (h1 && tx.h1) h1.innerHTML = tx.h1;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (tx[key]) el.innerHTML = tx[key];
+  });
 });
 </script>
 </body>
