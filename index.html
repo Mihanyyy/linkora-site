@@ -1519,7 +1519,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   scene.add(pointLight);
 
   /* ── LEAF PARTICLES (fall down + sideways) ── */
-  const LEAF_COUNT = 600;
+  const LEAF_COUNT = 800;
   const leafPos = new Float32Array(LEAF_COUNT * 3);
   const leafV = [];
   for (let i = 0; i < LEAF_COUNT; i++) {
@@ -1532,11 +1532,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const leafGeo = new THREE.BufferGeometry();
   leafGeo.setAttribute('position', new THREE.BufferAttribute(leafPos, 3));
   scene.add(new THREE.Points(leafGeo, new THREE.PointsMaterial({
-    color:0x52b788, size:0.18, transparent:true, opacity:0.4, sizeAttenuation:true, depthWrite:false
+    color:0x52b788, size:0.08, transparent:true, opacity:0.4, sizeAttenuation:true, depthWrite:false
   })));
 
   /* ── SPORE PARTICLES (rise upward) ── */
-  const SPORE_COUNT = 400;
+  const SPORE_COUNT = 200;
   const sporePos = new Float32Array(SPORE_COUNT * 3);
   const sporeV = [];
   for (let i = 0; i < SPORE_COUNT; i++) {
@@ -1549,7 +1549,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const sporeGeo = new THREE.BufferGeometry();
   sporeGeo.setAttribute('position', new THREE.BufferAttribute(sporePos, 3));
   scene.add(new THREE.Points(sporeGeo, new THREE.PointsMaterial({
-    color:0x52b788, size:0.09, transparent:true, opacity:0.6, sizeAttenuation:true, depthWrite:false
+    color:0x52b788, size:0.04, transparent:true, opacity:0.6, sizeAttenuation:true, depthWrite:false
   })));
 
   /* ── SPORE BLOOM LAYER (150 large soft points) ── */
