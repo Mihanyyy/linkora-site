@@ -390,5 +390,78 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 })();
 </script>
+<!-- MOTION-INJECT -->
+<style>
+/* === Linkora subtle motion === */
+@media (prefers-reduced-motion: no-preference) {
+  .anim-r { opacity: 0; transform: translateY(24px);
+            transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+            will-change: opacity, transform; }
+  .anim-r.in { opacity: 1; transform: none; }
+  .card, .yes-card, .no-card {
+            transition: transform .35s ease, box-shadow .35s ease, border-color .3s ease; }
+  .card:hover, .yes-card:hover, .no-card:hover {
+            transform: translateY(-4px); box-shadow: 0 18px 42px rgba(0,0,0,.4); }
+}
+</style>
+<script>
+(function(){
+  try {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── Появление при скролле ── */
+    if (!reduce && 'IntersectionObserver' in window) {
+      var SEL = ['.content > *','.hero > *','.section','.card','.yes-card','.no-card',
+                 '.highlight','.step-card','.payout-card','.faq-item','.stat-item','.cond-card'];
+      var set = [];
+      SEL.forEach(function(s){
+        document.querySelectorAll(s).forEach(function(el){
+          if (set.indexOf(el) === -1 && !el.closest('nav') && el.offsetParent !== null) set.push(el);
+        });
+      });
+      set.forEach(function(el){ el.classList.add('anim-r'); });
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry, i){
+          if (entry.isIntersecting){
+            var d = Math.min(i, 6) * 70;
+            setTimeout(function(){ entry.target.classList.add('in'); }, d);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+      set.forEach(function(el){ io.observe(el); });
+    }
+
+    /* ── Анимированные счётчики ── */
+    function animateNum(el){
+      if (el.dataset.counted) return;
+      el.dataset.counted = '1';
+      if (el.children.length) return;                  // содержит вложенные теги — не трогаем
+      var txt = (el.textContent || '').trim();
+      var m = txt.match(/^(\D*?)(\d+)(\D*)$/);
+      if (!m || reduce) return;                         // нет числа (напр. ∞) — без счёта
+      var prefix = m[1], target = parseInt(m[2], 10), suffix = m[3], dur = 1100, start = null;
+      function step(ts){
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var e = 1 - Math.pow(1 - p, 3);                 // easeOutCubic
+        el.textContent = prefix + Math.round(target * e) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = prefix + target + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+    var stats = document.querySelectorAll('.stat-num, .stat-val');
+    if (stats.length && 'IntersectionObserver' in window){
+      var cio = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){ animateNum(entry.target); cio.unobserve(entry.target); }
+        });
+      }, { threshold: 0.4 });
+      stats.forEach(function(s){ cio.observe(s); });
+    }
+  } catch(e){}
+})();
+</script>
 </body>
 </html>
