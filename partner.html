@@ -438,6 +438,23 @@ footer {
 
 </style>
 <script src="lang-switcher.js"></script>
+<style>
+/* === Linkora mobile nav fix === */
+@media (max-width: 900px) {
+  #lang-sw { display: none !important; }   /* убираем дубль выпадающего переключателя на мобиле */
+}
+@media (max-width: 768px) {
+  nav { padding: 0 16px !important; gap: 8px; }
+  .nav-logo { font-size: 15px !important; letter-spacing: 1.5px !important; gap: 6px;
+              min-width: 0; flex-shrink: 1; overflow: hidden; white-space: nowrap; }
+  .back { font-size: 11px !important; letter-spacing: 0.5px !important;
+          white-space: nowrap; flex-shrink: 0; }
+}
+@media (max-width: 380px) {
+  .nav-logo { font-size: 13px !important; letter-spacing: 1px !important; }
+  .nav-logo span { display: none; }   /* на узких экранах прячем суффикс eSIM */
+}
+</style>
 </head>
 <body>
 

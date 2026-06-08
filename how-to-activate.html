@@ -234,12 +234,29 @@ footer {
 
 </style>
 <script src="lang-switcher.js"></script>
+<style>
+/* === Linkora mobile nav fix === */
+@media (max-width: 900px) {
+  #lang-sw { display: none !important; }   /* убираем дубль выпадающего переключателя на мобиле */
+}
+@media (max-width: 768px) {
+  nav { padding: 0 16px !important; gap: 8px; }
+  .nav-logo { font-size: 15px !important; letter-spacing: 1.5px !important; gap: 6px;
+              min-width: 0; flex-shrink: 1; overflow: hidden; white-space: nowrap; }
+  .back { font-size: 11px !important; letter-spacing: 0.5px !important;
+          white-space: nowrap; flex-shrink: 0; }
+}
+@media (max-width: 380px) {
+  .nav-logo { font-size: 13px !important; letter-spacing: 1px !important; }
+  .nav-logo span { display: none; }   /* на узких экранах прячем суффикс eSIM */
+}
+</style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>Linkora <span style="opacity:.5;font-weight:300"> eSIM</span></a>
-  <a href="index.html" class="back">← На главную</a>
+  <a href="index.html" class="back" id="back-link">← На главную</a>
 <div class="mobile-lang" id="mobileLang">
   <button class="mobile-lang-btn" id="mobileLangBtn">🌐 <span id="mobileLangText">RU</span></button>
   <div class="mobile-lang-menu" id="mobileLangMenu"></div>

@@ -27,7 +27,7 @@ nav{position:sticky;top:0;z-index:100;padding:0 48px;height:72px;display:flex;al
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.8)}}
 .back{font-size:13px;color:var(--c-gray);letter-spacing:1px;text-transform:uppercase;transition:color 0.3s;display:flex;align-items:center;gap:8px;}
 .back:hover{color:var(--c-mist);}
-.back::before{content:'←';}
+
 .content{max-width:800px;margin:0 auto;padding:80px 24px 120px;}
 h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,64px);font-weight:300;line-height:1.05;margin-bottom:10px;}
 h1 em{font-style:italic;color:var(--c-glow);}
@@ -191,11 +191,28 @@ footer {
 
 </style>
 <script src="lang-switcher.js"></script>
+<style>
+/* === Linkora mobile nav fix === */
+@media (max-width: 900px) {
+  #lang-sw { display: none !important; }   /* убираем дубль выпадающего переключателя на мобиле */
+}
+@media (max-width: 768px) {
+  nav { padding: 0 16px !important; gap: 8px; }
+  .nav-logo { font-size: 15px !important; letter-spacing: 1.5px !important; gap: 6px;
+              min-width: 0; flex-shrink: 1; overflow: hidden; white-space: nowrap; }
+  .back { font-size: 11px !important; letter-spacing: 0.5px !important;
+          white-space: nowrap; flex-shrink: 0; }
+}
+@media (max-width: 380px) {
+  .nav-logo { font-size: 13px !important; letter-spacing: 1px !important; }
+  .nav-logo span { display: none; }   /* на узких экранах прячем суффикс eSIM */
+}
+</style>
 </head>
 <body>
 <nav>
   <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>Linkora <span style="opacity:.5;font-weight:300"> eSIM</span></a>
-  <a href="index.html" class="back">На главную</a>
+  <a href="index.html" class="back" id="back-link">← На главную</a>
 <div class="mobile-lang" id="mobileLang">
   <button class="mobile-lang-btn" id="mobileLangBtn">🌐 <span id="mobileLangText">RU</span></button>
   <div class="mobile-lang-menu" id="mobileLangMenu"></div>
