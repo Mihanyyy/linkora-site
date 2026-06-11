@@ -9,6 +9,7 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Linkora eSIM">
 <meta name="theme-color" content="#050d07">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://linkora.app/">
 
 <!-- Open Graph -->
@@ -53,10 +54,38 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"<span id="i18n-faq1-q">Что такое eSIM?</span>","acceptedAnswer":{"@type":"Answer","text":"eSIM — встроенная цифровая SIM-карта. Не нужна физическая карта — тариф скачивается напрямую на устройство."}},
-    {"@type":"Question","name":"Как активировать eSIM на iPhone?","acceptedAnswer":{"@type":"Answer","text":"Настройки → Сотовая связь → Добавить план → Сканировать QR-код из Telegram."}},
-    {"@type":"Question","name":"Какие устройства поддерживают eSIM?","acceptedAnswer":{"@type":"Answer","text":"iPhone XS и новее, Samsung Galaxy S20+, Google Pixel 3+ и большинство современных Android."}},
-    {"@type":"Question","name":"<span id="i18n-faq4-q">Когда начинается действие тарифа?</span>","acceptedAnswer":{"@type":"Answer","text":"Тариф начинается с момента первого использования данных, не с момента установки eSIM."}}
+    {
+      "@type": "Question",
+      "name": "Что такое eSIM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "eSIM — встроенная цифровая SIM-карта. Не нужна физическая карта: тариф устанавливается сканированием QR-кода за одну минуту."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как активировать eSIM на iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Настройки → Сотовая связь → Добавить план → Сканировать QR-код. Подробная инструкция: https://linkora.app/how-to-activate.html"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какие устройства поддерживают eSIM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iPhone XS и новее, Samsung Galaxy S20 и новее, Google Pixel 3 и новее, а также большинство современных смартфонов с поддержкой eSIM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда начинается действие тарифа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Тариф начинается с момента первого использования данных, не с момента покупки."
+      }
+    }
   ]
 }
 </script>
@@ -1039,7 +1068,7 @@ footer {
       </div>
       <div class="step-card">
         <div class="step-num">02</div>
-        <div class="step-icon">✦</div>
+        <div class="step-icon"><img loading="lazy" src="icons/step2.png" alt="Оплатите" style="width:72px;height:72px;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 0 12px rgba(82,183,136,0.4));"></div>
         <div class="step-title"><span id="i18n-step2-title">Оплатите</span></div>
         <p class="step-text"><span id="i18n-step2-text">Telegram Stars, криптовалюта или банковская карта. Платёж мгновенный, безопасный, без лишних шагов.</span></p>
       </div>
